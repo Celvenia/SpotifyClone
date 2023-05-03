@@ -9,3 +9,5 @@ class Follow(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     user_id = db.Column(db.Integer, nullable=False)
     following_id = db.Column(db.Integer, nullable=False)
+    created_at = db.Column(db.DateTime(timezone=True))
+    updated_at = db.Column(db.DateTime(timezone=True))

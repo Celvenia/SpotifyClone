@@ -8,3 +8,5 @@ class UsersQueuedSong(db.Model):
 
     id = db.Column(db.Integer, primary_key=True)
     song_id = db.Column(db.Integer, nullable=False, unique=True)
+    created_at = db.Column(db.DateTime(timezone=True))
+    updated_at = db.Column(db.DateTime(timezone=True))

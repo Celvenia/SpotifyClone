@@ -16,3 +16,5 @@ class Artist(db.Model):
     members = db.Column(db.Integer(255), nullable=False)
     created_at = db.Column(db.DateTime(timezone=True))
     updated_at = db.Column(db.DateTime(timezone=True))
+
+albums = db.relationship('Album', primaryjoin='and_(Artist.genres==Album.genres, foreign(Artist.user_id)==Artist.artist_ids)', back_populates='artists')

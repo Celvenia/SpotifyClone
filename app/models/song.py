@@ -13,3 +13,6 @@ class Song(db.Model):
     url = db.Column(db.String, nullable=False)
     genres = db.Column(db.String, nullable=False)
     release_date = db.Column(db.Date, nullable=False)
+    created_at = db.Column(db.DateTime(timezone=True))
+    updated_at = db.Column(db.DateTime(timezone=True))
+    albums = db.relationship('Album', primaryjoin='and_(Song.genres==Album.genres, foreign(Song.album_id)==Album.id)')

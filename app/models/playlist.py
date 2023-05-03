@@ -12,3 +12,5 @@ class Playlist(db.Model):
     title = db.Column(db.String(255), nullable=False)
     description = db.Column(db.String(255), nullable=False) # Text or Blob preferred
     is_private = db.Column(db.Boolean, nullable=False)
+    created_at = db.Column(db.DateTime(timezone=True))
+    updated_at = db.Column(db.DateTime(timezone=True))
