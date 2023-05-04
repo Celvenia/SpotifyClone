@@ -15,6 +15,11 @@ class User(db.Model, UserMixin):
     hashed_password = db.Column(db.String(255), nullable=False)
     created_at = db.Column(db.DateTime(timezone=True))
     updated_at = db.Column(db.DateTime(timezone=True))
+
+    artists = db.relationship('Artist', primaryjoin='foreign(Artist.user_id)==User.id', back_populates='user')
+    playlist = db.relationship('Playlist', primaryjoin='foreign(Playlist.user_id)==User.id', back_populates='user')
+
+
     @property
     def password(self):
         return self.hashed_password

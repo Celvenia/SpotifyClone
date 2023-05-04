@@ -11,4 +11,6 @@ class Like(db.Model):
     like_type = db.Column(db.Enum("album", "playlist", "song"), nullable=False) #ENUM type?
     created_at = db.Column(db.DateTime(timezone=True))
     updated_at = db.Column(db.DateTime(timezone=True))
+
     albums = db.relationship('Album', primaryjoin='and_(Like.like_type=="album", foreign(Like.like_id)==Album.id)')
+    playlists = db.relationship('Playlist', primaryjoin='and_(Like.like_type=="playlist", foreign(Like.like_id)==Playlist.id)')

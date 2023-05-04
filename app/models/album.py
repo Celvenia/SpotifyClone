@@ -18,4 +18,5 @@ class Album(db.Model):
 
     likes = db.relationship('Like', primaryjoin='and_(Like.like_type=="album", foreign(Like.like_id)==Album.id)', back_populates='albums')
     songs = db.relationship('Song', primaryjoin='and_(Song.genres==Album.genres, foreign(Song.album_id)==Album.id)', back_populates='albums')
-    artists = db.relationship('Artist', primaryjoin='and_(Artist.genres==Album.genres, foreign(Artist.user_id)==Artist.artist_ids)')
+    artists = db.relationship('Artist', primaryjoin='and_(Artist.genres==Album.genres, foreign(Album.artist_ids)==Artist.id)')
+    # artists = db.relationship('Artist', primaryjoin='and_(Artist.genres==Album.genres, foreign(Artist.id)==Album.artist_ids)')

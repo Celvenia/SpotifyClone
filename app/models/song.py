@@ -15,4 +15,6 @@ class Song(db.Model):
     release_date = db.Column(db.Date, nullable=False)
     created_at = db.Column(db.DateTime(timezone=True))
     updated_at = db.Column(db.DateTime(timezone=True))
+
     albums = db.relationship('Album', primaryjoin='and_(Song.genres==Album.genres, foreign(Song.album_id)==Album.id)')
+    playlist = db.relationship('Playlist', primaryjoin='foreign(Playlist.song_id)==Song.id', back_populates='song')
