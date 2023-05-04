@@ -2,17 +2,11 @@ from app.models import db, Album, environment, SCHEMA
 from sqlalchemy.sql import text
 from datetime import datetime
 
-
-    # record_label = db.Column(db.String, nullable=False)
-    # created_at = db.Column(db.DateTime(timezone=True))
-    # updated_at = db.Column(db.DateTime(timezone=True))
-
-
 # Adds a demo album
 def seed_albums():
-    album1 = Album(artist_id=3, title='My First Album', cover_art='example.url', release_date=datetime.now(), record_label='example label')
-    album2 = Album(artist_id=3, title='My Second Album', cover_art='example.url', release_date=datetime.now(), record_label='example label')
-    album3 = Album(artist_id=4, title='Greatest Hits', cover_art='example.url', release_date=datetime(2010, 1, 1), record_label='example label')
+    album1 = Album(user_id=3, title='My First Album', cover_art='example.url', release_date=datetime.now(), record_label='example label')
+    album2 = Album(user_id=3, title='My Second Album', cover_art='example.url', release_date=datetime.now(), record_label='example label')
+    album3 = Album(user_id=4, title='Greatest Hits', cover_art='example.url', release_date=datetime(2010, 1, 1), record_label='example label')
     
     db.session.add(album1)
     db.session.add(album2)
