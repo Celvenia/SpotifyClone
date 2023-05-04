@@ -1,22 +1,25 @@
 from app.models import db, User, environment, SCHEMA
 from sqlalchemy.sql import text
 
-
 # Adds a demo user, you can add other users here if you want
 def seed_users():
     demo = User(
-        username='Demo', email='demo@aa.io', password='password')
+        username='Demo', email='demo@aa.io', hashed_password='password', is_artist=False,
+        profile_picture='https://w7.pngwing.com/pngs/598/553/png-transparent-computer-icons-spotify-graphics-streaming-media-spotify-icon-logo-grass-feather.png', public_name='Demo',
+        banner_image='https://martech.org/wp-content/uploads/2017/09/spotify-logo-1920x1080.jpg')
     marnie = User(
-        username='marnie', email='marnie@aa.io', password='password')
+        username='marnie', email='marnie@aa.io', hashed_password='password', is_artist=False,
+        profile_picture='https://w7.pngwing.com/pngs/598/553/png-transparent-computer-icons-spotify-graphics-streaming-media-spotify-icon-logo-grass-feather.png', public_name='Demo',
+        banner_image='https://martech.org/wp-content/uploads/2017/09/spotify-logo-1920x1080.jpg')
     bobbie = User(
-        username='bobbie', email='bobbie@aa.io', password='password')
+        username='bobbie', email='bobbie@aa.io', hashed_password='password', is_artist=False,
+        profile_picture='https://w7.pngwing.com/pngs/598/553/png-transparent-computer-icons-spotify-graphics-streaming-media-spotify-icon-logo-grass-feather.png', public_name='Demo',
+        banner_image='https://martech.org/wp-content/uploads/2017/09/spotify-logo-1920x1080.jpg')
 
     db.session.add(demo)
     db.session.add(marnie)
     db.session.add(bobbie)
     db.session.commit()
-
-
 # Uses a raw SQL query to TRUNCATE or DELETE the users table. SQLAlchemy doesn't
 # have a built in function to do this. With postgres in production TRUNCATE
 # removes all the data from the table, and RESET IDENTITY resets the auto
@@ -25,8 +28,8 @@ def seed_users():
 # it will reset the primary keys for you as well.
 def undo_users():
     if environment == "production":
-        db.session.execute(f"TRUNCATE table {SCHEMA}.users RESTART IDENTITY CASCADE;")
+        db.session.execute(
+            f"TRUNCATE table {SCHEMA}.users RESTART IDENTITY CASCADE;")
     else:
         db.session.execute(text("DELETE FROM users"))
-        
-    db.session.commit()
+        db.session.commit()
