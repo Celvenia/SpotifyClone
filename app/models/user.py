@@ -1,4 +1,5 @@
 from .db import db, environment, SCHEMA, add_prefix_for_prod
+from sqlalchemy.sql import func
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask_login import UserMixin
 
@@ -15,8 +16,8 @@ class User(db.Model, UserMixin):
     profile_picture = db.Column(db.String(255), nullable=False)
     public_name = db.Column(db.String(255), nullable=False)
     banner_image = db.Column(db.String(255), nullable=False)
-    created_at = db.Column(db.DateTime(timezone=True))
-    updated_at = db.Column(db.DateTime(timezone=True))
+    created_at = db.Column(db.DateTime(timezone=True), server_default=func.now())
+    updated_at = db.Column(db.DateTime(timezone=True), server_default=func.now())
 
     playlist = db.relationship('Playlist', primaryjoin='foreign(Playlist.user_id)==User.id', back_populates='user')
 

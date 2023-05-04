@@ -4,15 +4,15 @@ from sqlalchemy.sql import text
 # Adds a demo user, you can add other users here if you want
 def seed_users():
     demo = User(
-        username='Demo', email='demo@aa.io', hashed_password='password', is_artist=False,
+        username='Demo', email='demo@aa.io', password='password', is_artist=False,
         profile_picture='https://w7.pngwing.com/pngs/598/553/png-transparent-computer-icons-spotify-graphics-streaming-media-spotify-icon-logo-grass-feather.png', public_name='Demo',
         banner_image='https://martech.org/wp-content/uploads/2017/09/spotify-logo-1920x1080.jpg')
     marnie = User(
-        username='marnie', email='marnie@aa.io', hashed_password='password', is_artist=False,
+        username='marnie', email='marnie@aa.io', password='password', is_artist=False,
         profile_picture='https://w7.pngwing.com/pngs/598/553/png-transparent-computer-icons-spotify-graphics-streaming-media-spotify-icon-logo-grass-feather.png', public_name='Demo',
         banner_image='https://martech.org/wp-content/uploads/2017/09/spotify-logo-1920x1080.jpg')
     bobbie = User(
-        username='bobbie', email='bobbie@aa.io', hashed_password='password', is_artist=False,
+        username='bobbie', email='bobbie@aa.io', password='password', is_artist=False,
         profile_picture='https://w7.pngwing.com/pngs/598/553/png-transparent-computer-icons-spotify-graphics-streaming-media-spotify-icon-logo-grass-feather.png', public_name='Demo',
         banner_image='https://martech.org/wp-content/uploads/2017/09/spotify-logo-1920x1080.jpg')
 

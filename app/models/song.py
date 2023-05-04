@@ -1,4 +1,5 @@
 from .db import db, environment, SCHEMA
+from sqlalchemy.sql import func
 
 class Song(db.Model):
     __tablename__ = 'songs'
@@ -13,7 +14,7 @@ class Song(db.Model):
     url = db.Column(db.String, nullable=False)
     genres = db.Column(db.String, nullable=False)
     release_date = db.Column(db.String, nullable=False)
-    created_at = db.Column(db.DateTime(timezone=True))
-    updated_at = db.Column(db.DateTime(timezone=True))
+    created_at = db.Column(db.DateTime(timezone=True), server_default=func.now())
+    updated_at = db.Column(db.DateTime(timezone=True), server_default=func.now())
 
     playlist = db.relationship('Playlist', primaryjoin='foreign(Playlist.song_id)==Song.id', back_populates='song')
