@@ -21,7 +21,7 @@ class Song(db.Model):
     playlist = db.relationship('Playlist', primaryjoin='foreign(Playlist.song_id)==Song.id', back_populates='song')
     albums = db.relationship('Album', primaryjoin='and_(Song.genres==Album.genres, foreign(Song.album_id)==Album.id)')
 
-    def to_song_dict(self):
+    def to_dict(self):
         return{
             'id': self.id,
             'title': self.title,
