@@ -9,7 +9,7 @@ playlist_routes = Blueprint('playlists', __name__)
 @login_required
 def user_playlists():
     """
-    Query for all users and returns them in a list of user dictionaries
+    Query for all playlists and returns them in a list of user dictionaries
     """
     user_playlists = Playlist.query.filter(Playlist.user_id==current_user.id).all()
     return {'playlists': [playlist.to_dict() for playlist in user_playlists]}
@@ -19,7 +19,7 @@ def user_playlists():
 # @login_required
 # def playlists(id):
 #     """
-#     Query for a user by id and returns that user in a dictionary
+#     Query for a playlist by id and returns that playlist in a dictionary
 #     """
-#     user = User.query.get(id)
-#     return user.to_dict()
+#     playlist = Playlist.query.get(id)
+#     return playlist.to_dict()

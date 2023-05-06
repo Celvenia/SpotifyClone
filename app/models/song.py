@@ -18,8 +18,13 @@ class Song(db.Model):
     created_at = db.Column(db.DateTime(timezone=True), server_default=func.now())
     updated_at = db.Column(db.DateTime(timezone=True), server_default=func.now())
 
+    liked_by = db.relationship('User', secondary='likes', back_populates='liked_songs')
     playlist = db.relationship('Playlist', primaryjoin='foreign(Playlist.song_id)==Song.id', back_populates='song')
     albums = db.relationship('Album', primaryjoin='and_(Song.genres==Album.genres, foreign(Song.album_id)==Album.id)')
+
+    # artist = db.relationship('Artist', backref='songs', lazy=True)
+    # album = db.relationship('Album', backref='songs', lazy=True)
+    # genre = db.relationship('Genre', backref='songs', lazy=True)
 
     def to_dict(self):
         return{

@@ -23,3 +23,51 @@ def user(id):
     """
     user = User.query.get(id)
     return user.to_dict()
+
+
+@user_routes.route('/<int:id>/likes')
+@login_required
+def user_likes(id):
+    """
+    Query for a user by id and returns a list of dictionaries containing
+    each like the user has made, including the song, album, or playlist
+    """
+    user = User.query.get(id)
+    likes = [like.to_dict() for like in user.likes]
+    return {'likes': likes}
+
+
+@user_routes.route('/<int:id>/liked_playlists')
+@login_required
+def user_liked_playlists(id):
+    """
+    Query for a user by id and returns a list of playlists
+    the user has liked
+    """
+    user = User.query.get(id)
+    liked_playlists = [playlist.to_dict() for playlist in user.liked_playlists]
+    return {'liked_playlists': liked_playlists}
+
+
+@user_routes.route('/<int:id>/liked_songs')
+@login_required
+def user_liked_songs(id):
+    """
+    Query for a user by id and returns a list of songs
+    the user has liked
+    """
+    user = User.query.get(id)
+    liked_songs = [playlist.to_dict() for playlist in user.liked_songs]
+    return {'liked_songs': liked_songs}
+
+
+@user_routes.route('/<int:id>/liked_albums')
+@login_required
+def user_liked_albums(id):
+    """
+    Query for a user by id and returns a list of albums
+    the user has liked
+    """
+    user = User.query.get(id)
+    liked_albums = [playlist.to_dict() for playlist in user.liked_albums]
+    return {'liked_albums': liked_albums}

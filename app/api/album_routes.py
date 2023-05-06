@@ -10,12 +10,12 @@ def albums():
     Query for all albums and returns them in a list of user dictionaries
     """
     albums = Album.query.all()
-    return {'albums': [album.to_album_dict() for album in albums]}
+    return {'albums': [album.to_dict() for album in albums]}
 
 @album_routes.route('/<int:id>')
 def album(id):
     """
     Query for a album by id and returns that album in a dictionary
     """
-    album = album.query.get(id)
+    album = Album.query.get(id)
     return album.to_dict()

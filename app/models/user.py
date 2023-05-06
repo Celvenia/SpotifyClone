@@ -6,6 +6,7 @@ from flask_login import UserMixin
 
 class User(db.Model, UserMixin):
     __tablename__ = 'users'
+
     if environment == "production":
         __table_args__ = {'schema': SCHEMA}
     id = db.Column(db.Integer, primary_key=True)
@@ -16,6 +17,10 @@ class User(db.Model, UserMixin):
     profile_picture = db.Column(db.String(255), nullable=False)
     public_name = db.Column(db.String(255), nullable=False)
     banner_image = db.Column(db.String(255), nullable=False)
+    likes = db.relationship('Like', backref='user_', lazy=True)
+    liked_playlists = db.relationship('Playlist', secondary='likes', back_populates='liked_by')
+    liked_songs = db.relationship('Song', secondary='likes', back_populates='liked_by')
+    liked_albums = db.relationship('Album', secondary='likes', back_populates='liked_by')
     created_at = db.Column(db.DateTime(timezone=True), server_default=func.now())
     updated_at = db.Column(db.DateTime(timezone=True), server_default=func.now())
 

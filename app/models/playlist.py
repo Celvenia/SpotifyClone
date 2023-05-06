@@ -16,6 +16,7 @@ class Playlist(db.Model):
     created_at = db.Column(db.DateTime(timezone=True), server_default=func.now())
     updated_at = db.Column(db.DateTime(timezone=True), server_default=func.now())
 
+    liked_by = db.relationship('User', secondary='likes', back_populates='liked_playlists')
     user = db.relationship('User', primaryjoin='foreign(Playlist.user_id)==User.id')
     song = db.relationship('Song', primaryjoin='foreign(Playlist.song_id)==Song.id')
 
