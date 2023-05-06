@@ -64,6 +64,7 @@ def update_playlist(id):
     # Update the playlist with the new data and commit to the database
     playlist.title = data.get('title', playlist.title)
     playlist.description = data.get('description', playlist.description)
+    playlist.is_private = data.get('is_private', playlist.is_private)
     db.session.commit()
 
     return jsonify({'playlist': playlist.to_dict()})

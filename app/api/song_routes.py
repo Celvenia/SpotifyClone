@@ -2,6 +2,7 @@ from flask import Blueprint, jsonify, request
 from flask_login import login_required, current_user
 from app.models import Song, Album
 from ..models.db import db
+from datetime import datetime
 
 song_routes = Blueprint('songs', __name__)
 
@@ -23,43 +24,82 @@ def song(id):
     song = Song.query.get(id)
     return song.to_dict()
 
+@song_routes.route('/', methods=['POST'])
+@login_required
+def create_song():
+    """
+    Creates a new song with the given parameters if the user is an artist
+    """
+    if not current_user.is_artist:
+        return jsonify(error="You don't have the permission to create a song"), 401
+
+    title = request.json.get('title')
+    album_id = request.json.get('album_id')
+    user_id = current_user.id
+    duration_ms = request.json.get('duration_ms')
+    url = request.json.get('url')
+    release_date = request.json.get('release_date')
+    genres = request.json.get('genres')
+
+    new_song = Song(
+        title=title,
+        album_id=album_id,
+        user_id=user_id,
+        duration_ms=duration_ms,
+        url=url,
+        release_date=release_date,
+        genres=genres
+    )
+
+    db.session.add(new_song)
+    db.session.commit()
+
+    return new_song.to_dict(), 201
+
+
 @song_routes.route('/<int:id>', methods=['PUT'])
+@login_required
 def update_song(id):
     """
-    Update a song by id
+    Updates an existing song with the given id if the user is the song's artist
     """
     song = Song.query.get(id)
-    if song is None:
-        return jsonify(error='Song not found'), 404
 
-    data = request.get_json()
-    if data is None:
-        return jsonify(error='Invalid request body'), 400
+    if song.user_id != current_user.id:
+        return jsonify(error="You don't have the permission to update this song"), 401
 
-    if 'title' in data:
-        song.title = data['title']
-    if 'artist' in data:
-        song.artist = data['artist']
-    if 'album_id' in data:
-        album = Album.query.get(data['album_id'])
-        if album is None:
-            return jsonify(error='Album not found'), 400
-        song.album = album
+    title = request.json.get('title')
+    album_id = request.json.get('album_id')
+    duration_ms = request.json.get('duration_ms')
+    url = request.json.get('url')
+    release_date = request.json.get('release_date')
+    genres = request.json.get('genres')
+
+    song.title = title or song.title
+    song.album_id = album_id or song.album_id
+    song.duration_ms = duration_ms or song.duration_ms
+    song.url = url or song.url
+    song.release_date = release_date or song.release_date
+    song.genres = genres or song.genres
+    song.updated_at = datetime.now()
 
     db.session.commit()
 
     return song.to_dict()
 
+
 @song_routes.route('/<int:id>', methods=['DELETE'])
+@login_required
 def delete_song(id):
     """
-    Delete a song by id
+    Deletes an existing song with the given id if the user is the song's artist
     """
     song = Song.query.get(id)
-    if song is None:
-        return jsonify(error='Song not found'), 404
+
+    if song.user_id != current_user.id:
+        return jsonify(error="You don't have the permission to delete this song"), 401
 
     db.session.delete(song)
     db.session.commit()
 
-    return jsonify(success=True)
+    return jsonify(message=f"Song with id {id} has been deleted"), 200

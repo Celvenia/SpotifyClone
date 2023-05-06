@@ -15,10 +15,15 @@ def seed_users():
         username='bobbie', email='bobbie@aa.io', password='password', is_artist=False,
         profile_picture='https://w7.pngwing.com/pngs/598/553/png-transparent-computer-icons-spotify-graphics-streaming-media-spotify-icon-logo-grass-feather.png', public_name='Demo',
         banner_image='https://martech.org/wp-content/uploads/2017/09/spotify-logo-1920x1080.jpg')
+    chris = User(
+        username='chris', email='chris@aa.io', password='password', is_artist=True,
+        profile_picture='https://w7.pngwing.com/pngs/598/553/png-transparent-computer-icons-spotify-graphics-streaming-media-spotify-icon-logo-grass-feather.png', public_name='Demo',
+        banner_image='https://martech.org/wp-content/uploads/2017/09/spotify-logo-1920x1080.jpg')
 
     db.session.add(demo)
     db.session.add(marnie)
     db.session.add(bobbie)
+    db.session.add(chris)
     db.session.commit()
 # Uses a raw SQL query to TRUNCATE or DELETE the users table. SQLAlchemy doesn't
 # have a built in function to do this. With postgres in production TRUNCATE

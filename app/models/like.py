@@ -14,14 +14,14 @@ class Like(db.Model):
     song_id = db.Column(db.Integer, db.ForeignKey('songs.id'))
     album_id = db.Column(db.Integer, db.ForeignKey('albums.id'))
     playlist_id = db.Column(db.Integer, db.ForeignKey('playlists.id'))
+    created_at = db.Column(db.DateTime(timezone=True), server_default=func.now())
+    updated_at = db.Column(db.DateTime(timezone=True), server_default=func.now())
 
     liked_song = db.relationship('Song', backref='liked_songs', lazy=True)
     liked_album = db.relationship('Album', backref='liked_albums', lazy=True)
     liked_playlist = db.relationship('Playlist', backref='liked_playlists', lazy=True)
-    created_at = db.Column(db.DateTime(timezone=True), server_default=func.now())
-    updated_at = db.Column(db.DateTime(timezone=True), server_default=func.now())
 
-   
+
 
     def to_dict(self):
         return{

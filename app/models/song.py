@@ -1,6 +1,7 @@
 from .db import db, environment, SCHEMA
 from sqlalchemy.sql import func
 from .playlist import playlist_songs
+from .queue import queued_songs
 
 class Song(db.Model):
     __tablename__ = 'songs'
@@ -19,14 +20,10 @@ class Song(db.Model):
     created_at = db.Column(db.DateTime(timezone=True), server_default=func.now())
     updated_at = db.Column(db.DateTime(timezone=True), server_default=func.now())
 
+    queue = db.relationship('Queue', secondary=queued_songs, back_populates='songs')
     liked_by = db.relationship('User', secondary='likes', back_populates='liked_songs')
     playlists = db.relationship('Playlist', secondary=playlist_songs, back_populates='songs')
-    # playlist = db.relationship('Playlist', primaryjoin='foreign(Playlist.song_id)==Song.id', back_populates='song')
     albums = db.relationship('Album', primaryjoin='and_(Song.genres==Album.genres, foreign(Song.album_id)==Album.id)')
-
-    # artist = db.relationship('Artist', backref='songs', lazy=True)
-    # album = db.relationship('Album', backref='songs', lazy=True)
-    # genre = db.relationship('Genre', backref='songs', lazy=True)
 
     def to_dict(self):
         return{
