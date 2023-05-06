@@ -1,5 +1,6 @@
 from .db import db, environment, SCHEMA
 from sqlalchemy.sql import func
+from .playlist import playlist_songs
 
 class Song(db.Model):
     __tablename__ = 'songs'
@@ -19,7 +20,8 @@ class Song(db.Model):
     updated_at = db.Column(db.DateTime(timezone=True), server_default=func.now())
 
     liked_by = db.relationship('User', secondary='likes', back_populates='liked_songs')
-    playlist = db.relationship('Playlist', primaryjoin='foreign(Playlist.song_id)==Song.id', back_populates='song')
+    playlists = db.relationship('Playlist', secondary=playlist_songs, back_populates='songs')
+    # playlist = db.relationship('Playlist', primaryjoin='foreign(Playlist.song_id)==Song.id', back_populates='song')
     albums = db.relationship('Album', primaryjoin='and_(Song.genres==Album.genres, foreign(Song.album_id)==Album.id)')
 
     # artist = db.relationship('Artist', backref='songs', lazy=True)

@@ -30,7 +30,7 @@ def user(id):
 def user_likes(id):
     """
     Query for a user by id and returns a list of dictionaries containing
-    each like the user has made, including the song, album, or playlist
+    each like(instance) the user has made, including the song, album, or playlist
     """
     user = User.query.get(id)
     likes = [like.to_dict() for like in user.likes]
@@ -57,7 +57,7 @@ def user_liked_songs(id):
     the user has liked
     """
     user = User.query.get(id)
-    liked_songs = [playlist.to_dict() for playlist in user.liked_songs]
+    liked_songs = [song.to_dict() for song in user.liked_songs]
     return {'liked_songs': liked_songs}
 
 
@@ -69,5 +69,5 @@ def user_liked_albums(id):
     the user has liked
     """
     user = User.query.get(id)
-    liked_albums = [playlist.to_dict() for playlist in user.liked_albums]
+    liked_albums = [album.to_dict() for album in user.liked_albums]
     return {'liked_albums': liked_albums}

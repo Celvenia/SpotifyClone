@@ -17,7 +17,7 @@ class User(db.Model, UserMixin):
     profile_picture = db.Column(db.String(255), nullable=False)
     public_name = db.Column(db.String(255), nullable=False)
     banner_image = db.Column(db.String(255), nullable=False)
-    likes = db.relationship('Like', backref='user_', lazy=True)
+    likes = db.relationship('Like', backref='user', lazy=True)
     liked_playlists = db.relationship('Playlist', secondary='likes', back_populates='liked_by')
     liked_songs = db.relationship('Song', secondary='likes', back_populates='liked_by')
     liked_albums = db.relationship('Album', secondary='likes', back_populates='liked_by')
