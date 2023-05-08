@@ -1,6 +1,6 @@
 from app.models import db, Follow, environment, SCHEMA
 from sqlalchemy.sql import text
-from datetime import datetime
+
 
 # Adds a demo user, you can add other users here if you want
 def seed_follows():
@@ -24,5 +24,5 @@ def undo_follows():
     if environment == "production":
         db.session.execute(f"TRUNCATE table {SCHEMA}.songs RESTART IDENTITY CASCADE;")
     else:
-        db.session.execute(text("DELETE FROM queued"))
+        db.session.execute(text("DELETE FROM follows"))
         db.session.commit()
