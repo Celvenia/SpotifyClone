@@ -4,14 +4,18 @@ from datetime import datetime
 
 # Adds a demo album
 def seed_albums():
-    album1 = Album(user_id=3, title='My First Album', cover_art='example.url', release_date=datetime.now(), record_label='example label')
-    album2 = Album(user_id=3, title='My Second Album', cover_art='example.url', release_date=datetime.now(), record_label='example label')
-    album3 = Album(user_id=4, title='Greatest Hits', cover_art='example.url', release_date=datetime(2010, 1, 1), record_label='example label')
+
+    albums = [
+        Album(user_id=5, title='Legends Never Die', cover_art='https://example.url', release_date=datetime(2020, 7, 10), record_label='Interscope'),
+        Album(user_id=5, title='Goodbye & Good Riddance', cover_art='https://example.url', release_date=datetime(2018, 5, 23), record_label='Interscope'),
+        Album(user_id=5, title='Fighting Demons', cover_art='https://example.url', release_date=datetime(2022, 3, 18 ), record_label='Grade A'),
+        Album(user_id=5, title='Death Race for Love', cover_art='https://example.url', release_date=datetime(2019, 3, 8 ), record_label='Interscope')
+    ]
+
     
-    db.session.add(album1)
-    db.session.add(album2)
-    db.session.add(album3)
-    db.session.commit()
+    for album in albums:
+        db.session.add(album)
+        db.session.commit()
 
 
 # Uses a raw SQL query to TRUNCATE or DELETE the albums table. SQLAlchemy doesn't

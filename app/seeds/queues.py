@@ -2,10 +2,18 @@ from app.models import db, Queue, environment, SCHEMA
 from sqlalchemy.sql import text
 from datetime import datetime
 
-# Adds a demo user, you can add other users here if you want
+# Adds a  user, you can add other users here if you want
 def seed_queues():
-    queue1 = Queue(user_id=4)
+    queue1 = Queue(user_id=1)
+    queue2 = Queue(user_id=2)
+    queue3 = Queue(user_id=3)
+    queue4 = Queue(user_id=4)
+    queue5 = Queue(user_id=5)
     db.session.add(queue1)
+    db.session.add(queue2)
+    db.session.add(queue3)
+    db.session.add(queue4)
+    db.session.add(queue5)
 
     db.session.commit()
 

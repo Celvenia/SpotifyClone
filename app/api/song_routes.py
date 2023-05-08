@@ -17,6 +17,7 @@ def user_songs():
     return {'songs': [song.to_dict() for song in user_songs]}
 
 @song_routes.route('/<int:id>')
+@login_required
 def song(id):
     """
     Query for a song by id and returns that song in a dictionary
