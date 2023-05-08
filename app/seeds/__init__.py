@@ -5,6 +5,7 @@ from .likes import seed_likes, undo_likes
 from .songs import seed_songs, undo_songs
 from .playlists import seed_playlists, undo_playlists
 from .queues import seed_queues, undo_queues
+from .follows import seed_follows, undo_follows
 
 from app.models.db import db, environment, SCHEMA
 
@@ -29,6 +30,7 @@ def seed():
         undo_playlists()
         undo_songs()
         undo_queues()
+        undo_follows()
         db.session.commit()
     seed_users()
     seed_albums()
@@ -36,6 +38,7 @@ def seed():
     seed_playlists()
     seed_songs()
     seed_queues()
+    seed_follows()
     # Add other seed functions here
 
 

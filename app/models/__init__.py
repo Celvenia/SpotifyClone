@@ -5,4 +5,5 @@ from .song import Song
 from .album import Album
 from .like import Like
 from .queue import Queue
+from .follow import Follow
 from .db import environment, SCHEMA

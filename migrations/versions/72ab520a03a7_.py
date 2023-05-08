@@ -1,8 +1,8 @@
 """empty message
 
-Revision ID: 04588104f14f
+Revision ID: 72ab520a03a7
 Revises: 
-Create Date: 2023-05-06 11:45:22.043074
+Create Date: 2023-05-08 13:52:06.107769
 
 """
 from alembic import op
@@ -10,7 +10,7 @@ import sqlalchemy as sa
 
 
 # revision identifiers, used by Alembic.
-revision = '04588104f14f'
+revision = '72ab520a03a7'
 down_revision = None
 branch_labels = None
 depends_on = None
@@ -57,6 +57,16 @@ def upgrade():
     sa.PrimaryKeyConstraint('id'),
     sa.UniqueConstraint('email'),
     sa.UniqueConstraint('username')
+    )
+    op.create_table('follows',
+    sa.Column('id', sa.Integer(), nullable=False),
+    sa.Column('user_id', sa.Integer(), nullable=False),
+    sa.Column('follow_id', sa.Integer(), nullable=True),
+    sa.Column('created_at', sa.DateTime(timezone=True), server_default=sa.text('(CURRENT_TIMESTAMP)'), nullable=True),
+    sa.Column('updated_at', sa.DateTime(timezone=True), server_default=sa.text('(CURRENT_TIMESTAMP)'), nullable=True),
+    sa.ForeignKeyConstraint(['follow_id'], ['songs.id'], ),
+    sa.ForeignKeyConstraint(['user_id'], ['users.id'], ),
+    sa.PrimaryKeyConstraint('id')
     )
     op.create_table('playlists',
     sa.Column('id', sa.Integer(), nullable=False),
@@ -116,6 +126,7 @@ def downgrade():
     op.drop_table('likes')
     op.drop_table('queued')
     op.drop_table('playlists')
+    op.drop_table('follows')
     op.drop_table('users')
     op.drop_table('songs')
     op.drop_table('albums')
