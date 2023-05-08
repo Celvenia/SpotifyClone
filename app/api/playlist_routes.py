@@ -1,6 +1,6 @@
 from flask import Blueprint, jsonify, request, current_app
 from flask_login import login_required, current_user
-from app.models import Playlist, Song, db
+from app.models import Playlist, Song, Album, db
 
 playlist_routes = Blueprint('playlists', __name__)
 
@@ -110,3 +110,28 @@ def add_song_to_playlist(playlist_id):
     db.session.commit()
 
     return playlist.to_dict(), 200
+
+# add every song in album to playlist
+@playlist_routes.route('/<int:playlist_id>/albums', methods=['POST'])
+@login_required
+def add_album_to_playlist(playlist_id):
+    playlist = Playlist.query.get(playlist_id)
+    if not playlist:
+        return {'errors': ['Playlist not found']}, 404
+
+    album_id = request.json.get('album_id')
+    if not album_id:
+        return {'errors': ['Album id is required']}, 400
+
+    songs = Song.query.filter_by(album_id=album_id).all()
+    if not songs:
+        return {'errors': ['No songs found for the specified album']}, 404
+
+    # append each song to the playlist
+    for song in songs:
+        playlist.songs.append(song)
+
+    db.session.commit()
+
+    return playlist.to_dict(), 200
+
