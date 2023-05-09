@@ -4,7 +4,7 @@ from app.models import Album
 album_routes = Blueprint('albums', __name__)
 
 
-@album_routes.route('/')
+@album_routes.route('')
 def albums():
     """
     Query for all albums and returns them in a list of user dictionaries
