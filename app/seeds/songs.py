@@ -4,29 +4,50 @@ from datetime import datetime
 
 # Here for reference when creating song seeders
 #  albums = [
-#         Album(user_id=5, title='Legends Never Die', cover_art='https://example.url', release_date=datetime(2020, 7, 10), record_label='Interscope'),
-#         Album(user_id=5, title='Goodbye & Good Riddance', cover_art='https://example.url', release_date=datetime(2018, 5, 23), record_label='Interscope'),
-#         Album(user_id=5, title='Fighting Demons', cover_art='https://example.url', release_date=datetime(2022, 3, 18 ), record_label='Grade A'),
-#         Album(user_id=5, title='Death Race for Love', cover_art='https://example.url', release_date=datetime(2019, 3, 8 ), record_label='Interscope')
+#         Song(title='Legends Never Die', duration_ms=999999, url='urlexample.com', release_date=datetime(2020, 7, 10), record_label='Interscope'),
+#         Song(title='Goodbye & Good Riddance', duration_ms=999999, url='urlexample.com', release_date=datetime(2018, 5, 23), record_label='Interscope'),
+#         Song(title='Fighting Demons', duration_ms=999999, url='urlexample.com', release_date=datetime(2022, 3, 18 ), record_label='Grade A'),
+#         Song(title='Death Race for Love', duration_ms=999999, url='urlexample.com', release_date=datetime(2019, 3, 8 ), record_label='Interscope')
 #     ]
 
 # Adds a demo user, you can add other users here if you want
 def seed_songs():
 
     songs = [
-        Song(album_id=1, title='Come & Go', duration_ms=229000, url='https://www.youtube.com/watch?v=5ho88VXJTBg', user_id=5, release_date=datetime(2020, 7, 10)),
-        Song(album_id=1, title='Lucid Dreams', duration_ms=239836, url='https://www.youtube.com/watch?v=mzB1VGEGcSU', user_id=5, release_date=datetime(2017, 6, 15)),
-        Song(album_id=1, title="Life's a Mess", duration_ms=202000, url='https://www.youtube.com/watch?v=IetcXhv83gQ', user_id=5, release_date=datetime(2020, 7, 10)),
-        Song(album_id=2, title='All Girls Are the Same', duration_ms=166064, url='https://www.youtube.com/watch?v=3tmd-ClpJxA', user_id=5, release_date=datetime(2018, 5, 4)),
-        Song(album_id=3, title='Legends', duration_ms=240000, url='https://www.youtube.com/watch?v=AYaBtElX9Y0', user_id=5, release_date=datetime(2018, 7, 13)),
-        Song(album_id=4, title='Robbery', duration_ms=240000, url='https://www.youtube.com/watch?v=iI_zwDQYx-0', user_id=5, release_date=datetime(2019, 2, 13)),
-        Song(album_id=4, title='Hear Me Calling', duration_ms=185000, url='https://www.youtube.com/watch?v=VxlQYEM92Dg', user_id=5, release_date=datetime(2019, 3, 1)),
-        Song(album_id=4, title='Fast', duration_ms=209000, url='https://www.youtube.com/watch?v=_IXJ2P9umU4', user_id=5, release_date=datetime(2019, 3, 8)),
-        Song(album_id=4, title='Bandit', duration_ms=189000, url='https://www.youtube.com/watch?v=FwJGv5CwWYw', user_id=5, release_date=datetime(2019, 10, 4)),
-        Song(album_id=1, title='Wishing Well', duration_ms=191000, url='https://www.youtube.com/watch?v=7EFL01sGAY4', user_id=5, release_date=datetime(2020, 7, 10)),
-        Song(album_id=1, title='Righteous', duration_ms=224000, url='https://www.youtube.com/watch?v=Hm0q5jBi3mA', user_id=5, release_date=datetime(2020, 4, 24))
+        Song(title='Come & Go', duration_ms=229000, url='https://www.youtube.com/watch?v=5ho88VXJTBg', release_date=datetime(2020, 7, 10)),
+        Song(title='Lucid Dreams', duration_ms=239836, url='https://www.youtube.com/watch?v=mzB1VGEGcSU', release_date=datetime(2017, 6, 15)),
+        Song(title="Life's a Mess", duration_ms=202000, url='https://www.youtube.com/watch?v=IetcXhv83gQ', release_date=datetime(2020, 7, 10)),
+        Song(title='All Girls Are the Same', duration_ms=166064, url='https://www.youtube.com/watch?v=3tmd-ClpJxA', release_date=datetime(2018, 5, 4)),
+        Song(title='Legends', duration_ms=240000, url='https://www.youtube.com/watch?v=AYaBtElX9Y0', release_date=datetime(2018, 7, 13)),
+        Song(title='Robbery', duration_ms=240000, url='https://www.youtube.com/watch?v=iI_zwDQYx-0', release_date=datetime(2019, 2, 13)),
+        Song(title='Hear Me Calling', duration_ms=185000, url='https://www.youtube.com/watch?v=VxlQYEM92Dg', release_date=datetime(2019, 3, 1)),
+        Song(title='Fast', duration_ms=209000, url='https://www.youtube.com/watch?v=_IXJ2P9umU4', release_date=datetime(2019, 3, 8)),
+        Song(title='Bandit', duration_ms=189000, url='https://www.youtube.com/watch?v=FwJGv5CwWYw', release_date=datetime(2019, 10, 4)),
+        Song(title='Wishing Well', duration_ms=191000, url='https://www.youtube.com/watch?v=7EFL01sGAY4', release_date=datetime(2020, 7, 10)),
+        Song(title='Righteous', duration_ms=224000, url='https://www.youtube.com/watch?v=Hm0q5jBi3mA', release_date=datetime(2020, 4, 24)),
+        Song(title='Starboy', duration_ms=999999, url='urlexample.com', release_date=datetime(2016, 11, 25)),
+        Song(title='After Hours', duration_ms=999999, url='urlexample.com', release_date=datetime(2020, 3, 20)),
+        Song(title='Kiss Land', duration_ms=999999, url='urlexample.com', release_date=datetime(2013, 9, 10)),
+        Song(title='Beauty Behind the Madness', duration_ms=999999, url='urlexample.com', release_date=datetime(2015, 8, 28)),
+        Song(title='My Dear Melancholy,', duration_ms=999999, url='urlexample.com', release_date=datetime(2018, 3, 30)),
+        Song(title='Trilogy', duration_ms=999999, url='urlexample.com', release_date=datetime(2012, 11, 13)),
+        Song(title='Echoes of Silence', duration_ms=999999, url='urlexample.com', release_date=datetime(2011, 12, 21)),
+        Song(title='Thursday', duration_ms=999999, url='urlexample.com', release_date=datetime(2011, 8, 18)),
+        Song(title='House of Balloons', duration_ms=999999, url='urlexample.com', release_date=datetime(2011, 3, 21)),
+        Song(title='The Highlights', duration_ms=999999, url='urlexample.com', release_date=datetime(2021, 2, 5)),
+        Song(title='Motion', duration_ms=999999, url='urlexample.com', release_date=datetime(2014, 10, 31)),
+        Song(title='Funk Wav Bounces Vol. 1', duration_ms=999999, url='urlexample.com', release_date=datetime(2017, 6, 30)),
+        Song(title='18 Months', duration_ms=999999, url='urlexample.com', release_date=datetime(2012, 10, 26)),
+        Song(title='Ready for the Weekend', duration_ms=999999, url='urlexample.com', release_date=datetime(2009, 8, 14)),
+        Song(title='I Created Disco', duration_ms=999999, url='urlexample.com', release_date=datetime(2007, 6, 15)),
+        Song(title='We Found Love', duration_ms=999999, url='urlexample.com', release_date=datetime(2011, 9, 22)),
+        Song(title='Anti', duration_ms=999999, url='urlexample.com', release_date=datetime(2016, 1, 28)),
+        Song(title='Good Girl Gone Bad', duration_ms=999999, url='urlexample.com', release_date=datetime(2007, 5, 31)),
+        Song(title='Loud', duration_ms=999999, url='urlexample.com', release_date=datetime(2010, 11, 12)),
+        Song(title='Talk That Talk', duration_ms=999999, url='urlexample.com', release_date=datetime(2011, 11, 18)),
+        Song(title='Unapologetic', duration_ms=999999, url='urlexample.com', release_date=datetime(2012, 11, 19))
         ]
-    
+
     for song in songs:
         db.session.add(song)
         db.session.commit()
