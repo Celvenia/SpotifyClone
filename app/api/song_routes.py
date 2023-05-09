@@ -13,8 +13,8 @@ def user_songs():
     """
     Query for all songs and returns them in a list of song dictionaries
     """
-    user_songs = Song.query.filter(Song.user_id==current_user.id).all()
-    # user_songs = Song.query.all()
+    # user_songs = Song.query.filter(Song.user_id==current_user.id).all()
+    user_songs = Song.query.all()
     return {'songs': [song.to_dict() for song in user_songs]}
 
 @song_routes.route('/<int:id>')

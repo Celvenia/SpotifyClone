@@ -7,7 +7,9 @@ export default function Songs() {
     const dispatch = useDispatch()
     const songsObj = useSelector(state => state.songs)
     const songsArr = Object.values(songsObj);
-    console.log(songsArr)
+    const song = songsArr[0]
+    console.log({...songsArr})
+    console.log({...song})
 
     useEffect(() => {
         dispatch(loadSongs())
@@ -15,7 +17,9 @@ export default function Songs() {
 
     return (
         <>
-        <div>Songs</div>
+            <div>Songs</div>
+            <div>{songsArr[0].title}</div>
+            <div>{song.title}</div>
         </>
     )
 }
