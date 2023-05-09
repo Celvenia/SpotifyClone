@@ -6,6 +6,7 @@ import LoginFormPage from "./components/LoginFormPage";
 import { authenticate } from "./store/session";
 import Navigation from "./components/Navigation";
 import Songs from "./components/Songs";
+import Library from "./components/Library";
 
 function App() {
   const dispatch = useDispatch();
@@ -16,7 +17,10 @@ function App() {
 
   return (
     <>
+
       <Navigation isLoaded={isLoaded} />
+      <Library isLoaded={isLoaded} />
+      
       {isLoaded && (
         <Switch>
           <Route path="/login" >
