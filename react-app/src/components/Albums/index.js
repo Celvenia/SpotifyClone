@@ -21,8 +21,23 @@ export default function Songs() {
 		albumsValues = (
 
             <>
+                id: {albumsArr[0].id}
+                <br></br>
                 title: {albumsArr[0].title}
                 <br></br>
+                cover_art: {albumsArr[0].cover_art}
+                <br></br>
+                record_label: {albumsArr[0].record_label}
+                <br></br>
+                release_date: {albumsArr[0].release_date}
+                <br></br>
+                genre: {albumsArr[0].genre}
+                <br></br>
+                user_id: {albumsArr[0].user_id}
+                <br></br>
+                created_at: {albumsArr[0].created_at}
+                <br></br>
+                updated_at: {albumsArr[0].updated_at}
             </>
 		);
 	} else {

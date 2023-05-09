@@ -21,6 +21,8 @@ export default function Songs() {
 		songsValues = (
 
             <>
+                id: {songsArr[0].id}
+                <br></br>
                 title: {songsArr[0].title}
                 <br></br>
                 duration_ms: {songsArr[0].duration_ms}
@@ -30,6 +32,8 @@ export default function Songs() {
                 release_date: {songsArr[0].release_date}
                 <br></br>
                 genre: {songsArr[0].genre}
+                <br></br>
+                user_id: {songsArr[0].user_id}
                 <br></br>
                 created_at: {songsArr[0].created_at}
                 <br></br>
