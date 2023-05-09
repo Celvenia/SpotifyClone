@@ -5,7 +5,7 @@ from app.models import Queue, Song, db
 queue_routes = Blueprint('queue', __name__)
 
 
-@queue_routes.route('/', methods=['GET'])
+@queue_routes.route('', methods=['GET'])
 @login_required
 def users_queue():
     """

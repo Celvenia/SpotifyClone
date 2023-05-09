@@ -5,7 +5,7 @@ from app.models import Follow, Song, db
 follow_routes = Blueprint('follows', __name__)
 
 
-@follow_routes.route('/', methods=['GET'])
+@follow_routes.route('', methods=['GET'])
 @login_required
 def follows():
     """

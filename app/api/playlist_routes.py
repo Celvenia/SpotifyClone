@@ -5,7 +5,7 @@ from app.models import Playlist, Song, Album, db
 playlist_routes = Blueprint('playlists', __name__)
 
 
-@playlist_routes.route('/', methods=['GET'])
+@playlist_routes.route('', methods=['GET'])
 @login_required
 def user_playlists():
     """

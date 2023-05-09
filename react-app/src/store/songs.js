@@ -12,8 +12,8 @@ const load = songs => ({
 export const loadSongs = () => async (dispatch) => {
     let res = await fetch('/api/songs')
     if(res.ok) {
-        res = await res.json()
-        dispatch(load(res))
+        let data = await res.json()
+        dispatch(load(data))
         return res
     }
 
@@ -22,10 +22,15 @@ export const loadSongs = () => async (dispatch) => {
 // state
 const initialState = {}
 
+// reducer
 const songs = (state=initialState, action) => {
     switch(action.type){
         case LOAD_SONGS:
-            return {...state, ...action.songs}
+            const newState = {...state}
+            action.songs.songs.forEach((song) => {
+                newState[song.id] = song;
+            });
+            return newState
         default:
             return state
     }
