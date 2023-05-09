@@ -7,6 +7,7 @@ import { authenticate } from "./store/session";
 import Navigation from "./components/Navigation";
 import Songs from "./components/Songs";
 import Albums from "./components/Albums";
+import Library from "./components/Library"
 
 function App() {
   const dispatch = useDispatch();
