@@ -8,8 +8,8 @@ export default function Albums() {
     const albumsObj = useSelector(state => state.albums)
     const albumsArr = Object.values(albumsObj);
     const album = albumsArr[0]
-    console.log({...albumsArr})
-    console.log({...album})
+    // console.log({...albumsArr})
+    // console.log({...album})
 
     useEffect(() => {
         dispatch(loadAlbums())
