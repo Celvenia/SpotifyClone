@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import { loadAlbums } from "../../store/albums";
 
-export default function Songs() {
+export default function Albums() {
     const dispatch = useDispatch()
     const albumsObj = useSelector(state => state.albums)
     const albumsArr = Object.values(albumsObj);
@@ -59,4 +59,3 @@ export default function Songs() {
   return (
     <div></div>
   )
-}
