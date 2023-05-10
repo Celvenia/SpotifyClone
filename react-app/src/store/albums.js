@@ -63,7 +63,7 @@ export const getLikedAlbums = (userId) => async (dispatch) => {
         const res = await fetch(`/api/users/${userId}/liked_albums`);
         if (res.ok) {
             const likedAlbums = await res.json();
-            dispatch(loadLikedAlbums(likedAlbums));
+            dispatch(loadLikedAlbums(likedAlbums.liked_albums));
             return likedAlbums;
         }
     } catch (err) {
@@ -126,7 +126,7 @@ const albumReducer = (state = initialState, action) => {
         }
         case LOAD_LIKED_ALBUMS: {
             const newState = { ...state };
-            action.usersLikedAlbums.forEach((likedAlbum) => {
+            action.likedAlbums.forEach((likedAlbum) => {
                 newState.liked_albums[likedAlbum.id] = likedAlbum;
             });
             return newState;

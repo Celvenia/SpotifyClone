@@ -69,7 +69,7 @@ def user_liked_albums(user_id):
     Query for a user by id and returns a list of albums
     the user has liked
     """
-    user = User.query.get(id)
+    user = User.query.get(user_id)
     liked_albums = [album.to_dict() for album in user.liked_albums]
     return {'liked_albums': liked_albums}
 

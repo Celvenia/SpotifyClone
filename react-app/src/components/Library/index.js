@@ -8,13 +8,14 @@ import { useDispatch, useSelector } from 'react-redux';
 import './Library.css'
 
 const Library = ({ isLoaded }) => {
-
     const dispatch = useDispatch()
-    const songsObj = useSelector(state => state.songReducer)
+    const sessionUser = useSelector(state => state.session.user);
+    const userId = sessionUser?.id
+    // const songsObj = useSelector(state => state.songReducer)
     // const songsArr = Object.values(songsObj);
-    const playlistObj = useSelector(state => state.playlistReducer)
+    // const playlistObj = useSelector(state => state.playlistReducer)
     // const playlistArr = Object.values(playlistObj)
-    const albumsObj = useSelector(state => state.albumReducer)
+    // const albumsObj = useSelector(state => state.albumReducer)
     // const albumArr = Object.values(albumsObj)
 
     // console.log(songsArr)
@@ -24,8 +25,13 @@ const Library = ({ isLoaded }) => {
         dispatch(getSongs())
         dispatch(getPlaylists())
         dispatch(getAlbums())
-        dispatch(getLikedAlbums())
     }, [dispatch])
+
+    useEffect(() => {
+        if (userId) {
+            dispatch(getLikedAlbums(userId))
+        }
+    },[dispatch, userId])
 
     return (
         <div className='library_wrapper'>
