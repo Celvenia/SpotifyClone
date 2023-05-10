@@ -41,7 +41,7 @@ def seed_users():
     db.session.add(bobbie)
     db.session.add(chris)
     db.session.add(juice_wrld)
-    db.session.add(the_weekend)
+    db.session.add(the_weeknd)
     db.session.add(calvin_harris)
     db.session.add(rihanna)
     db.session.commit()
