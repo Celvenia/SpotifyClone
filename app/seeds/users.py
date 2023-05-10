@@ -23,8 +23,8 @@ def seed_users():
         username='juice_wrld', email='juice_wrld@gmail.com', password='password', is_artist=True,
         profile_picture='https://res.cloudinary.com/dtzv3fsas/image/upload/v1683397266/SpotifyClone/e7d6d436f2794f6cbe077473f7fbf21e_xl_viqv0m.jpg', public_name='Juice Wrld',
         banner_image='https://res.cloudinary.com/dtzv3fsas/image/upload/v1683397267/SpotifyClone/web.ae_.juicewrld.courtesy_vdj4bn.jpg')
-    the_weekend = User(
-        username='the_weekend', email='the_weekend@gmail.com', password='password', is_artist=True,
+    the_weeknd = User(
+        username='the_weeknd', email='the_weeknd@gmail.com', password='password', is_artist=True,
         profile_picture='https://res.cloudinary.com/dtzv3fsas/image/upload/v1683397266/SpotifyClone/e7d6d436f2794f6cbe077473f7fbf21e_xl_viqv0m.jpg', public_name='The Weekend',
         banner_image='https://res.cloudinary.com/dtzv3fsas/image/upload/v1683397267/SpotifyClone/web.ae_.juicewrld.courtesy_vdj4bn.jpg')
     calvin_harris = User(
