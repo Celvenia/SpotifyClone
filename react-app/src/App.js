@@ -8,6 +8,7 @@ import Navigation from "./components/Navigation";
 import Songs from "./components/Songs";
 import Albums from "./components/Albums";
 import Library from "./components/Library"
+// import Testing from "./components/Testing";
 
 function App() {
   const dispatch = useDispatch();
@@ -36,6 +37,9 @@ function App() {
           <Route path="/albums">
             <Albums />
           </Route>
+          {/* <Route path="/testing">
+            <Testing />
+          </Route> */}
         </Switch>
       )}
     </>

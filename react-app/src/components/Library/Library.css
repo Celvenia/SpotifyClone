@@ -1,7 +1,13 @@
-/* .library_wrapper {
-    background-color: grey;
-    top: 0;
-    left: 0;
-    width: 20%;
-    height: 75vh
+/* * {
+    background-color: white;
 } */
+
+.library_wrapper {
+    background-color: #181818;
+    top: 100px;
+    left: 10px;
+    position: absolute;
+    width: 250px;
+    height: 75vh;
+    border-radius: 5px;
+}

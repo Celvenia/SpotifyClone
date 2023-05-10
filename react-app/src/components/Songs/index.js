@@ -11,11 +11,13 @@ export default function Songs() {
     const songsObj = useSelector(state => state.songReducer)
     const songsArr = Object.values(songsObj);
 
-    console.log(songsArr)
+    // console.log(songsArr)
 
     useEffect(() => {
         dispatch(getSongs())
     }, [dispatch])
+
+
 
     if (!songsArr.length) {
         return <div>Loading...</div>;
@@ -30,7 +32,7 @@ export default function Songs() {
               <div key={song.id}>
                 <NavLink
                   to={`/songs/${song.id}`}
-                  className="nav_link"
+                  className="song-link"
                   key={song.id}
                 >
                   <div>

@@ -1,140 +1,175 @@
-// // constant variables for action creator
-// const LOAD_USER = "/playlists/LOAD_USER";
-// const UPDATE_USER = "/playlists/UPDATE_PLAYLIST";
+// constant variables for action creator
+const LOAD_USERS = "/users/LOAD_USERS";
+const LOAD_USER = "/users/LOAD_USER";
+const UPDATE_USER = "/users/UPDATE_USER";
+const DELETE_USER = "/users/DELETE_USER";
 
-// // action creators - define actions( objects with type/data )
-// const loadUser = (playlist) => ({
-//   type: LOAD_PLAYLIST,
-//   playlist,e
-// });
-
-// const loadPlaylists = (playlists) => ({
-//   type: LOAD_PLAYLISTS,
-//   playlists,
-// });
-
-// const deletePlaylist = (playlistId) => ({
-//   type: DELETE_PLAYLIST,
-//   playlistId,
-// });
-
-// const updatePlaylist = (playlist) => ({
-//   type: UPDATE_PLAYLIST ,
-//   playlist
-// })
-
-// // thunk action creators - for asynchronous code, i.e fetch calls prior to dispatching action creators
-// export const getPlaylists = () => async (dispatch) => {
-//   try {
-//     const res = await fetch("/api/playlists");
-//     if (res.ok) {
-//       const playlists = await res.json();
-//       dispatch(loadPlaylists(playlists.playlists));
-//       return playlists;
-//   }
-//   } catch (err) {
-//     return err
-//   }
-// };
-
-// export const getPlaylist = (playlistId) => async (dispatch) => {
-//   const res = await fetch(`/api/playlists/${playlistId}`);
-
-//   if (res.ok) {
-//     const playlist = await res.json();
-//     dispatch(loadPlaylist(playlist));
-//     return playlist;
-//   } else return res.json()
-// };
+const LOAD_FOLLOWERS = "/users/LOAD_FOLLOWERS"
+const LOAD_FOLLOWING = "/users/LOAD_FOLLOWING"
+const ADD_FOLLOWER = "/users/ADD_FOLLOWER"
+const REMOVE_FOLLOWER = "/users/REMOVE_FOLLOWER"
 
 
-// export const createAPlaylist = (data) => async (dispatch) => {
-//   try {
-//     const res = await fetch(`/api/playlists`, {
-//       method: "POST",
-//       headers: {
-//         "Content-Type": "application/json",
-//       },
-//       body: JSON.stringify(data),
-//     });
 
-//     if (res.ok) {
-//       const playlist = await res.json();
-//       dispatch(loadPlaylist(playlist));
-//       return playlist;
-//     } else return res.json()
-//   } catch (error) {
-//       throw error;
-//   }
-// };
+// action creators - define actions( objects with type/data )
+const loadUsers = (users) => ({
+    type: LOAD_USERS,
+    users,
+});
+
+const loadUser = (user) => ({
+    type: LOAD_USER,
+    user,
+});
 
 
-// export const deleteAPlaylist = (playlistId) => async (dispatch) => {
-//   const res = await fetch(`/api/playlists/${playlistId}`, {
-//     method: "DELETE",
-//   });
+const deleteUser = (userId) => ({
+    type: DELETE_USER,
+    userId,
+});
 
-//   if (res.ok) {
-//     const playlist = await res.json();
-//     dispatch(deletePlaylist(playlistId));
-//     return playlist;
-//   } else return res.json()
-// };
+const updateUser = (user) => ({
+    type: UPDATE_USER,
+    user
+})
 
-// export const updateAPlaylist = (payload, playlist) => async (dispatch) => {
-//   const res = await fetch(`/api/playlists/${playlist.id}`, {
-//     method: "PUT",
-//     headers: {
-//       "Content-Type": "application/json",
-//     },
+const loadFollowers = (followers) => ({
+    type: LOAD_FOLLOWERS,
+    followers,
+});
+
+const loadFollowing = (following) => ({
+    type: LOAD_FOLLOWING,
+    following,
+});
+
+const addFollower = (follower) => ({
+    type: ADD_FOLLOWER,
+    follower,
+});
+
+const addFollowing = (following) => ({
+    type: ADD_FOLLOWER,
+    following,
+});
+
+const removeFollower = (follower) => ({
+    type: REMOVE_FOLLOWER,
+    follower,
+});
+
+const removeFollowing = (following) => ({
+    type: REMOVE_FOLLOWING,
+    following,
+});
+
+// thunk action creators - for asynchronous code, i.e fetch calls prior to dispatching action creators
+export const getUsers = () => async (dispatch) => {
+    try {
+        const res = await fetch("/api/users");
+        if (res.ok) {
+            const users = await res.json();
+            dispatch(loadUsers(users.users));
+            return users;
+        }
+    } catch (err) {
+        return err
+    }
+};
+
+export const getUser = (userId) => async (dispatch) => {
+    const res = await fetch(`/api/users/${userId}`);
+
+    if (res.ok) {
+        const user = await res.json();
+        dispatch(loadUser(user));
+        return user;
+    } else return res.json()
+};
+
+
+
+// export const postASong = (song) => async (dispatch) => {
+
+//   const res = await fetch(`/api/songs/${song.id}`, {
+//     method: "POST",
 //     body: JSON.stringify(payload),
 //   });
-//   if(res.ok) {
-//     const data = await res.json();
-//      dispatch(updatePlaylist({...playlist, ...data}))
-//      return data
+
+//   if (res.ok) {
+//     const song = await res.json();
+//     dispatch(postSong(song));
+//     return song;
 //   } else return res.json()
-// }
-
-
-// const initialState = {};
-
-// // reducer
-// const playlistReducer = (state = initialState, action) => {
-//   switch (action.type) {
-
-//     case LOAD_PLAYLISTS: {
-//       const newState = { ...state };
-//       action.playlists.forEach((playlist) => {
-//           newState[playlist.id] = playlist;
-//       });
-//       return newState;
-//     }
-//     case LOAD_PLAYLIST: {
-//       const newState = { ...state };
-//       return { ...newState, [action.playlist.id]: action.playlist };
-//     }
-
-//     case POST_PLAYLIST: {
-//       const newState = { ...state };
-//       return { ...newState, [action.playlist.id]: action.playlist };
-//     }
-
-//     case DELETE_PLAYLIST: {
-//       const newState = { ...state };
-//       delete newState[action.spotId];
-//       return newState;
-//     }
-
-//     case UPDATE_PLAYLIST: {
-//       const newState = { ...state}
-//         return {...newState, [action.playlist.id]: action.playlist}
-//     }
-
-//     default: {
-//       return state;
-//     }
-//   }
 // };
 
-// export default playlistReducer;
+export const deleteAUser = (userId) => async (dispatch) => {
+    const res = await fetch(`/api/users/${userId}`, {
+        method: "DELETE",
+    });
+
+    if (res.ok) {
+        const song = await res.json();
+        dispatch(deleteSong(songId));
+        return song;
+    } else return res.json()
+};
+
+export const updateASong = (payload, song) => async (dispatch) => {
+    const res = await fetch(`/api/songs/${song.id}`, {
+        method: "PUT",
+        headers: {
+            "Content-Type": "application/json",
+        },
+        body: JSON.stringify(payload),
+    });
+    if (res.ok) {
+        const data = await res.json();
+        dispatch(updateSong({ ...song, ...data }))
+        return data
+    } else return res.json()
+}
+
+
+const initialState = {};
+
+// reducer
+const songReducer = (state = initialState, action) => {
+    switch (action.type) {
+
+        case LOAD_SONGS: {
+            const newState = { ...state };
+            action.songs.forEach((song) => {
+                newState[song.id] = song;
+            });
+            return newState;
+        }
+
+        case LOAD_SONG: {
+            const newState = { ...state };
+            return { ...newState, [action.song.id]: action.song };
+        }
+
+        case POST_SONG: {
+            const newState = { ...state };
+            return { ...newState, [action.song.id]: action.song };
+        }
+
+        case DELETE_SONG: {
+            const newState = { ...state };
+            delete newState[action.spotId];
+            return newState;
+        }
+
+        case UPDATE_SONG: {
+            const newState = { ...state }
+            return { ...newState, [action.song.id]: action.song }
+        }
+
+        default: {
+            return state;
+        }
+    }
+};
+
+export default songReducer;
