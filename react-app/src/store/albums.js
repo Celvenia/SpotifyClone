@@ -125,11 +125,20 @@ const albumReducer = (state = initialState, action) => {
             return newState;
         }
         case LOAD_LIKED_ALBUMS: {
-            const newState = { ...state };
+            // chris'
+            // const newState = { ...state };
+            // action.likedAlbums.forEach((likedAlbum) => {
+            //     newState.liked_albums[0] = likedAlbum;
+            // });
+            // return newState;
+            // testing
+            const likedAlbumsArr = []
             action.likedAlbums.forEach((likedAlbum) => {
-                newState.liked_albums[likedAlbum.id] = likedAlbum;
+                likedAlbumsArr[likedAlbum.id] = likedAlbum;
+                console.log(" this is like album: ", likedAlbum)
             });
-            return newState;
+            return {...likedAlbumsArr};
+
         }
         case LOAD_ALBUM: {
             const newState = { ...state };
