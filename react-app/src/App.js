@@ -7,7 +7,7 @@ import { authenticate } from "./store/session";
 import Navigation from "./components/Navigation";
 import Songs from "./components/Songs";
 import Albums from "./components/Albums";
-import Library from "./components/Library"
+import Sidebar from "./components/Sidebar"
 // import Testing from "./components/Testing";
 
 function App() {
@@ -21,7 +21,7 @@ function App() {
     <>
 
       <Navigation isLoaded={isLoaded} />
-      <Library isLoaded={isLoaded} />
+      <Sidebar isLoaded={isLoaded} />
 
       {isLoaded && (
         <Switch>
