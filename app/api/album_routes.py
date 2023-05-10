@@ -19,3 +19,4 @@ def album(id):
     """
     album = Album.query.get(id)
     return album.to_dict()
+

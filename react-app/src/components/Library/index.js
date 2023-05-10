@@ -3,6 +3,7 @@ import React, { useEffect } from 'react';
 // import Playlist from '../Playlist';
 import { getPlaylists } from '../../store/playlists';
 import { getSongs } from '../../store/songs';
+import { getAlbums, getLikedAlbums } from '../../store/albums';
 import { useDispatch, useSelector } from 'react-redux';
 import './Library.css'
 
@@ -10,9 +11,11 @@ const Library = ({ isLoaded }) => {
 
     const dispatch = useDispatch()
     const songsObj = useSelector(state => state.songReducer)
-    const songsArr = Object.values(songsObj);
+    // const songsArr = Object.values(songsObj);
     const playlistObj = useSelector(state => state.playlistReducer)
-    const playlistArr = Object.values(playlistObj)
+    // const playlistArr = Object.values(playlistObj)
+    const albumsObj = useSelector(state => state.albumReducer)
+    // const albumArr = Object.values(albumsObj)
 
     // console.log(songsArr)
     // console.log(playlistArr)
@@ -20,6 +23,8 @@ const Library = ({ isLoaded }) => {
     useEffect(() => {
         dispatch(getSongs())
         dispatch(getPlaylists())
+        dispatch(getAlbums())
+        dispatch(getLikedAlbums())
     }, [dispatch])
 
     return (
