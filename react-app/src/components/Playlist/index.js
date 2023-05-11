@@ -44,7 +44,6 @@ export default function Playlist() {
     e.preventDefault();
     dispatch(deleteAPlaylist(playlistId))
     .then(history.push("/"))
-
   };
 
   return (
@@ -53,7 +52,7 @@ export default function Playlist() {
       <p>Playlist</p>
       <h1>{currentPlaylist?.title}</h1>
       <p>{user?.public_name}</p>
-      
+
       {currentUserId == userId ?
       <button onClick={handleDeleteClick}>
                   DELETE PLAYLIST
