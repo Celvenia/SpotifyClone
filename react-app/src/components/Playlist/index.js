@@ -6,22 +6,32 @@ import { NavLink } from "react-router-dom";
 import { useParams } from "react-router-dom";
 import "../../index.css"
 import { getPlaylistSongs } from "../../store/playlistSongs";
+import { getUser } from "../../store/users";
 
 export default function Playlist() {
-    const dispatch = useDispatch()
-    const { playlistId } = useParams();
-    const playlistObj = useSelector(state => state.playlistReducer)
-    const playlistArr = Object.values(playlistObj);
-    const songsObj = useSelector(state => state.playlistSongsReducer)
-    const songsArr = Object.values(songsObj);
+  const dispatch = useDispatch()
+  const { playlistId } = useParams();
 
-    useEffect(() => {
-        dispatch(getPlaylist(playlistId))
-        dispatch(getPlaylistSongs(playlistId))
-    }, [dispatch])
+  const playlistsObj = useSelector(state => state.playlistReducer)
+  const currentPlaylist = playlistsObj[playlistId]
+
+  const songsObj = useSelector(state => state.playlistSongsReducer)
+  const songsArr = Object.values(songsObj);
+
+  const users = useSelector(state => state.userReducer)
+  const userId = currentPlaylist?.['user_id']
+  const user = users?.[userId]
+
+  useEffect(() => {
+    dispatch(getPlaylist(playlistId))
+    dispatch(getPlaylistSongs(playlistId))
+    if (currentPlaylist) {
+      dispatch(getUser(currentPlaylist['user_id']))
+    }
+  }, [dispatch, playlistId])
 
 
-    //   Song(album_id=1, title='Come & Go', duration_ms=229000, url='https://www.youtube.com/watch?v=5ho88VXJTBg', release_date=datetime(2020, 7, 10), genre='Hip Hop'),
+  //   Song(album_id=1, title='Come & Go', duration_ms=229000, url='https://www.youtube.com/watch?v=5ho88VXJTBg', release_date=datetime(2020, 7, 10), genre='Hip Hop'),
   //   {
   //     "created_at": "Wed, 10 May 2023 10:25:59 GMT",
   //     "description": "",
@@ -57,28 +67,38 @@ export default function Playlist() {
   //     "updated_at": "Wed, 10 May 2023 10:25:59 GMT",
   //     "user_id": 5
   // },
-    return (
+  return (
 
-        <div>
-            <h1>Playlist</h1>
-            {songsArr.length &&
-          songsArr.map((song) =>
-            song.id !== undefined ? (
-              <div key={song.id}>
-                <NavLink
-                  to={`/songs/${song.id}`}
-                  // className="song-link"
-                  key={song.id}
-                >
+    <div>
+      <p>Playlist</p>
+      <h1>{currentPlaylist.title}</h1>
+
+      {songsArr.length &&
+        songsArr.map((song) =>
+          song.id !== undefined ? (
+            <div key={song.id}>
+              <NavLink
+                to={`/songs/${song.id}`}
+                className="nav-link"
+                key={song.id}
+              >
+                <span>
                   <div>
-                    {song.title}
+                    <img src={user?.profile_picture} className='profile-pic'></img>
+                    <div>
+                      {song.title}
+                    </div>
+                    <div>
+                       {user?.public_name}
+                    </div>
                   </div>
-                </NavLink>
-              </div>
-            ) : (
-              ""
-            )
-          )}
-        </div>
-    )
+                </span>
+              </NavLink>
+            </div>
+          ) : (
+            ""
+          )
+        )}
+    </div>
+  )
 }

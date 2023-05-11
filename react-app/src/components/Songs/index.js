@@ -32,7 +32,7 @@ export default function Songs() {
               <div key={song.id}>
                 <NavLink
                   to={`/songs/${song.id}`}
-                  className="song-link"
+                  className="nav-link"
                   key={song.id}
                 >
                   <div>

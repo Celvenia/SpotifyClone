@@ -4,13 +4,22 @@ from sqlalchemy.sql import text
 
 # Adds a demo user, you can add other users here if you want
 def seed_follows():
-    follow1 = Follow(user_id=2, follow_id=1)
-    follow2 = Follow(user_id=3, follow_id=2)
-    follow3 = Follow(user_id=4, follow_id=3)
+    follows = [
+    Follow(user_id=5, follow_id=1),
+    Follow(user_id=5, follow_id=2),
+    Follow(user_id=5, follow_id=3),
+    Follow(user_id=5, follow_id=4),
+    Follow(user_id=4, follow_id=1),
+    Follow(user_id=4, follow_id=2),
+    Follow(user_id=4, follow_id=3),
+    Follow(user_id=3, follow_id=4),
+    Follow(user_id=1, follow_id=2),
+    Follow(user_id=1, follow_id=3)
+    ]
 
-    db.session.add(follow1)
-    db.session.add(follow2)
-    db.session.add(follow3)
+    for follow in follows:
+        db.session.add(follow)
+        db.session.commit()
 
     db.session.commit()
 

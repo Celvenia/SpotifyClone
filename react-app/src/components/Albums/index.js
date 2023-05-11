@@ -38,7 +38,7 @@ export default function Albums() {
                         <div key={album.id}>
                             <NavLink
                                 to={`/albums/${album.id}`}
-                                className="album-link"
+                                className="nav-link"
                                 key={album.id}
                             >
                                 <div>

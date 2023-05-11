@@ -38,10 +38,10 @@ const Sidebar = ({ isLoaded }) => {
 
             <ul className="sidebar-nav">
                 <li className="sidebar-nav-item">
-                    <NavLink exact to="/" activeClassName="active">Home</NavLink>
+                    <NavLink exact to="/">Home</NavLink>
                 </li>
                 <li className="sidebar-nav-item">
-                    <NavLink exact to="/search" activeClassName="active">Search</NavLink>
+                    <NavLink exact to="/search">Search</NavLink>
                 </li>
             </ul>
 

@@ -1,12 +1,13 @@
-from flask import Blueprint, jsonify
-from flask_login import login_required
-from app.models import User, Album, Song, Playlist
+from flask import Blueprint, jsonify, request, current_app
+from flask_login import login_required, current_user
+from app.models import User, Album, Song, Playlist, Follow
 from ..models.db import db
+
 
 user_routes = Blueprint('users', __name__)
 
 
-@user_routes.route('/')
+@user_routes.route('')
 @login_required
 def users():
     """
@@ -73,7 +74,7 @@ def user_liked_albums(user_id):
     liked_albums = [album.to_dict() for album in user.liked_albums]
     return {'liked_albums': liked_albums}
 
-@user_routes.route('/users/<int:user_id>/liked_albums/<int:album_id>', methods=['DELETE'])
+@user_routes.route('/<int:user_id>/liked_albums/<int:album_id>', methods=['DELETE'])
 def remove_liked_album(user_id, album_id):
     user = User.query.get(user_id)
     album = Album.query.get(album_id)
@@ -86,7 +87,7 @@ def remove_liked_album(user_id, album_id):
     
     return jsonify(message=f"Could not delete liked album with id {album_id} for user with id {user_id}")
 
-@user_routes.route('/users/<int:user_id>/liked_songs/<int:song_id>', methods=['DELETE'])
+@user_routes.route('/<int:user_id>/liked_songs/<int:song_id>', methods=['DELETE'])
 def remove_liked_song(user_id, song_id):
     user = User.query.get(user_id)
     song = Song.query.get(song_id)
@@ -99,7 +100,7 @@ def remove_liked_song(user_id, song_id):
     
     return jsonify(message=f"Could not delete liked song with id {song_id} for user with id {user_id}")
 
-@user_routes.route('/users/<int:user_id>/liked_playlists/<int:playlist_id>', methods=['DELETE'])
+@user_routes.route('/<int:user_id>/liked_playlists/<int:playlist_id>', methods=['DELETE'])
 def remove_liked_playlist(user_id, playlist_id):
     user = User.query.get(user_id)
     playlist = Playlist.query.get(playlist_id)
@@ -112,7 +113,7 @@ def remove_liked_playlist(user_id, playlist_id):
     
     return jsonify(message=f"Could not delete liked playlist with id {playlist_id} for user with id {user_id}")
 
-@user_routes.route('/users/<int:user_id>/liked_albums/<int:album_id>', methods=['POST'])
+@user_routes.route('/<int:user_id>/liked_albums/<int:album_id>', methods=['POST'])
 def add_liked_album(user_id, album_id):
     user = User.query.get(user_id)
     album = Album.query.get(album_id)
@@ -125,7 +126,7 @@ def add_liked_album(user_id, album_id):
     
     return jsonify(message=f"Could not like album with id {album_id} for user with id {user_id}")
 
-@user_routes.route('/users/<int:user_id>/liked_songs/<int:song_id>', methods=['POST'])
+@user_routes.route('/<int:user_id>/liked_songs/<int:song_id>', methods=['POST'])
 def add_liked_song(user_id, song_id):
     user = User.query.get(user_id)
     song = Song.query.get(song_id)
@@ -138,7 +139,7 @@ def add_liked_song(user_id, song_id):
 
     return jsonify(message=f"Could not like song with id {song_id} for user with id {user_id}")
 
-@user_routes.route('/users/<int:user_id>/liked_playlists/<int:playlist_id>', methods=['POST'])
+@user_routes.route('/<int:user_id>/liked_playlists/<int:playlist_id>', methods=['POST'])
 def add_liked_playlist(user_id, playlist_id):
     user = User.query.get(user_id)
     playlist = Playlist.query.get(playlist_id)
@@ -150,3 +151,101 @@ def add_liked_playlist(user_id, playlist_id):
         return jsonify(message=f"Playlist with id {playlist_id} has been liked by user with id {user_id}")
 
     return jsonify(message=f"Could not like playlist with id {playlist_id} for user with id {user_id}")
+
+@user_routes.route('/artists')
+@login_required
+def artists():
+    """
+    Query for all artists and returns them in a list of user dictionaries
+    """
+    artists = User.query.filter_by(is_artist=True).all()
+    return {'artists': [artist.to_dict() for artist in artists]}
+
+# get's user by id's following
+@user_routes.route('/<int:id>/following', methods=['GET'])
+@login_required
+def get_following(id):
+    following = Follow.query.filter_by(user_id=id).all()
+    return jsonify({'following': [f.to_dict() for f in following]})
+
+
+# get's user by id's followers
+@user_routes.route('/<int:id>/followers', methods=['GET'])
+@login_required
+def get_followers(id):
+    followers = Follow.query.filter_by(follow_id=id).all()
+    return jsonify({'followers': [f.to_dict() for f in followers]})
+
+
+# Add a follower to a user
+user_routes.route('/<int:id>/followers', methods=['POST'])
+@login_required
+def add_follower(id):
+    data = request.json
+    follow = Follow(
+        user_id=id,
+        follow_id=data['follow_id']
+    )
+    db.session.add(follow)
+    db.session.commit()
+    return jsonify({'message': 'Follower added successfully!'})
+
+# user by id will now follow user by follow_id
+@user_routes.route('/<int:id>/following', methods=['POST'])
+def add_following(id):
+    data = request.get_json()
+    follow_id = data.get('follow_id')
+
+    if not follow_id:
+        return jsonify({'error': 'follow_id is required'}), 400
+
+    follow = Follow(user_id=id, follow_id=follow_id)
+    db.session.add(follow)
+    db.session.commit()
+
+    return jsonify({'message': f'user {id} successfully following user {follow_id}'})
+
+
+# user by follow_id will become follower of user by id
+@user_routes.route('/<int:id>/followers', methods=['POST'])
+def add_follower(id):
+    data = request.get_json()
+    follow_id = data.get('follow_id')
+
+    if not follow_id:
+        return jsonify({'error': 'follow_id is required'}), 400
+
+    follow = Follow(user_id=follow_id, follow_id=id)
+    db.session.add(follow)
+    db.session.commit()
+
+    return jsonify({'message': f'user {follow_id} is now following user {id}'})
+
+
+# deletes a follower of a user based on follower_id
+@user_routes.route('/<int:id>/followers/<int:follower_id>', methods=['DELETE'])
+@login_required
+def delete_follower(id, follower_id):
+    follow = Follow.query.filter_by(user_id=follower_id, follow_id=id).first()
+
+    if not follow:
+        return jsonify({'error': 'Follower not found'}), 404
+
+    db.session.delete(follow)
+    db.session.commit()
+
+    return jsonify({'message': f'Follower deleted successfully'})
+
+# a user by id no longer follows a user based on following_id
+@user_routes.route('/<int:id>/following/<int:following_id>', methods=['DELETE'])
+@login_required
+def delete_following(id, following_id):
+    follow = Follow.query.filter_by(user_id=id, follow_id=following_id).first()
+
+    if not follow:
+        return jsonify({'error': 'Following not found'}), 404
+
+    db.session.delete(follow)
+    db.session.commit()
+
+    return jsonify({'message': f'No longer following user {following_id}'})

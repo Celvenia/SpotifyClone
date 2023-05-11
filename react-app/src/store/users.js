@@ -4,12 +4,6 @@ const LOAD_USER = "/users/LOAD_USER";
 const UPDATE_USER = "/users/UPDATE_USER";
 const DELETE_USER = "/users/DELETE_USER";
 
-const LOAD_FOLLOWERS = "/users/LOAD_FOLLOWERS"
-const LOAD_FOLLOWING = "/users/LOAD_FOLLOWING"
-const ADD_FOLLOWER = "/users/ADD_FOLLOWER"
-const REMOVE_FOLLOWER = "/users/REMOVE_FOLLOWER"
-
-
 
 // action creators - define actions( objects with type/data )
 const loadUsers = (users) => ({
@@ -22,46 +16,17 @@ const loadUser = (user) => ({
     user,
 });
 
+const updateUser = (user) => ({
+    type: UPDATE_USER,
+    user
+})
 
 const deleteUser = (userId) => ({
     type: DELETE_USER,
     userId,
 });
 
-const updateUser = (user) => ({
-    type: UPDATE_USER,
-    user
-})
 
-const loadFollowers = (followers) => ({
-    type: LOAD_FOLLOWERS,
-    followers,
-});
-
-const loadFollowing = (following) => ({
-    type: LOAD_FOLLOWING,
-    following,
-});
-
-const addFollower = (follower) => ({
-    type: ADD_FOLLOWER,
-    follower,
-});
-
-const addFollowing = (following) => ({
-    type: ADD_FOLLOWER,
-    following,
-});
-
-const removeFollower = (follower) => ({
-    type: REMOVE_FOLLOWER,
-    follower,
-});
-
-const removeFollowing = (following) => ({
-    type: REMOVE_FOLLOWING,
-    following,
-});
 
 // thunk action creators - for asynchronous code, i.e fetch calls prior to dispatching action creators
 export const getUsers = () => async (dispatch) => {
@@ -131,45 +96,45 @@ export const getUser = (userId) => async (dispatch) => {
 // }
 
 
-// const initialState = {};
+const initialState = {};
 
 // // reducer
-// const songReducer = (state = initialState, action) => {
-//     switch (action.type) {
+const userReducer = (state = initialState, action) => {
+    switch (action.type) {
 
-//         case LOAD_SONGS: {
-//             const newState = { ...state };
-//             action.songs.forEach((song) => {
-//                 newState[song.id] = song;
-//             });
-//             return newState;
-//         }
+        case LOAD_USERS: {
+            const newState = { ...state };
+            action.users.forEach((user) => {
+                newState[user.id] = user;
+            });
+            return newState;
+        }
 
-//         case LOAD_SONG: {
-//             const newState = { ...state };
-//             return { ...newState, [action.song.id]: action.song };
-//         }
+        case LOAD_USER: {
+            const newState = { ...state };
+            return { ...newState, [action.user.id]: action.user };
+        }
 
-//         case POST_SONG: {
-//             const newState = { ...state };
-//             return { ...newState, [action.song.id]: action.song };
-//         }
+        // case POST_SONG: {
+        //     const newState = { ...state };
+        //     return { ...newState, [action.song.id]: action.song };
+        // }
 
-//         case DELETE_SONG: {
-//             const newState = { ...state };
-//             delete newState[action.spotId];
-//             return newState;
-//         }
+        // case DELETE_SONG: {
+        //     const newState = { ...state };
+        //     delete newState[action.spotId];
+        //     return newState;
+        // }
 
-//         case UPDATE_SONG: {
-//             const newState = { ...state }
-//             return { ...newState, [action.song.id]: action.song }
-//         }
+        // case UPDATE_SONG: {
+        //     const newState = { ...state }
+        //     return { ...newState, [action.song.id]: action.song }
+        // }
 
-//         default: {
-//             return state;
-//         }
-//     }
-// };
+        default: {
+            return state;
+        }
+    }
+};
 
-// export default songReducer;
+export default userReducer;
