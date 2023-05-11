@@ -27,7 +27,6 @@ export default function Playlist() {
   const userId = currentPlaylist?.['user_id']
   const user = users?.[userId]
 
-  console.log(user, 'who are you?')
 
   useEffect(() => {
     dispatch(getPlaylist(playlistId))

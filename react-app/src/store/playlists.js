@@ -63,7 +63,7 @@ export const createAPlaylist = (data) => async (dispatch) => {
 
     if (res.ok) {
       const playlist = await res.json();
-      dispatch(loadPlaylist(playlist));
+      dispatch(loadPlaylist(playlist.playlist));
       return playlist;
     } else return res.json()
   } catch (error) {
@@ -79,7 +79,6 @@ export const deleteAPlaylist = (playlistId) => async (dispatch) => {
 
   if (res.ok) {
     const playlist = await res.json();
-    console.log(playlist, 'testing')
     dispatch(deletePlaylist(playlistId));
     return playlist;
   } else return res.json()
@@ -110,7 +109,9 @@ const playlistReducer = (state = initialState, action) => {
     case LOAD_PLAYLISTS: {
       const newState = { ...state };
       action.playlists.forEach((playlist) => {
+        if(playlist.id !== undefined) {
           newState[playlist.id] = playlist;
+        }
       });
       return newState;
     }
@@ -121,6 +122,7 @@ const playlistReducer = (state = initialState, action) => {
 
     case POST_PLAYLIST: {
       const newState = { ...state };
+      // console.log()
       return { ...newState, [action.playlist.id]: action.playlist };
     }
 

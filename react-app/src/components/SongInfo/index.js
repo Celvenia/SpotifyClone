@@ -12,7 +12,6 @@ export default function SongInfo() {
     const songsArr = Object.values(songsObj);
     // const song = songsArr.filter(songId == id)
     const song = songsObj[songId]
-    // console.log(song)
 
         useEffect(() => {
             dispatch(getSong(songId))

@@ -16,8 +16,7 @@ class Playlist(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     user_id = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=False)
     title = db.Column(db.String(255), nullable=False)
-    description = db.Column(db.Text)
-    is_private = db.Column(db.Boolean, nullable=False)
+    is_private = db.Column(db.Boolean, default=False)
     created_at = db.Column(db.DateTime(timezone=True), server_default=func.now())
     updated_at = db.Column(db.DateTime(timezone=True), server_default=func.now())
 
@@ -30,7 +29,7 @@ class Playlist(db.Model):
             'id': self.id,
             'user_id': self.user_id,
             'title': self.title,
-            'description': self.description,
+            # 'description': self.description,
             'is_private': self.is_private,
             'created_at': self.created_at,
             'updated_at': self.updated_at,
