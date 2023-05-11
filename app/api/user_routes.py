@@ -177,75 +177,30 @@ def get_followers(id):
     return jsonify({'followers': [f.to_dict() for f in followers]})
 
 
-# Add a follower to a user
-user_routes.route('/<int:id>/followers', methods=['POST'])
-@login_required
-def add_follower(id):
-    data = request.json
-    follow = Follow(
-        user_id=id,
-        follow_id=data['follow_id']
-    )
-    db.session.add(follow)
-    db.session.commit()
-    return jsonify({'message': 'Follower added successfully!'})
-
-# user by id will now follow user by follow_id
-@user_routes.route('/<int:id>/following', methods=['POST'])
-def add_following(id):
-    data = request.get_json()
-    follow_id = data.get('follow_id')
-
-    if not follow_id:
-        return jsonify({'error': 'follow_id is required'}), 400
-
-    follow = Follow(user_id=id, follow_id=follow_id)
-    db.session.add(follow)
-    db.session.commit()
-
-    return jsonify({'message': f'user {id} successfully following user {follow_id}'})
-
-
-# user by follow_id will become follower of user by id
+# current_user will become a follower of user by id
 @user_routes.route('/<int:id>/followers', methods=['POST'])
-def add_follower(id):
-    data = request.get_json()
-    follow_id = data.get('follow_id')
+@login_required
+def add_following(id):
+    if current_user.id == id:
+        return jsonify({'error': 'You cannot follow yourself.'}), 400
 
-    if not follow_id:
-        return jsonify({'error': 'follow_id is required'}), 400
-
-    follow = Follow(user_id=follow_id, follow_id=id)
+    follow = Follow(user_id=current_user.id, follow_id=id)
     db.session.add(follow)
     db.session.commit()
 
-    return jsonify({'message': f'user {follow_id} is now following user {id}'})
+    return jsonify({'message': f'User {current_user.id} is now following user {id}.'})
 
 
-# deletes a follower of a user based on follower_id
-@user_routes.route('/<int:id>/followers/<int:follower_id>', methods=['DELETE'])
+# allows current user to unfollow user by id
+@user_routes.route('/<int:id>/followers', methods=['DELETE'])
 @login_required
-def delete_follower(id, follower_id):
-    follow = Follow.query.filter_by(user_id=follower_id, follow_id=id).first()
+def delete_following(id):
+    follow = Follow.query.filter_by(user_id=current_user.id, follow_id=id).first()
 
     if not follow:
-        return jsonify({'error': 'Follower not found'}), 404
+        return jsonify({'error': 'You are not following this user.'}), 400
 
     db.session.delete(follow)
     db.session.commit()
 
-    return jsonify({'message': f'Follower deleted successfully'})
-
-# a user by id no longer follows a user based on following_id
-@user_routes.route('/<int:id>/following/<int:following_id>', methods=['DELETE'])
-@login_required
-def delete_following(id, following_id):
-    follow = Follow.query.filter_by(user_id=id, follow_id=following_id).first()
-
-    if not follow:
-        return jsonify({'error': 'Following not found'}), 404
-
-    db.session.delete(follow)
-    db.session.commit()
-
-    return jsonify({'message': f'No longer following user {following_id}'})
+    return jsonify({'message': f'User {current_user.id} is no longer following user {id}.'})

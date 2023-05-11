@@ -6,6 +6,7 @@ import LoginFormPage from "./components/LoginFormPage";
 import { authenticate } from "./store/session";
 import Navigation from "./components/Navigation";
 import Songs from "./components/Songs";
+import SongInfo from "./components/SongInfo"
 import Albums from "./components/Albums";
 import Sidebar from "./components/Sidebar"
 import Playlist from "./components/Playlist";
@@ -34,6 +35,9 @@ function App() {
               </Route>
               <Route exact path="/songs">
                 <Songs />
+              </Route>
+              <Route exact path="/songs/:songId">
+                <SongInfo />
               </Route>
               <Route path="/albums">
                 <Albums />

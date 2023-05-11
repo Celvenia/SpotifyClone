@@ -79,6 +79,7 @@ export const deleteAPlaylist = (playlistId) => async (dispatch) => {
 
   if (res.ok) {
     const playlist = await res.json();
+    console.log(playlist, 'testing')
     dispatch(deletePlaylist(playlistId));
     return playlist;
   } else return res.json()
@@ -125,7 +126,7 @@ const playlistReducer = (state = initialState, action) => {
 
     case DELETE_PLAYLIST: {
       const newState = { ...state };
-      delete newState[action.spotId];
+      delete newState[action.playlistId];
       return newState;
     }
 

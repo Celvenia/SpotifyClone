@@ -23,7 +23,7 @@
     color: red;
   }
 
-.profile-pic {
+.small-pic {
     object-fit: contain;
     height: 40px;
     width: 40px;
