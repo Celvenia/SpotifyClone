@@ -135,3 +135,14 @@ def add_album_to_playlist(playlist_id):
 
     return playlist.to_dict(), 200
 
+# get playlist by id, then get songs from playlist
+@playlist_routes.route('/<int:id>/songs')
+@login_required
+def playlist_songs(id):
+    """
+    Query for a playlist by id and returns the songs from playlist in a dictionary
+    """
+    playlist = Playlist.query.get(id)
+    return playlist.to_dict()['songs']
+
+

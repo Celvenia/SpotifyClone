@@ -3,7 +3,7 @@ import { NavLink } from 'react-router-dom'
 import './SidebarPlaylist.css'
 
 export default function SidebarPlaylist({ playlist }) {
-  console.log(playlist)
+
   return (
     <div className='sidebar-block'>
       <div>

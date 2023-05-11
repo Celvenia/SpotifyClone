@@ -5,21 +5,22 @@ import { getPlaylist } from "../../store/playlists";
 import { NavLink } from "react-router-dom";
 import { useParams } from "react-router-dom";
 import "../../index.css"
+import { getPlaylistSongs } from "../../store/playlistSongs";
 
 export default function Playlist() {
     const dispatch = useDispatch()
     const { playlistId } = useParams();
     const playlistObj = useSelector(state => state.playlistReducer)
     const playlistArr = Object.values(playlistObj);
-    const playlist = playlistArr.filter(list => list?.id == playlistId)
-    // const playlist = playlistObj?.playlistId
-    const songsArr = playlistObj?.playlistId?.songs
+    const songsObj = useSelector(state => state.playlistSongsReducer)
+    const songsArr = Object.values(songsObj);
+    // const playlist = playlistArr.filter(list => list?.id == playlistId)
     // const sessionUser = useSelector(state => state.session.user);
     // const userId = sessionUser?.id
-    // console.log(playlistArr)
-    console.log(playlist)
+    console.log(songsArr)
     useEffect(() => {
         dispatch(getPlaylist(playlistId))
+        dispatch(getPlaylistSongs(playlistId))
     }, [dispatch])
 
 
@@ -34,7 +35,24 @@ export default function Playlist() {
 
         <div className="main-content">
             <h1>Playlist</h1>
-            {playlist.title}
+            {songsArr.length &&
+          songsArr.map((song) =>
+            song.id !== undefined ? (
+              <div key={song.id}>
+                <NavLink
+                  to={`/songs/${song.id}`}
+                  // className="song-link"
+                  key={song.id}
+                >
+                  <div>
+                    {song.title}
+                  </div>
+                </NavLink>
+              </div>
+            ) : (
+              ""
+            )
+          )}
         </div>
     )
 }

@@ -11,7 +11,7 @@ export default function Songs() {
     const songsObj = useSelector(state => state.songReducer)
     const songsArr = Object.values(songsObj);
 
-    // console.log(songsArr)
+
 
     useEffect(() => {
         dispatch(getSongs())

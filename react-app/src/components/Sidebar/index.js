@@ -19,8 +19,6 @@ const Sidebar = ({ isLoaded }) => {
     // const albumsObj = useSelector(state => state.albumReducer)
     // const albumArr = Object.values(albumsObj)
 
-    // console.log(songsArr)
-    // console.log(playlistArr)
 
     useEffect(() => {
         dispatch(getSongs())

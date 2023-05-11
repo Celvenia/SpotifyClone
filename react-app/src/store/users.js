@@ -103,73 +103,73 @@ export const getUser = (userId) => async (dispatch) => {
 //   } else return res.json()
 // };
 
-export const deleteAUser = (userId) => async (dispatch) => {
-    const res = await fetch(`/api/users/${userId}`, {
-        method: "DELETE",
-    });
+// export const deleteAUser = (userId) => async (dispatch) => {
+//     const res = await fetch(`/api/users/${userId}`, {
+//         method: "DELETE",
+//     });
 
-    if (res.ok) {
-        const song = await res.json();
-        dispatch(deleteSong(songId));
-        return song;
-    } else return res.json()
-};
+//     if (res.ok) {
+//         const song = await res.json();
+//         dispatch(deleteSong(songId));
+//         return song;
+//     } else return res.json()
+// };
 
-export const updateASong = (payload, song) => async (dispatch) => {
-    const res = await fetch(`/api/songs/${song.id}`, {
-        method: "PUT",
-        headers: {
-            "Content-Type": "application/json",
-        },
-        body: JSON.stringify(payload),
-    });
-    if (res.ok) {
-        const data = await res.json();
-        dispatch(updateSong({ ...song, ...data }))
-        return data
-    } else return res.json()
-}
+// export const updateASong = (payload, song) => async (dispatch) => {
+//     const res = await fetch(`/api/songs/${song.id}`, {
+//         method: "PUT",
+//         headers: {
+//             "Content-Type": "application/json",
+//         },
+//         body: JSON.stringify(payload),
+//     });
+//     if (res.ok) {
+//         const data = await res.json();
+//         dispatch(updateSong({ ...song, ...data }))
+//         return data
+//     } else return res.json()
+// }
 
 
-const initialState = {};
+// const initialState = {};
 
-// reducer
-const songReducer = (state = initialState, action) => {
-    switch (action.type) {
+// // reducer
+// const songReducer = (state = initialState, action) => {
+//     switch (action.type) {
 
-        case LOAD_SONGS: {
-            const newState = { ...state };
-            action.songs.forEach((song) => {
-                newState[song.id] = song;
-            });
-            return newState;
-        }
+//         case LOAD_SONGS: {
+//             const newState = { ...state };
+//             action.songs.forEach((song) => {
+//                 newState[song.id] = song;
+//             });
+//             return newState;
+//         }
 
-        case LOAD_SONG: {
-            const newState = { ...state };
-            return { ...newState, [action.song.id]: action.song };
-        }
+//         case LOAD_SONG: {
+//             const newState = { ...state };
+//             return { ...newState, [action.song.id]: action.song };
+//         }
 
-        case POST_SONG: {
-            const newState = { ...state };
-            return { ...newState, [action.song.id]: action.song };
-        }
+//         case POST_SONG: {
+//             const newState = { ...state };
+//             return { ...newState, [action.song.id]: action.song };
+//         }
 
-        case DELETE_SONG: {
-            const newState = { ...state };
-            delete newState[action.spotId];
-            return newState;
-        }
+//         case DELETE_SONG: {
+//             const newState = { ...state };
+//             delete newState[action.spotId];
+//             return newState;
+//         }
 
-        case UPDATE_SONG: {
-            const newState = { ...state }
-            return { ...newState, [action.song.id]: action.song }
-        }
+//         case UPDATE_SONG: {
+//             const newState = { ...state }
+//             return { ...newState, [action.song.id]: action.song }
+//         }
 
-        default: {
-            return state;
-        }
-    }
-};
+//         default: {
+//             return state;
+//         }
+//     }
+// };
 
-export default songReducer;
+// export default songReducer;

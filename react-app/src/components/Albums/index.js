@@ -12,7 +12,7 @@ export default function Albums() {
     const likedAlbumsArr = Object.values(likedAlbumsObj)
     const sessionUser = useSelector(state => state.session.user);
     const userId = sessionUser?.id
-    console.log(albumsArr)
+
 
     useEffect(() => {
         dispatch(getAlbums())
