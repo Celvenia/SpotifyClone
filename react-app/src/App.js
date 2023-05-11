@@ -8,6 +8,7 @@ import Navigation from "./components/Navigation";
 import Songs from "./components/Songs";
 import Albums from "./components/Albums";
 import Sidebar from "./components/Sidebar"
+import Home from "./components/Home";
 // import Testing from "./components/Testing";
 
 function App() {
@@ -22,6 +23,7 @@ function App() {
 
       <Navigation isLoaded={isLoaded} />
       <Sidebar isLoaded={isLoaded} />
+      <Home isLoaded={isLoaded} />
 
       {isLoaded && (
         <Switch>

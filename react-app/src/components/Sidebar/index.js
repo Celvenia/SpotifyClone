@@ -41,10 +41,10 @@ const Sidebar = ({ isLoaded }) => {
           src="https://getheavy.com/wp-content/uploads/2019/12/spotify2019-830x350.jpg"
           alt=""
         />
-        
+
 				<NavLink exact to="/">Home</NavLink>
 				<NavLink exact to="/search">Search</NavLink>
-			
+
         <div> Your Library </div>
         <br />
         <strong className="sidebar_title">PLAYLISTS</strong>
