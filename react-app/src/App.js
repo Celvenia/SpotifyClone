@@ -9,6 +9,7 @@ import Songs from "./components/Songs";
 import Albums from "./components/Albums";
 import Sidebar from "./components/Sidebar"
 import Playlist from "./components/Playlist";
+import Search from "./components/Search";
 // import Testing from "./components/Testing";
 
 function App() {
@@ -19,11 +20,10 @@ function App() {
   }, [dispatch]);
 
   return (
-    <>
-      <div style={{ display: 'flex', flexDirection: 'row' }}>
+    <div className="main-container">
         <Sidebar isLoaded={isLoaded} />
         <Navigation isLoaded={isLoaded} />
-        <div className="main-content">
+        <div className="main-content"> 
           {isLoaded && (
             <Switch>
               <Route path="/login" >
@@ -41,14 +41,17 @@ function App() {
               <Route path="/playlists/:playlistId">
                 <Playlist />
               </Route>
+              <Route path="/search">
+                <Search />
+              </Route>
               {/* <Route path="/testing">
             <Testing />
           </Route> */}
             </Switch>
           )}
         </div>
-      </div>
-    </>
+
+    </div>
   );
 }
 

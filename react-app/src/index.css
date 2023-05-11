@@ -1,6 +1,9 @@
 /* TODO Add site wide styles */
+
 .main-content {
+    flex: 1;
+}
+
+.main-container {
     display: flex;
-    justify-content: center;
-    padding: 20px;
-  }
+}

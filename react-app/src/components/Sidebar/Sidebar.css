@@ -10,6 +10,7 @@
     height: 100vh;
     color: white;
     background-color: #040404;
+    border-radius: 10px;
   }
   
   .sidebar_title {
