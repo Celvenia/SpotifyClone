@@ -1,0 +1,14 @@
+.song-link {
+    display: flex;
+    justify-content: space-evenly;
+    color: white;
+    text-decoration: none;
+}
+
+.song-link:hover {
+    color: green;
+}
+
+.song-link:active {
+    color: red;
+  }

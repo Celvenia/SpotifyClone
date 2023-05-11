@@ -6,8 +6,12 @@ import LoginFormPage from "./components/LoginFormPage";
 import { authenticate } from "./store/session";
 import Navigation from "./components/Navigation";
 import Songs from "./components/Songs";
+import SongInfo from "./components/SongInfo"
 import Albums from "./components/Albums";
-import Library from "./components/Library"
+import Sidebar from "./components/Sidebar"
+import Playlist from "./components/Playlist";
+import Search from "./components/Search";
+// import Testing from "./components/Testing";
 
 function App() {
   const dispatch = useDispatch();
@@ -17,28 +21,41 @@ function App() {
   }, [dispatch]);
 
   return (
-    <>
+    <div className="main-container">
+        <Sidebar isLoaded={isLoaded} />
+        <Navigation isLoaded={isLoaded} />
+        <div className="main-content"> 
+          {isLoaded && (
+            <Switch>
+              <Route path="/login" >
+                <LoginFormPage />
+              </Route>
+              <Route path="/signup">
+                <SignupFormPage />
+              </Route>
+              <Route exact path="/songs">
+                <Songs />
+              </Route>
+              <Route exact path="/songs/:songId">
+                <SongInfo />
+              </Route>
+              <Route path="/albums">
+                <Albums />
+              </Route>
+              <Route path="/playlists/:playlistId">
+                <Playlist />
+              </Route>
+              <Route path="/search">
+                <Search />
+              </Route>
+              {/* <Route path="/testing">
+            <Testing />
+          </Route> */}
+            </Switch>
+          )}
+        </div>
 
-      <Navigation isLoaded={isLoaded} />
-      <Library isLoaded={isLoaded} />
-
-      {isLoaded && (
-        <Switch>
-          <Route path="/login" >
-            <LoginFormPage />
-          </Route>
-          <Route path="/signup">
-            <SignupFormPage />
-          </Route>
-          <Route path="/songs">
-            <Songs />
-          </Route>
-          <Route path="/albums">
-            <Albums />
-          </Route>
-        </Switch>
-      )}
-    </>
+    </div>
   );
 }
 

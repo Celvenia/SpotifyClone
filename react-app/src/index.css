@@ -1,1 +1,30 @@
 /* TODO Add site wide styles */
+
+.main-content {
+    flex: 1;
+    background-color: #333;
+    color: white;
+}
+
+.main-container {
+    display: flex;
+}
+
+.nav-link {
+    color: white;
+    text-decoration: none;
+}
+
+.nav-link:hover {
+    color: green;
+}
+
+.nav-link:active {
+    color: red;
+  }
+
+.small-pic {
+    object-fit: contain;
+    height: 40px;
+    width: 40px;
+}

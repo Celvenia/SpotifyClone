@@ -109,9 +109,10 @@ export const unlikeAlbum = (userId, albumId) => async (dispatch) => {
 
 
 const initialState = {
-    albums: {},
     liked_albums: {},
 };
+
+// const initialState = {}
 
 
 
@@ -120,7 +121,7 @@ const albumReducer = (state = initialState, action) => {
         case LOAD_ALBUMS: {
             const newState = { ...state };
             action.albums.forEach((album) => {
-                newState.albums[album.id] = album;
+                newState[album.id] = album;
             });
             return newState;
         }
