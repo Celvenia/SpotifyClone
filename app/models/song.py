@@ -16,14 +16,14 @@ class Song(db.Model):
     duration_ms = db.Column(db.Integer, nullable=False)
     url = db.Column(db.String, nullable=False)
     release_date = db.Column(db.String, nullable=False)
-    genres = db.Column(db.String, nullable=True) #nullable set to True for testing
+    genre = db.Column(db.String, nullable=False)
     created_at = db.Column(db.DateTime(timezone=True), server_default=func.now())
     updated_at = db.Column(db.DateTime(timezone=True), server_default=func.now())
 
     queue = db.relationship('Queue', secondary=queued_songs, back_populates='songs')
     liked_by = db.relationship('User', secondary='likes', back_populates='liked_songs')
     playlists = db.relationship('Playlist', secondary=playlist_songs, back_populates='songs')
-    albums = db.relationship('Album', primaryjoin='and_(Song.genres==Album.genres, foreign(Song.album_id)==Album.id)')
+    albums = db.relationship('Album', primaryjoin='and_(Song.genre==Album.genre, foreign(Song.album_id)==Album.id)')
 
     def to_dict(self):
         return{
@@ -34,7 +34,7 @@ class Song(db.Model):
             'duration_ms': self.duration_ms,
             'url': self.url,
             'release_date': self.release_date,
-            'genres': self.genres,
+            'genre': self.genre,
             'created_at': self.created_at,
             'updated_at': self.updated_at
         }
