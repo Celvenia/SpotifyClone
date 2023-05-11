@@ -8,6 +8,7 @@ import Navigation from "./components/Navigation";
 import Songs from "./components/Songs";
 import Albums from "./components/Albums";
 import Sidebar from "./components/Sidebar"
+import Playlist from "./components/Playlist";
 // import Testing from "./components/Testing";
 
 function App() {
@@ -19,29 +20,34 @@ function App() {
 
   return (
     <>
-
-      <Navigation isLoaded={isLoaded} />
-      <Sidebar isLoaded={isLoaded} />
-
-      {isLoaded && (
-        <Switch>
-          <Route path="/login" >
-            <LoginFormPage />
-          </Route>
-          <Route path="/signup">
-            <SignupFormPage />
-          </Route>
-          <Route path="/songs">
-            <Songs />
-          </Route>
-          <Route path="/albums">
-            <Albums />
-          </Route>
-          {/* <Route path="/testing">
+      <div style={{ display: 'flex', flexDirection: 'row' }}>
+        <Sidebar isLoaded={isLoaded} />
+        <Navigation isLoaded={isLoaded} />
+        <div className="main-content">
+          {isLoaded && (
+            <Switch>
+              <Route path="/login" >
+                <LoginFormPage />
+              </Route>
+              <Route path="/signup">
+                <SignupFormPage />
+              </Route>
+              <Route path="/songs">
+                <Songs />
+              </Route>
+              <Route path="/albums">
+                <Albums />
+              </Route>
+              <Route path="/playlists/:playlistId">
+                <Playlist />
+              </Route>
+              {/* <Route path="/testing">
             <Testing />
           </Route> */}
-        </Switch>
-      )}
+            </Switch>
+          )}
+        </div>
+      </div>
     </>
   );
 }

@@ -5,3 +5,9 @@
 .hidden {
   display: none;
 }
+
+.profile-button {
+  position: fixed;
+  top: 20px;
+  right: 50px;
+}

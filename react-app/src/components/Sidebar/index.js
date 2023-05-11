@@ -6,6 +6,7 @@ import { getSongs } from '../../store/songs';
 import { getAlbums, getLikedAlbums } from '../../store/albums';
 import { useDispatch, useSelector } from 'react-redux';
 import './Sidebar.css'
+import SidebarPlaylist from '../SidebarPlaylist';
 
 const Sidebar = ({ isLoaded }) => {
     const dispatch = useDispatch()
@@ -50,9 +51,7 @@ const Sidebar = ({ isLoaded }) => {
         <strong className="sidebar_title">PLAYLISTS</strong>
         <hr />
         {playlistArr?.map((playlist) => (
-          <NavLink exact to={`/playlists/${playlist.id}`}>
-            <div> {playlist.title} </div>
-          </NavLink>
+            <SidebarPlaylist playlist={playlist}></SidebarPlaylist>
         ))}
       </div>
 

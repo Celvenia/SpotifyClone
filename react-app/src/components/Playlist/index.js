@@ -1,44 +1,40 @@
-import React from 'react';
-import { NavLink } from 'react-router-dom';
-import { useSelector } from 'react-redux';
+import React from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { useEffect } from "react";
+import { getPlaylist } from "../../store/playlists";
+import { NavLink } from "react-router-dom";
+import { useParams } from "react-router-dom";
+import "../../index.css"
 
-const Playlist = ({ playlist }) => {
-    const sessionUser = useSelector(state => state.session.user);
+export default function Playlist() {
+    const dispatch = useDispatch()
+    const { playlistId } = useParams();
+    const playlistObj = useSelector(state => state.playlistReducer)
+    const playlistArr = Object.values(playlistObj);
+    const playlist = playlistArr.filter(list => list?.id == playlistId)
+    // const playlist = playlistObj?.playlistId
+    const songsArr = playlistObj?.playlistId?.songs
+    // const sessionUser = useSelector(state => state.session.user);
+    // const userId = sessionUser?.id
+    // console.log(playlistArr)
+    console.log(playlist)
+    useEffect(() => {
+        dispatch(getPlaylist(playlistId))
+    }, [dispatch])
 
 
-    // const handleDeletePlaylistClick = async (e) => {
-    //   e.preventDefault();
-    //   dispatch(deleteAPlaylist(playlist.id)).then(closeModal);
-    // };
-    
-  // return (
-  //   <div>
-  //       <p>Playlist</p>
-  //     <h1>{playlist.name}</h1>
-  //     {/* <p>sessionUser.public_name</p> */}
-  //     <ul>
-  //       {playlist.songs.map(song => (
-  //         <li key={song.id}>
-  //           <NavLink to={`/songs/${song.id}`}>{song.title}</NavLink>
-  //         </li>
-  //       ))}
-  //     </ul>
-  //   </div>
-  // );
+
+    // if (!playlistsArr.length) {
+    //     return <div>Loading...</div>;
+    // }
+
+    //   Song(album_id=1, title='Come & Go', duration_ms=229000, url='https://www.youtube.com/watch?v=5ho88VXJTBg', release_date=datetime(2020, 7, 10), genre='Hip Hop'),
+
     return (
-    <div className='playlist'>
-      <h3 className='playlist_title'>Playlist</h3>
-      <ul className='playlist_songs'>
-        {playlist.songs.map((song, idx) => (
-          <li key={idx} className='playlist_song'>
-            <NavLink to={`/songs/${song.id}`}>{song.title}</NavLink>
-          </li>
-        ))}
-      </ul>
 
-      
-    </div>
-  );
-};
-
-export default Playlist;
+        <div className="main-content">
+            <h1>Playlist</h1>
+            {playlist.title}
+        </div>
+    )
+}

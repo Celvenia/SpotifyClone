@@ -16,7 +16,7 @@ function Navigation({ isLoaded }){
 				<NavLink exact to="/search">Search</NavLink>
 			</li> */}
 			{isLoaded && (
-				<li>
+				<li className='profile-button'>
 					<ProfileButton user={sessionUser} />
 				</li>
 			)}
