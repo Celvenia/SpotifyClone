@@ -10,7 +10,7 @@ class Like(db.Model):
 
     id = db.Column(db.Integer, primary_key=True)
     user_id = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=False)
-    like_type = db.Column(db.Enum('song', 'playlist', 'album'))
+    # like_type = db.Column(db.Enum('song', 'playlist', 'album', type="enum_like_type"))
     song_id = db.Column(db.Integer, db.ForeignKey('songs.id'))
     album_id = db.Column(db.Integer, db.ForeignKey('albums.id'))
     playlist_id = db.Column(db.Integer, db.ForeignKey('playlists.id'))
@@ -27,7 +27,7 @@ class Like(db.Model):
         return{
             'id': self.id,
             'user_id': self.user_id,
-            'like_type': self.like_type,
+            # 'like_type': self.like_type,
             'song_id': self.song_id,
             'album_id': self.album_id,
             'playlist_id': self.playlist_id,
