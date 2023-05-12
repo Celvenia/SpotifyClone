@@ -1,12 +1,14 @@
 import React from "react";
-import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { useParams, useHistory, NavLink } from "react-router-dom";
+
 import { deleteAPlaylist, getPlaylist } from "../../store/playlists";
-import { NavLink } from "react-router-dom";
-import { useParams, useHistory } from "react-router-dom";
-import "../../index.css"
 import { getPlaylistSongs } from "../../store/playlistSongs";
 import { getUser, getUsers } from "../../store/users";
+
+import Search from "../Search";
+import "../../index.css"
 
 export default function Playlist() {
   const dispatch = useDispatch()
@@ -48,6 +50,7 @@ export default function Playlist() {
   return (
 
     <div>
+      <Search />
       <p>Playlist</p>
       <h1>{currentPlaylist?.title}</h1>
       <p>{user?.public_name}</p>

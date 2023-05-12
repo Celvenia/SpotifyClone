@@ -2,7 +2,8 @@
 
 .main-content {
     flex: 1;
-    background-color: #333;
+    /* background-color: #333; */
+    background-color: #040404;
     color: white;
 }
 
