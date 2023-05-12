@@ -11,6 +11,7 @@ import Albums from "./components/Albums";
 import Sidebar from "./components/Sidebar"
 import Playlist from "./components/Playlist";
 import Search from "./components/Search";
+import Home from "./components/Home";
 // import Testing from "./components/Testing";
 
 function App() {
@@ -24,7 +25,9 @@ function App() {
     <div className="main-container">
         <Sidebar isLoaded={isLoaded} />
         <Navigation isLoaded={isLoaded} />
-        <div className="main-content"> 
+        <Home isLoaded={isLoaded}/>
+
+        <div className="main-content">
           {isLoaded && (
             <Switch>
               <Route path="/login" >
