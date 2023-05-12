@@ -25,7 +25,7 @@ function App() {
     <div className="main-container">
         <Sidebar isLoaded={isLoaded} />
         <Navigation isLoaded={isLoaded} />
-        <Home isLoaded={isLoaded}/>
+        {/* <Home isLoaded={isLoaded}/> */}
 
         <div className="main-content">
           {isLoaded && (
