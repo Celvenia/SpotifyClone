@@ -10,7 +10,7 @@ class Like(db.Model):
 
     id = db.Column(db.Integer, primary_key=True)
     user_id = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=False)
-    like_type = db.Column(db.Enum('song', 'playlist', 'album'))
+    like_type = db.Column(db.Enum('song', 'playlist', 'album', name='like_type'))
     song_id = db.Column(db.Integer, db.ForeignKey('songs.id'))
     album_id = db.Column(db.Integer, db.ForeignKey('albums.id'))
     playlist_id = db.Column(db.Integer, db.ForeignKey('playlists.id'))
