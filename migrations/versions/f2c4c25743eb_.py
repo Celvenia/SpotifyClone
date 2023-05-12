@@ -1,8 +1,8 @@
 """empty message
 
-Revision ID: d7d7c202d21e
+Revision ID: f2c4c25743eb
 Revises: 
-Create Date: 2023-05-11 18:31:49.091189
+Create Date: 2023-05-11 18:42:49.717417
 
 """
 from alembic import op
@@ -10,7 +10,7 @@ import sqlalchemy as sa
 
 
 # revision identifiers, used by Alembic.
-revision = 'd7d7c202d21e'
+revision = 'f2c4c25743eb'
 down_revision = None
 branch_labels = None
 depends_on = None
@@ -89,7 +89,7 @@ def upgrade():
     op.create_table('likes',
     sa.Column('id', sa.Integer(), nullable=False),
     sa.Column('user_id', sa.Integer(), nullable=False),
-    sa.Column('like_type', sa.Enum('song', 'playlist', 'album'), nullable=True),
+    sa.Column('like_type', sa.Enum('song', 'playlist', 'album', name='like_type'), nullable=True),
     sa.Column('song_id', sa.Integer(), nullable=True),
     sa.Column('album_id', sa.Integer(), nullable=True),
     sa.Column('playlist_id', sa.Integer(), nullable=True),
