@@ -23,6 +23,7 @@ function App() {
   }, [dispatch]);
 
   return (
+    <>
     <div className="main-container">
         <Sidebar isLoaded={isLoaded} />
         <Navigation isLoaded={isLoaded} />
@@ -60,8 +61,10 @@ function App() {
             </Switch>
           )}
         </div>
-        <Player />
+
     </div>
+          <Player />
+    </>
   );
 }
 
