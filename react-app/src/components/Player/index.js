@@ -8,7 +8,7 @@ const Player = () => (
   <div style={{ position: 'fixed', bottom: 0, left: 0, width: '100%' }}>
   <AudioPlayer
     autoPlay
-    src=" "
+    src=""
     onPlay={e => console.log("onPlay")}
     className="audio-player"
     // other props here
@@ -16,5 +16,7 @@ const Player = () => (
   </div>
 
 );
+
+
 
 export default Player;
