@@ -12,22 +12,18 @@ import { faHouse, faSearch } from '@fortawesome/free-solid-svg-icons'
 import SidebarPlaylist from '../SidebarPlaylist';
 import './Sidebar.css'
 import { getFollowers } from '../../store/followers';
+import { useParams } from 'react-router-dom/cjs/react-router-dom.min';
 
 
-const Sidebar = ({ isLoaded }) => {
+const Sidebar = () => {
   const dispatch = useDispatch()
   const history = useHistory()
+  const currentUrl = window.location.href;
+  const { id } = useParams()
   const sessionUser = useSelector(state => state.session.user);
   const userId = sessionUser?.id
   const playlistObj = useSelector(state => state.playlistReducer)
   const playlistArr = Object.values(playlistObj)
-  const [review, setReview] = useState("");
-  const [stars, setStars] = useState(0);
-  const [errors, setErrors] = useState([]);
-
-  useEffect(()=> {
-    dispatch(getFollowers(userId))
-  },[dispatch])
 
 
   useEffect(() => {
@@ -35,9 +31,6 @@ const Sidebar = ({ isLoaded }) => {
     dispatch(getAlbums())
     if (userId) {
       dispatch(getPlaylists())
-    }
-    if (userId) {
-      dispatch(getLikedAlbums(userId))
     }
   }, [dispatch, userId])
 

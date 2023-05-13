@@ -16,14 +16,6 @@ const Player = ({ songs }) => {
     setCurrentSongIndex(prevSongIndex);
   };
 
-  const handlePlay = e => {
-    console.log('Play event:', e);
-  };
-
-  const handlePause = e => {
-    console.log('Pause event:', e);
-  };
-
   return (
     <div className="audio-player-container">
       <div className="audio-player-buttons">
@@ -33,8 +25,6 @@ const Player = ({ songs }) => {
       <AudioPlayer
         autoPlay
         src={songs[currentSongIndex]?.url}
-        onPlay={handlePlay}
-        onPause={handlePause}
         className="audio-player"
       />
     </div>

@@ -58,7 +58,7 @@ function App() {
               {/* <Route path="/">
                 <Home />
               </Route> */}
-              <Route path="/">
+              <Route exact path="/">
                 <HomeTest />
               </Route>
               <Route path="/users/:userId">
