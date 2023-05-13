@@ -9,6 +9,7 @@ import { NavLink } from "react-router-dom";
 import './Search.css'
 import { updatePlaylistWithSong } from "../../store/playlistSongs";
 import { useParams } from "react-router-dom";
+import SearchPage from "../SearchPage";
 
 
 export default function Search() {
@@ -19,8 +20,9 @@ export default function Search() {
   const dispatch = useDispatch()
   const { playlistId } = useParams()
   const [searchInput, setSearchInput] = useState("");
+  const [recentSearch, setRecentSearch] = useState("")
   const [errors, setErrors] = useState([]);
-  const [state, setstate] = useState({
+  const [state, setState] = useState({
     query: '',
     list: []
   })
@@ -37,19 +39,34 @@ export default function Search() {
       if (e.target.value === "") return song
       return song.title.toLowerCase().includes(e.target.value.toLowerCase())
     })
-    setstate({
+    setState({
       query: e.target.value,
       list: results
     })
   }
 
-  const handleAddClick = async (e) => {
-    e.preventDefault();
-    const data = await dispatch(updatePlaylistWithSong(playlistId, e.target.value));
+  const handleAddClick = async (song) => {
+    const data = await dispatch(updatePlaylistWithSong(playlistId, song.id));
     if (data) {
       setErrors(data);
     }
+    localStorage.setItem('recentSearch', song.title);
+    setState({
+      query: "",
+      list: []
+    })
   };
+
+  const handleSearchClick = async (song) => {
+    localStorage.setItem('recentSearch', song.title);
+  };
+
+  useEffect(() => {
+    const storedRecentSearch = localStorage.getItem('recentSearch');
+    if (storedRecentSearch) {
+      setRecentSearch(storedRecentSearch);
+    }
+  }, []);
 
   return (
     <>
@@ -71,11 +88,11 @@ export default function Search() {
         {(state.query === '' ? "" : state.list.map(song => (
           isSearchPage ?
             <div className="search-song-container">
-              <NavLink to={`/songs/${song.id}`} className="search-song-link">{song.title}</NavLink>
+              <NavLink to={`/songs/${song.id}`} onClick={() => handleSearchClick(song)} className="search-song-link">{song.title}</NavLink>
             </div>
             : (
               <li key={song.title}>
-                <button className="search-add-button" value={song.id} onClick={handleAddClick}>
+                <button className="search-add-button" onClick={() => handleAddClick(song)}>
                   Add Song
                 </button>
 
@@ -85,25 +102,10 @@ export default function Search() {
             )
         )))}
       </ul>
-      <div class="search-card">
-        <h3>Recent Searches</h3>
-        <ul>
-          <li><a href="#">Song 1</a></li>
-          <li><a href="#">Song 2</a></li>
-          <li><a href="#">Song 3</a></li>
-          <li><a href="#">Song 4</a></li>
-          <li><a href="#">Song 5</a></li>
-        </ul>
-      </div>
-      <div class="browse-card">
-        <img src="https://picsum.photos/300/200" alt="Card Image" />
-        <div class="card-body">
-          <h3 class="card-title">PodCasts</h3>
-        </div>
-      </div>
 
-
-
+      {isSearchPage ? (
+        <SearchPage recentSearch={recentSearch} />
+      ) : ""}
     </>
   )
 }

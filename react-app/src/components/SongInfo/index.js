@@ -10,16 +10,12 @@ export default function SongInfo() {
     const { songId } = useParams();
     const songsObj = useSelector(state => state.songReducer)
     const songsArr = Object.values(songsObj);
-    // const song = songsArr.filter(songId == id)
     const song = songsObj[songId]
 
         useEffect(() => {
             dispatch(getSong(songId))
         }, [dispatch])
 
-    //     if (!songsArr.length) {
-    //         return <div>Loading...</div>;
-    //       }
 
     return (
 <div>

@@ -68,11 +68,10 @@ const Sidebar = ({ isLoaded }) => {
         </li>
       </ul>
 
-      <div className="sidebar-section">
         <h3>Your Library</h3>
-        <br />
         <strong className="sidebar-section-title">PLAYLISTS</strong>
         <button onClick={handleCreatePlaylistClick}>Create Playlist</button>
+      <div className="sidebar-section">
         <hr />
         {playlistArr.length ? playlistArr?.map((playlist) => (
           <SidebarPlaylist playlist={playlist} key={playlist.id} />

@@ -15,15 +15,19 @@ export default function PlaylistSongs({songs}) {
     return minutes + ":" + (seconds < 10 ? "0" : "") + seconds;
   }
 
+  function convertDate(date) {
+    return date.slice(0, 11)
+  }
+
   return (
     <>
       <div>Songs</div>
       {songs.map((song) => (
         <div key={song.id}>
           <NavLink to={`/songs/${song.id}`} className="song-link">
-            <span>{song.title}</span>
-            <span>{song.release_date}</span>
-            <span>{convertDuration(song.duration_ms)}</span>
+            <span>Name: {song.title}</span>
+            <span>Date released: {convertDate(song.release_date)}</span>
+            <span>Duration: {convertDuration(song.duration_ms)}</span>
           </NavLink>
         </div>
       ))}

@@ -30,10 +30,6 @@
     opacity: 0.6;
   }
 
-  /* .search-song-container {
-    margin-bottom: 50px;
-  } */
-
   .search-song-link {
     color: white;
     text-decoration: none;
@@ -56,70 +52,3 @@
   cursor: pointer;
   transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
 }
-
-.search-card {
-  background-color: #282828;
-  color: #fff;
-  padding: 1.5rem;
-  border-radius: 8px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
-}
-
-.search-card h3 {
-  font-size: 1.5rem;
-  margin-top: 0;
-}
-
-.search-card ul {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-}
-
-.search-card li {
-  margin-bottom: 0.5rem;
-}
-
-.search-card a {
-  color: #fff;
-  text-decoration: none;
-  transition: color 0.2s ease-in-out;
-}
-
-.search-card a:hover {
-  color: #1db954;
-}
-
-.browse-card {
-  background-color: #282828;
-  border-radius: 8px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
-  overflow: hidden;
-  transition: box-shadow 0.2s ease-in-out;
-  width: 222px;
-  height: 222px;
-}
-
-.browse-card:hover {
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
-}
-
-.browse-card img {
-  object-fit: contain;
-  width: 222px;
-  overflow: hidden;
-}
-
-.browse-card .card-body {
-  padding: 1.5rem;
-}
-
-.browse-card .card-title {
-  font-size: 1.5rem;
-  margin-top: 0;
-  margin-bottom: 1rem;
-}
-
-/* .browse-card .card-text {
-  margin-bottom: 1.5rem;
-} */

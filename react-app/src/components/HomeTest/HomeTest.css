@@ -4,13 +4,14 @@
     background-color: #282828;
     margin-bottom: 10px;
     padding: 10px;
-    width: 255px;
+    width: 270px;
     border-radius: 5px;
     cursor: pointer;
   }
   
   .spotify-tile-image {
     margin-right: 10px;
+    width: 80px;
   }
   
   .spotify-tile-text {
@@ -18,41 +19,31 @@
     font-size: 1.2em;
     font-weight: bold;
   }
-  
-  .spotify-play-button {
-    background-color: #1DB954;
-    border: none;
-    border-radius: 50%;
-    cursor: pointer;
-    width: 50px;
-    height: 50px;
+
+  .play-button-container{
     display: flex;
     justify-content: center;
     align-items: center;
     position: relative;
-    overflow: hidden;
+    margin-left: 10px;
   }
   
-  .spotify-icon-play {
-    color: black;
-    font-size: 1.5em;
+  .play-button-circle {
+    position: absolute;
+    top: 30;
+    left: 0;
+    width: 50px;
+    height: 50px;
+    color: #1db954;
+    font-size: 1.5rem;
+  }
+  
+  .play-button-icon {
+    position: absolute;
+    top: -10px;
+    left: 10px;
+    width: 30px;
+    color: #ffffff;
+    font-size: 1rem;
   }
 
-  
-  .spotify-play-button:before {
-    /* content set to "" to generate pseudo element to overlap  */
-    content: ""; 
-    cursor: pointer;
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    margin: auto;
-    width: 0;
-    height: 0;
-    border-top: 15px solid transparent;
-    border-bottom: 15px solid transparent;
-    border-left: 25px solid black;
-  }
-  
