@@ -6,5 +6,9 @@
     background-color: #212121;
     color: white;
     border-radius: 20px;
-    box-shadow: 5px 5px 5px 1px #1db954;
+    box-shadow: 2px 2px 2px 1px #1db954;
+}
+
+.edit-playlist-button {
+    margin-bottom: 10px;
 }

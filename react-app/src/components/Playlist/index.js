@@ -83,7 +83,7 @@ export default function Playlist() {
             {currentUserId == userId && (
               <div className="playlist-actions">
                 <button className="edit-playlist-button" onClick={handleEditClick}>
-                  Edit
+                  Edit Playlist Title
                 </button>
                 <button className="delete-playlist-button" onClick={handleDeleteClick}>
                   DELETE PLAYLIST

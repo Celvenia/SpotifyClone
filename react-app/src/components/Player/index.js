@@ -1,23 +1,44 @@
+import React, { useState } from 'react';
 import AudioPlayer from 'react-h5-audio-player';
 import 'react-h5-audio-player/lib/styles.css';
-import "./Player.css"
-// import 'react-h5-audio-player/lib/styles.less' Use LESS
-// import 'react-h5-audio-player/src/styles.scss' Use SASS
+import './Player.css';
 
-const Player = ({songs}) => (
-  <div style={{ position: 'fixed', bottom: 0, left: 0, width: '100%' }}>
+const Player = ({ songs }) => {
+  const [currentSongIndex, setCurrentSongIndex] = useState(0);
 
-  <AudioPlayer
-    // autoPlay
-    // src={songs[2].url}
-    // onPlay={e => ()}
-    className="audio-player"
-    // other props here
-  />
-  </div>
+  const handleNextSong = () => {
+    const nextSongIndex = (currentSongIndex + 1) % songs.length;
+    setCurrentSongIndex(nextSongIndex);
+  };
 
-);
+  const handlePrevSong = () => {
+    const prevSongIndex = currentSongIndex === 0 ? songs.length - 1 : currentSongIndex - 1;
+    setCurrentSongIndex(prevSongIndex);
+  };
 
+  const handlePlay = e => {
+    console.log('Play event:', e);
+  };
 
+  const handlePause = e => {
+    console.log('Pause event:', e);
+  };
+
+  return (
+    <div className="audio-player-container">
+      <div className="audio-player-buttons">
+        <button onClick={handlePrevSong}>Prev</button>
+        <button onClick={handleNextSong}>Next</button>
+      </div>
+      <AudioPlayer
+        autoPlay
+        src={songs[currentSongIndex]?.url}
+        onPlay={handlePlay}
+        onPause={handlePause}
+        className="audio-player"
+      />
+    </div>
+  );
+};
 
 export default Player;
