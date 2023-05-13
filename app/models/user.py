@@ -22,7 +22,7 @@ class User(db.Model, UserMixin):
     # liked_playlists = db.relationship('Playlist', secondary='likes', back_populates='liked_by')
     # liked_songs = db.relationship('Song', secondary='likes', back_populates='liked_by')
     # liked_albums = db.relationship('Album', secondary='likes', back_populates='liked_by')
-    queue = db.relationship('Queue', backref='users_queue', lazy=True)
+    # queue = db.relationship('Queue', backref='users_queue', lazy=True)
     created_at = db.Column(db.DateTime(timezone=True), server_default=func.now())
     updated_at = db.Column(db.DateTime(timezone=True), server_default=func.now())
 

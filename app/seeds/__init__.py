@@ -4,7 +4,7 @@ from .albums import seed_albums, undo_albums
 # from .likes import seed_likes, undo_likes
 from .songs import seed_songs, undo_songs
 from .playlists import seed_playlists, undo_playlists
-from .queues import seed_queues, undo_queues
+# from .queues import seed_queues, undo_queues
 from .follows import seed_follows, undo_follows
 
 
@@ -25,7 +25,7 @@ def seed():
         # command, which will  truncate all tables prefixed with
         # the schema name (see comment in users.py undo_users function).
         # Make sure to add all your other model's undo functions below
-        undo_queues()
+        # undo_queues()
         # undo_likes()
         undo_playlists()
         undo_follows()
@@ -39,7 +39,7 @@ def seed():
     seed_follows()
     seed_playlists()
     # seed_likes()
-    seed_queues()
+    # seed_queues()
     # Add other seed functions here
 
 
@@ -49,7 +49,7 @@ def undo():
     undo_users()
     undo_albums()
     # undo_likes()
-    undo_playlists()
     undo_songs()
-    undo_queues()
+    undo_playlists()
+    # undo_queues()
     # Add other undo functions here
