@@ -1,0 +1,17 @@
+.sidebar-block {
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  background-color: grey;
+  width: 100%;
+  margin-bottom: 2px;
+  text-decoration: none;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+h4 {
+  color: white;
+  text-decoration: none;
+}

@@ -1,54 +1,45 @@
-// constant variables for action creator
-const LOAD_USERS = "/users/LOAD_USERS";
-const LOAD_USER = "/users/LOAD_USER";
-const UPDATE_USER = "/users/UPDATE_USER";
-const DELETE_USER = "/users/DELETE_USER";
+const LOAD_FOLLOWERS = "/followers/LOAD_FOLLOWERS"
+const ADD_FOLLOWER = "/followers/ADD_FOLLOWER"
+const REMOVE_FOLLOWER = "/followers/REMOVE_FOLLOWER"
 
 
-// action creators - define actions( objects with type/data )
-const loadUsers = (users) => ({
-    type: LOAD_USERS,
-    users,
+const loadFollowers = (followers) => ({
+    type: LOAD_FOLLOWERS,
+    followers,
 });
 
-const loadUser = (user) => ({
-    type: LOAD_USER,
-    user,
+const addFollower = (follower) => ({
+    type: ADD_FOLLOWER,
+    follower,
 });
 
-const updateUser = (user) => ({
-    type: UPDATE_USER,
-    user
-})
-
-const deleteUser = (userId) => ({
-    type: DELETE_USER,
-    userId,
+const removeFollower = (follower) => ({
+    type: REMOVE_FOLLOWER,
+    follower,
 });
-
 
 
 // thunk action creators - for asynchronous code, i.e fetch calls prior to dispatching action creators
-export const getUsers = () => async (dispatch) => {
+export const getFollowers = () => async (dispatch) => {
     try {
-        const res = await fetch("/api/users");
+        const res = await fetch("/api/followers");
         if (res.ok) {
-            const users = await res.json();
-            dispatch(loadUsers(users.users));
-            return users;
+            const followers = await res.json();
+            dispatch(loadFollowers(followers.followers));
+            return followers;
         }
     } catch (err) {
         return err
     }
 };
 
-export const getUser = (userId) => async (dispatch) => {
-    const res = await fetch(`/api/users/${userId}`);
+export const getFollower = (followerId) => async (dispatch) => {
+    const res = await fetch(`/api/followers/${followerId}`);
 
     if (res.ok) {
-        const user = await res.json();
-        dispatch(loadUser(user));
-        return user;
+        const follower = await res.json();
+        dispatch(loadFollower(follower));
+        return follower;
     } else return res.json()
 };
 
@@ -69,7 +60,7 @@ export const getUser = (userId) => async (dispatch) => {
 // };
 
 // export const deleteAUser = (userId) => async (dispatch) => {
-//     const res = await fetch(`/api/users/${userId}`, {
+//     const res = await fetch(`/api/followers/${userId}`, {
 //         method: "DELETE",
 //     });
 
@@ -102,9 +93,9 @@ const initialState = {};
 const userReducer = (state = initialState, action) => {
     switch (action.type) {
 
-        case LOAD_USERS: {
+        case LOAD_followers: {
             const newState = { ...state };
-            action.users.forEach((user) => {
+            action.followers.forEach((user) => {
                 newState[user.id] = user;
             });
             return newState;
@@ -114,23 +105,6 @@ const userReducer = (state = initialState, action) => {
             const newState = { ...state };
             return { ...newState, [action.user.id]: action.user };
         }
-
-        // case POST_SONG: {
-        //     const newState = { ...state };
-        //     return { ...newState, [action.song.id]: action.song };
-        // }
-
-        // case DELETE_SONG: {
-        //     const newState = { ...state };
-        //     delete newState[action.spotId];
-        //     return newState;
-        // }
-
-        // case UPDATE_SONG: {
-        //     const newState = { ...state }
-        //     return { ...newState, [action.song.id]: action.song }
-        // }
-
         default: {
             return state;
         }

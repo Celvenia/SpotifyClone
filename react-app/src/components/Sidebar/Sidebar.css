@@ -9,18 +9,45 @@
     max-width: 230px;
     height: 100vh;
     color: white;
-    background-color: #040404;
+    background-color: #212121;
+    border-radius: 10px;
   }
   
-  .sidebar_title {
+  .sidebar-section-title {
     margin-left: 10px;
     padding: 5px;
     font-size: 12px;
   }
   
-  .sidebar_logo {
+  .sidebar-logo {
+    color: white;
     margin-right: auto;
     object-fit: contain;
-    height: 70px;
+    height: 60px;
     padding: 10px;
   }
+
+  .sidebar-nav {
+    list-style-type: none;
+    text-decoration: none;
+  }
+
+  .sidebar-nav-link {
+    text-decoration: none;
+    margin-left: 10px;
+    margin-right: 20px;
+    color: white;
+  }
+
+  .sidebar-nav-link:hover  {
+    color: #1db954;
+  }
+  .sidebar-nav-item {
+    margin-bottom: 20px;
+  }
+
+  h3 {
+    display: flex;
+    justify-content: center;
+  }
+  /* #2a2a2a; */

@@ -27,19 +27,10 @@ def playlists(id):
 
 
 # Route for creating a new playlist
-@playlist_routes.route('/', methods=['POST'])
+@playlist_routes.route('', methods=['POST'])
 @login_required
 def create_playlist():
-    data = request.get_json()
-
-    # Ensure all required fields are present in the request
-    if 'title' not in data:
-        return jsonify({'error': 'Missing required field: title'}), 400
-    if 'is_private' not in data:
-        return jsonify({'error': 'Missing required field: is_private'}), 400
-
-    # Create a new playlist object and add it to the database
-    playlist = Playlist(title=data['title'], description=data.get('description'), is_private=data.get('is_private'), user_id=current_user.id)
+    playlist = Playlist(title='New Playlist', user_id=current_user.id)
     db.session.add(playlist)
     db.session.commit()
 
@@ -63,7 +54,7 @@ def update_playlist(id):
 
     # Update the playlist with the new data and commit to the database
     playlist.title = data.get('title', playlist.title)
-    playlist.description = data.get('description', playlist.description)
+    # playlist.description = data.get('description', playlist.description)
     playlist.is_private = data.get('is_private', playlist.is_private)
     db.session.commit()
 
@@ -134,4 +125,15 @@ def add_album_to_playlist(playlist_id):
     db.session.commit()
 
     return playlist.to_dict(), 200
+
+# get playlist by id, then get songs from playlist
+@playlist_routes.route('/<int:id>/songs')
+@login_required
+def playlist_songs(id):
+    """
+    Query for a playlist by id and returns the songs from playlist in a dictionary
+    """
+    playlist = Playlist.query.get(id)
+    return playlist.to_dict()['songs']
+
 

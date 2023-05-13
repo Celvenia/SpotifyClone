@@ -1,22 +1,21 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
-import { getSongs } from "../../store/songs"
+import { getPlaylistSongs } from "../../store/playlistSongs";
 import { NavLink } from "react-router-dom";
-import "./Songs.css"
-import SongInfo from "../SongInfo";
+import { useParams } from "react-router-dom/cjs/react-router-dom.min";
 
 
 
-export default function Songs() {
+export default function PlaylistSongs() {
   const dispatch = useDispatch()
-  const songsObj = useSelector(state => state.songReducer)
+  const {playlistId} = useParams()
+  const songsObj = useSelector(state => state.playlistSongsReducer)
   const songsArr = Object.values(songsObj);
 
 
-
   useEffect(() => {
-    dispatch(getSongs())
+    dispatch(getPlaylistSongs(playlistId))
   }, [dispatch])
 
 
@@ -51,7 +50,7 @@ export default function Songs() {
               </NavLink>
             </div>
           ) : (
-            "No songs"
+            "use search to add songs to your playlist"
           )
         )}
     </>

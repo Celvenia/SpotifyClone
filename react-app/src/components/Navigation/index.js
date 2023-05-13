@@ -4,11 +4,11 @@ import { useSelector } from 'react-redux';
 import ProfileButton from './ProfileButton';
 import './Navigation.css';
 
-function Navigation({ isLoaded }){
+function Navigation({ isLoaded }) {
 	const sessionUser = useSelector(state => state.session.user);
 
 	return (
-		<ul>
+		<div className="gap">
 			{/* <li>
 				<NavLink exact to="/">Home</NavLink>
 			</li>
@@ -16,11 +16,11 @@ function Navigation({ isLoaded }){
 				<NavLink exact to="/search">Search</NavLink>
 			</li> */}
 			{isLoaded && (
-				<li>
+				<li className='profile-button'>
 					<ProfileButton user={sessionUser} />
 				</li>
 			)}
-		</ul>
+		</div>
 	);
 }
 
