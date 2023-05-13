@@ -21,7 +21,7 @@ class Song(db.Model):
     updated_at = db.Column(db.DateTime(timezone=True), server_default=func.now())
 
     queue = db.relationship('Queue', secondary=queued_songs, back_populates='songs')
-    liked_by = db.relationship('User', secondary='likes', back_populates='liked_songs')
+    # liked_by = db.relationship('User', secondary='likes', back_populates='liked_songs')
     playlists = db.relationship('Playlist', secondary=playlist_songs, back_populates='songs')
     albums = db.relationship('Album', primaryjoin='and_(Song.genre==Album.genre, foreign(Song.album_id)==Album.id)')
 

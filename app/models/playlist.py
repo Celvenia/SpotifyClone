@@ -21,7 +21,7 @@ class Playlist(db.Model):
     updated_at = db.Column(db.DateTime(timezone=True), server_default=func.now())
 
     songs = db.relationship('Song', secondary=playlist_songs, back_populates='playlists')
-    liked_by = db.relationship('User', secondary='likes', back_populates='liked_playlists')
+    # liked_by = db.relationship('User', secondary='likes', back_populates='liked_playlists')
     user = db.relationship('User', foreign_keys='Playlist.user_id')
 
     def to_dict(self):
