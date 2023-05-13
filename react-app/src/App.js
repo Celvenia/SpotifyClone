@@ -9,11 +9,8 @@ import Songs from "./components/Songs";
 import SongInfo from "./components/SongInfo"
 import Albums from "./components/Albums";
 import Sidebar from "./components/Sidebar"
-<<<<<<< HEAD
-=======
 import Playlist from "./components/Playlist";
 import Search from "./components/Search";
->>>>>>> chris
 import Home from "./components/Home";
 import Player from "./components/Player";
 import HomeTest from "./components/HomeTest"

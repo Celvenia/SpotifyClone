@@ -45,20 +45,6 @@ const Sidebar = ({ isLoaded }) => {
   const handleCreatePlaylistClick = async (e) => {
     e.preventDefault();
 
-<<<<<<< HEAD
-    return (
-        <div className="sidebar">
-        <img
-          className="sidebar_logo"
-          src="https://getheavy.com/wp-content/uploads/2019/12/spotify2019-830x350.jpg"
-          alt=""
-        />
-
-				<NavLink exact to="/">Home</NavLink>
-				<NavLink exact to="/search">Search</NavLink>
-
-        <div> Your Library </div>
-=======
     let playlist;
     try {
       playlist = await dispatch(createAPlaylist())
@@ -87,7 +73,6 @@ const Sidebar = ({ isLoaded }) => {
       </ul>
 
         <h3>Your Library</h3>
->>>>>>> chris
         <br />
         <strong className="sidebar-section-title">PLAYLISTS</strong>
         <button onClick={handleCreatePlaylistClick}>Create Playlist</button>
