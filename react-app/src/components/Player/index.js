@@ -6,7 +6,8 @@ import 'react-h5-audio-player/lib/styles.css';
 const Player = () => (
   <AudioPlayer
     autoPlay
-    src=""
+    src="https://drive.google.com/uc?export=download&id=1WKH_qL5yB_ggFjGyxIRbKradzaO9xwWT
+    "
     onPlay={e => console.log("onPlay")}
     className="audio-player"
     // other props here
