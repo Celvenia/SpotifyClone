@@ -6,7 +6,6 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faSearch } from '@fortawesome/free-solid-svg-icons'
 import './Search.css'
 import { useState } from 'react'
-import Player from '../Player';
 
 
 export default function Search() {
@@ -58,7 +57,6 @@ export default function Search() {
             return <li key={song.title}>{song.title}</li>
           }))}
         </ul>
-<Player />
         </>
   )
 }
