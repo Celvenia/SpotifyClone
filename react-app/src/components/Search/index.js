@@ -6,6 +6,8 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faSearch } from '@fortawesome/free-solid-svg-icons'
 import './Search.css'
 import { useState } from 'react'
+import Player from '../Player';
+
 
 export default function Search() {
   const dispatch = useDispatch()
@@ -16,8 +18,8 @@ export default function Search() {
   const songsObj = useSelector(state => state.songReducer)
   const songsArr = Object.values(songsObj);
   const [searchInput, setSearchInput] = useState("");
-  
- 
+
+
   const handleChange = (e) => {
     e.preventDefault();
     setSearchInput(e.target.value);
@@ -56,6 +58,7 @@ export default function Search() {
             return <li key={song.title}>{song.title}</li>
           }))}
         </ul>
+<Player />
         </>
   )
 }

@@ -3,6 +3,7 @@ import { NavLink } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import ProfileButton from '../Navigation/ProfileButton';
 import './Home.css';
+import Player from '../Player';
 
 const Home = ({ isLoaded }) => {
 	const sessionUser = useSelector((state) => state.session.user);
@@ -30,6 +31,7 @@ const Home = ({ isLoaded }) => {
 					</div>
 				</div>
 			</div>
+			<Player />
 
 			<div className="content-spacing">
 				<section>Good Morning</section>
