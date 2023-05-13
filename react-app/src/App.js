@@ -32,7 +32,7 @@ function App() {
         {/* <Home isLoaded={isLoaded}/> */}
 
         <div className="main-content">
-        <Player />
+        {/* <Player /> */}
 
           {isLoaded && (
             <Switch>
