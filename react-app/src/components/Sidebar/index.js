@@ -1,11 +1,17 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { NavLink, useHistory } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+
 import { getPlaylists, createAPlaylist } from '../../store/playlists';
 import { getSongs } from '../../store/songs';
 import { getAlbums, getLikedAlbums } from '../../store/albums';
-import { useDispatch, useSelector } from 'react-redux';
-import './Sidebar.css'
+
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faHouse, faSearch } from '@fortawesome/free-solid-svg-icons'
+
 import SidebarPlaylist from '../SidebarPlaylist';
+import './Sidebar.css'
+
 
 
 const Sidebar = ({ isLoaded }) => {
@@ -15,15 +21,17 @@ const Sidebar = ({ isLoaded }) => {
   const userId = sessionUser?.id
   const playlistObj = useSelector(state => state.playlistReducer)
   const playlistArr = Object.values(playlistObj)
+  const [review, setReview] = useState("");
+  const [stars, setStars] = useState(0);
+  const [errors, setErrors] = useState([]);
 
 
   useEffect(() => {
     dispatch(getSongs())
-    dispatch(getPlaylists())
-    // dispatch(getAlbums())
-  }, [dispatch])
-
-  useEffect(() => {
+    dispatch(getAlbums())
+    if (userId) {
+      dispatch(getPlaylists())
+    }
     if (userId) {
       dispatch(getLikedAlbums(userId))
     }
@@ -45,31 +53,31 @@ const Sidebar = ({ isLoaded }) => {
     <div className="sidebar">
       <img
         className="sidebar-logo"
-        src="https://getheavy.com/wp-content/uploads/2019/12/spotify2019-830x350.jpg"
+        src="https://res.cloudinary.com/dtzv3fsas/image/upload/v1683932465/SpotifyClone/Spotify_Logo_RGB_White_etpfol.png"
         alt=""
       />
 
       <ul className="sidebar-nav">
         <li className="sidebar-nav-item">
-          <NavLink exact to="/">Home</NavLink>
+          <FontAwesomeIcon icon={faHouse} />
+          <NavLink className="sidebar-nav-link" exact to="/">Home</NavLink>
         </li>
         <li className="sidebar-nav-item">
-          <NavLink exact to="/search">Search</NavLink>
+          <FontAwesomeIcon icon={faSearch} />
+          <NavLink className="sidebar-nav-link" exact to="/search">Search</NavLink>
         </li>
       </ul>
 
-      <hr />
-
       <div className="sidebar-section">
-        <div className="sidebar-section-title">Your Library</div>
+        <h3>Your Library</h3>
         <br />
         <strong className="sidebar-section-title">PLAYLISTS</strong>
         <button onClick={handleCreatePlaylistClick}>Create Playlist</button>
         <hr />
-        {playlistArr?.map((playlist) => (
+        {playlistArr.length ? playlistArr?.map((playlist) => (
           <SidebarPlaylist playlist={playlist} key={playlist.id} />
         )
-        )}
+        ) : ""}
       </div>
     </div>
   );
