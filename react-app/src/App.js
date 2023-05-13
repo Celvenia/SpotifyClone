@@ -27,8 +27,9 @@ function App() {
     <div className="main-container">
         <Sidebar isLoaded={isLoaded} />
         <Navigation isLoaded={isLoaded} />
-
         <div className="main-content">
+        <Player />
+       
           {isLoaded && (
             <Switch>
               <Route path="/login" >
@@ -61,9 +62,10 @@ function App() {
             </Switch>
           )}
         </div>
+          
 
+          
     </div>
-          <Player />
     </>
   );
 }

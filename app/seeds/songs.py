@@ -3,28 +3,26 @@ from sqlalchemy.sql import text
 from datetime import datetime
 
 # Here for reference when creating song seeders
-#  albums = [
-#         Song(album_id=1, title='Legends Never Die', duration_ms=999999, url='urlexample.com', release_date=datetime(2020, 7, 10), record_label='Interscope'),
-#         Song(album_id=1, title='Goodbye & Good Riddance', duration_ms=999999, url='urlexample.com', release_date=datetime(2018, 5, 23), record_label='Interscope'),
-#         Song(album_id=1, title='Fighting Demons', duration_ms=999999, url='urlexample.com', release_date=datetime(2022, 3, 18 ), record_label='Grade A'),
-#         Song(album_id=1, title='Death Race for Love', duration_ms=999999, url='urlexample.com', release_date=datetime(2019, 3, 8 ), record_label='Interscope')
-#     ]
+# To convert google view files to direct urls for seeders follow these steps
+# Replace /view?usp=sharing with /uc?export=download&id= in the URL.
+# Remove everything before and including the /d/ in the URL.
+# Remove the /view?usp=sharing at the end of the URL.
 
-# Adds a demo user, you can add other users here if you want
 def seed_songs():
 
     songs = [
-        Song(album_id=1, title='Come & Go', duration_ms=229000, url='https://www.youtube.com/watch?v=5ho88VXJTBg', release_date=datetime(2020, 7, 10), genre='Hip Hop', user_id=5),
-        Song(album_id=1, title='Lucid Dreams', duration_ms=239836, url='https://www.youtube.com/watch?v=mzB1VGEGcSU', release_date=datetime(2017, 6, 15), genre='Hip Hop', user_id=5),
-        Song(album_id=1, title="Life's a Mess", duration_ms=202000, url='https://www.youtube.com/watch?v=IetcXhv83gQ', release_date=datetime(2020, 7, 10), genre='Hip Hop', user_id=5),
-        Song(album_id=2, title='All Girls Are the Same', duration_ms=166064, url='https://www.youtube.com/watch?v=3tmd-ClpJxA', release_date=datetime(2018, 5, 4), genre='Hip Hop', user_id=5),
-        Song(album_id=3, title='Legends', duration_ms=240000, url='https://www.youtube.com/watch?v=AYaBtElX9Y0', release_date=datetime(2018, 7, 13), genre='Hip Hop', user_id=5),
-        Song(album_id=4, title='Robbery', duration_ms=240000, url='https://www.youtube.com/watch?v=iI_zwDQYx-0', release_date=datetime(2019, 2, 13), genre='Hip Hop', user_id=5),
-        Song(album_id=4, title='Hear Me Calling', duration_ms=185000, url='https://www.youtube.com/watch?v=VxlQYEM92Dg', release_date=datetime(2019, 3, 1), genre='Hip Hop', user_id=5),
-        Song(album_id=4, title='Fast', duration_ms=209000, url='https://www.youtube.com/watch?v=_IXJ2P9umU4', release_date=datetime(2019, 3, 8), genre='Hip Hop', user_id=5),
-        Song(album_id=4, title='Bandit', duration_ms=189000, url='https://www.youtube.com/watch?v=FwJGv5CwWYw', release_date=datetime(2019, 10, 4), genre='Hip Hop', user_id=5),
-        Song(album_id=1, title='Wishing Well', duration_ms=191000, url='https://www.youtube.com/watch?v=7EFL01sGAY4', release_date=datetime(2020, 7, 10), genre='Hip Hop', user_id=5),
-        Song(album_id=1, title='Righteous', duration_ms=224000, url='https://www.youtube.com/watch?v=Hm0q5jBi3mA', release_date=datetime(2020, 4, 24), genre='Hip Hop', user_id=5),
+        Song(album_id=1, title='Come & Go', duration_ms=229000, url='https://drive.google.com/uc?export=download&id=1WKH_qL5yB_ggFjGyxIRbKradzaO9xwWT', release_date=datetime(2020, 7, 10), genre='Hip Hop', user_id=5),
+        Song(album_id=1, title='Lucid Dreams', duration_ms=239836, url='https://drive.google.com/uc?export=download&id=1XKj5VrwQYGSTZE-hAVap_fyJrcIhELSl', release_date=datetime(2017, 6, 15), genre='Hip Hop', user_id=5),
+        Song(album_id=1, title="Life's a Mess", duration_ms=202000, url='https://drive.google.com/uc?export=download&id=10EXcq1OZ7YFH-5WRuq1JO5-KhQbr9HJn', release_date=datetime(2020, 7, 10), genre='Hip Hop', user_id=5),
+        Song(album_id=2, title='All Girls Are the Same', duration_ms=166064, url='https://drive.google.com/uc?export=download&id=1EOFJJzEtXUijgtCMQ318VcW_rNeGvYWu', release_date=datetime(2018, 5, 4), genre='Hip Hop', user_id=5),
+        Song(album_id=3, title='Legends', duration_ms=240000, url='https://drive.google.com/uc?export=download&id=1BXvxFekdSPOhmry5mDIi9EGJXjgHPBK3', release_date=datetime(2018, 7, 13), genre='Hip Hop', user_id=5),
+        Song(album_id=4, title='Robbery', duration_ms=240000, url='https://drive.google.com/uc?export=download&id=1SUnqlBH6LS9nZaUKuLNC7728aNvLr6jk', release_date=datetime(2019, 2, 13), genre='Hip Hop', user_id=5),
+        Song(album_id=4, title='Hear Me Calling', duration_ms=185000, url='https://drive.google.com/uc?export=download&id=1nbi05vxfefBgEPJUo7HEn1znqKo4mDoe', release_date=datetime(2019, 3, 1), genre='Hip Hop', user_id=5),
+        Song(album_id=4, title='Fast', duration_ms=209000, url='https://drive.google.com/uc?export=download&id=1ZZ8mL1ISZBYe7lCnFt_Xq9te_uod50rs', release_date=datetime(2019, 3, 8), genre='Hip Hop', user_id=5),
+        Song(album_id=4, title='Bandit', duration_ms=189000, url='https://drive.google.com/uc?export=download&id=1nPZ-lD-iv377VyiVqfL0Zw40u-OUQVUl', release_date=datetime(2019, 10, 4), genre='Hip Hop', user_id=5),
+        Song(album_id=1, title='Wishing Well', duration_ms=191000, url='https://drive.google.com/uc?export=download&id=1_phP7P9SwDD-WLfzA02GnFCb8PuS5BZL', release_date=datetime(2020, 7, 10), genre='Hip Hop', user_id=5),
+        Song(album_id=1, title='Righteous', duration_ms=224000, url='https://drive.google.com/uc?export=download&id=162MicgIxqavYjNPX2BJMVHnjRcJr31mg', release_date=datetime(2020, 4, 24), genre='Hip Hop', user_id=5),
+        Song(album_id=1, title='Stay High', duration_ms=149400, url='https://drive.google.com/uc?export=download&id=1q0YRfhtjKHDd__A_XooLRgPiW_Fz0AcF', release_date=datetime(2020, 7, 25), genre='Hip Hop', user_id=5),
 
         Song(album_id=5, title='Starboy', duration_ms=999999, url='urlexample.com', release_date=datetime(2016, 11, 25), genre='R&B', user_id=5),
         Song(album_id=6, title='After Hours', duration_ms=999999, url='urlexample.com', release_date=datetime(2020, 3, 20), genre='R&B', user_id=5),
