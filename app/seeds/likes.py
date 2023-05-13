@@ -10,21 +10,12 @@ def seed_likes():
     # user2_likes_song1 = Like(user_id=2, like_type='song', song_id=1)
     # user2_likes_album1 = Like(user_id=2, like_type='album', album_id=1)
     # user2_likes_playlist1 = Like(user_id=2, like_type='playlist', playlist_id=1)
-<<<<<<< HEAD
-
-=======
->>>>>>> chris
     user1_likes_song1 = Like(user_id=1, song_id=1)
     user1_likes_album1 = Like(user_id=1, album_id=1)
     user1_likes_playlist1 = Like(user_id=1, playlist_id=1)
     user2_likes_song1 = Like(user_id=2, song_id=1)
     user2_likes_album1 = Like(user_id=2, album_id=1)
     user2_likes_playlist1 = Like(user_id=2, playlist_id=1)
-<<<<<<< HEAD
-
-    
-=======
->>>>>>> chris
 
     db.session.add(user1_likes_song1)
     db.session.add(user1_likes_album1)
