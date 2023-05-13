@@ -14,7 +14,7 @@ from datetime import datetime
 def seed_songs():
 
     songs = [
-        Song(album_id=1, title='Come & Go', duration_ms=229000, url='https://www.youtube.com/watch?v=5ho88VXJTBg', release_date=datetime(2020, 7, 10), genre='Hip Hop', user_id=5),
+        Song(album_id=1, title='Come & Go', duration_ms=229000, url='https://drive.google.com/uc?export=download&id=1WKH_qL5yB_ggFjGyxIRbKradzaO9xwWT', release_date=datetime(2020, 7, 10), genre='Hip Hop', user_id=5),
         Song(album_id=1, title='Lucid Dreams', duration_ms=239836, url='https://www.youtube.com/watch?v=mzB1VGEGcSU', release_date=datetime(2017, 6, 15), genre='Hip Hop', user_id=5),
         Song(album_id=1, title="Life's a Mess", duration_ms=202000, url='https://www.youtube.com/watch?v=IetcXhv83gQ', release_date=datetime(2020, 7, 10), genre='Hip Hop', user_id=5),
         Song(album_id=2, title='All Girls Are the Same', duration_ms=166064, url='https://www.youtube.com/watch?v=3tmd-ClpJxA', release_date=datetime(2018, 5, 4), genre='Hip Hop', user_id=5),

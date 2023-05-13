@@ -1,15 +1,15 @@
-import React, { useState } from "react";
-import { useDispatch } from "react-redux";
-import { useModal } from "../../context/Modal";
-import { signUp } from "../../store/session";
-import "./SignupForm.css";
+import React, { useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { useModal } from '../../context/Modal';
+import { signUp } from '../../store/session';
+import './SignupForm.css';
 
 function SignupFormModal() {
 	const dispatch = useDispatch();
-	const [email, setEmail] = useState("");
-	const [username, setUsername] = useState("");
-	const [password, setPassword] = useState("");
-	const [confirmPassword, setConfirmPassword] = useState("");
+	const [email, setEmail] = useState('');
+	const [username, setUsername] = useState('');
+	const [password, setPassword] = useState('');
+	const [confirmPassword, setConfirmPassword] = useState('');
 	const [errors, setErrors] = useState([]);
 	const { closeModal } = useModal();
 
@@ -24,14 +24,19 @@ function SignupFormModal() {
 			}
 		} else {
 			setErrors([
-				"Confirm Password field must be the same as the Password field",
+				'Confirm Password field must be the same as the Password field',
 			]);
 		}
 	};
 
 	return (
-		<div className='signup-form-modal'>
-			<h1>Sign Up</h1>
+		<div className="signup-form-modal">
+			<img
+				className="signup-logo"
+				src="https://res.cloudinary.com/dtzv3fsas/image/upload/v1683932465/SpotifyClone/Spotify_Logo_RGB_White_etpfol.png"
+				alt=""
+			/>
+			<h1>Sign up for free to start listening.</h1>
 			<form onSubmit={handleSubmit}>
 				<ul>
 					{errors.map((error, idx) => (
@@ -45,6 +50,7 @@ function SignupFormModal() {
 						value={email}
 						onChange={(e) => setEmail(e.target.value)}
 						required
+						placeholder='Email'
 					/>
 				</label>
 				<label>
@@ -54,6 +60,7 @@ function SignupFormModal() {
 						value={username}
 						onChange={(e) => setUsername(e.target.value)}
 						required
+						placeholder='Username'
 					/>
 				</label>
 				<label>
@@ -63,6 +70,7 @@ function SignupFormModal() {
 						value={password}
 						onChange={(e) => setPassword(e.target.value)}
 						required
+						placeholder='Password'
 					/>
 				</label>
 				<label>
@@ -72,6 +80,7 @@ function SignupFormModal() {
 						value={confirmPassword}
 						onChange={(e) => setConfirmPassword(e.target.value)}
 						required
+						placeholder='Confirm Password'
 					/>
 				</label>
 				<button type="submit">Sign Up</button>

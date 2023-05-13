@@ -56,8 +56,8 @@ function App() {
                 <Home />
               </Route>
               {/* <Route path="/testing">
-            <Testing />
-          </Route> */}
+                <Testing />
+              </Route> */}
             </Switch>
           )}
         </div>

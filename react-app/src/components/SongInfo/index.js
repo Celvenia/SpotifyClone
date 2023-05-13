@@ -25,7 +25,11 @@ export default function SongInfo() {
 <div>
     <div>{song.title}</div>
     <div> This is where something like lyrics would go</div>
+
+    <NavLink to={`/songs/${song.id}`}>
+        <button type="submit">{song.url}</button>
+    </NavLink>
 </div>
-        
+
     )
 }
