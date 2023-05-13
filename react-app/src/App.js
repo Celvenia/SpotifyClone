@@ -30,7 +30,7 @@ function App() {
         <Sidebar isLoaded={isLoaded} />
         <Navigation isLoaded={isLoaded} />
         <div className="main-content">
-        <Player />
+        {/* <Player /> */}
        
           {isLoaded && (
             <Switch>
@@ -58,7 +58,7 @@ function App() {
               {/* <Route path="/">
                 <Home />
               </Route> */}
-              <Route path="/">
+              <Route exact path="/">
                 <HomeTest />
               </Route>
               <Route path="/users/:userId">

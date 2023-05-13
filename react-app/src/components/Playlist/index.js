@@ -9,6 +9,7 @@ import { getUser, getUsers } from "../../store/users";
 
 import Search from "../Search";
 import PlaylistSongs from "../PlaylistSongs";
+import Player from "../Player";
 import "../../index.css"
 import "./Playlist.css"
 
@@ -82,7 +83,7 @@ export default function Playlist() {
             {currentUserId == userId && (
               <div className="playlist-actions">
                 <button className="edit-playlist-button" onClick={handleEditClick}>
-                  Edit
+                  Edit Playlist Title
                 </button>
                 <button className="delete-playlist-button" onClick={handleDeleteClick}>
                   DELETE PLAYLIST
@@ -94,6 +95,7 @@ export default function Playlist() {
           <PlaylistSongs songs={songsArr} />
         </>
       }
+      <Player songs={songsArr}/>
     </div>
   )
 }

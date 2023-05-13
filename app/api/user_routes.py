@@ -169,12 +169,15 @@ def get_following(id):
     return jsonify({'following': [f.to_dict() for f in following]})
 
 
-# get's user by id's followers
+# get's followers of a user by id
 @user_routes.route('/<int:id>/followers', methods=['GET'])
 @login_required
 def get_followers(id):
-    followers = Follow.query.filter_by(follow_id=id).all()
-    return jsonify({'followers': [f.to_dict() for f in followers]})
+    follow_instances = Follow.query.filter_by(follow_id=id).all()
+    user_ids = [follower.user_id for follower in follow_instances]
+    users = User.query.filter(User.id.in_(user_ids)).all()
+    user_dicts = [user.to_dict() for user in users]
+    return jsonify({'followers': user_dicts})
 
 
 # current_user will become a follower of user by id
