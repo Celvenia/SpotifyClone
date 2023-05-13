@@ -15,6 +15,9 @@ import Playlist from "./components/Playlist";
 import Search from "./components/Search";
 >>>>>>> chris
 import Home from "./components/Home";
+import Player from "./components/Player";
+import HomeTest from "./components/HomeTest"
+import User from "./components/User";
 // import Testing from "./components/Testing";
 
 function App() {
@@ -25,33 +28,15 @@ function App() {
   }, [dispatch]);
 
   return (
+    <>
     <div className="main-container">
         <Sidebar isLoaded={isLoaded} />
         <Navigation isLoaded={isLoaded} />
         {/* <Home isLoaded={isLoaded}/> */}
 
-<<<<<<< HEAD
-      <Navigation isLoaded={isLoaded} />
-      <Sidebar isLoaded={isLoaded} />
-      <Home isLoaded={isLoaded} />
-
-      {isLoaded && (
-        <Switch>
-          <Route path="/login" >
-            <LoginFormPage />
-          </Route>
-          <Route path="/signup">
-            <SignupFormPage />
-          </Route>
-          <Route path="/songs">
-            <Songs />
-          </Route>
-          <Route path="/albums">
-            <Albums />
-          </Route>
-          {/* <Route path="/testing">
-=======
         <div className="main-content">
+        <Player />
+
           {isLoaded && (
             <Switch>
               <Route path="/login" >
@@ -76,14 +61,16 @@ function App() {
                 <Search />
               </Route>
               {/* <Route path="/testing">
->>>>>>> chris
             <Testing />
           </Route> */}
             </Switch>
           )}
         </div>
 
+
+
     </div>
+    </>
   );
 }
 

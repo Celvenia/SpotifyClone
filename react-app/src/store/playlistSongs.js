@@ -1,5 +1,5 @@
 const LOAD_PLAYLIST_SONGS = "/playlists/LOAD_PLAYLIST_SONGS";
-const ADD_PLAYLIST_SONGS = "/playlists/ADD_PLAYLIST_SONGS";
+const ADD_PLAYLIST_SONG = "/playlists/ADD_PLAYLIST_SONG";
 const REMOVE_PLAYLIST_SONG = "/playlists/REMOVE_PLAYLIST_SONG"
 
 // action creators - define actions( objects with type/data )
@@ -8,9 +8,9 @@ const loadPlaylistSongs = (songs) => ({
     songs,
 });
 
-const addPlaylistSong = (song) => ({
-    type: LOAD_PLAYLIST_SONGS,
-    song,
+const addPlaylistSong = (playlist) => ({
+    type: ADD_PLAYLIST_SONG,
+    playlist,
 });
 
 const removePlaylistSong = (songId) => ({
@@ -31,44 +31,52 @@ export const getPlaylistSongs = (playlistId) => async (dispatch) => {
     }
 };
 
+export const updatePlaylistWithSong = (playlistId, songId) => async (dispatch) => {
+    try {
+      const res = await fetch(`/api/playlists/${playlistId}/songs`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ song_id: songId })
+      });
+      if (res.ok) {
+        const data = await res.json();
+        dispatch(addPlaylistSong(data));
+        return data;
+      }
+    } catch (err) {
+      return err;
+    }
+  };
+
 const initialState = {};
 
 // reducer
 const playlistSongsReducer = (state = initialState, action) => {
     switch (action.type) {
-
-        case LOAD_PLAYLIST_SONGS: {
-            const newState = {};
-            action.songs.forEach((song) => {
-                newState[song.id] = song;
-            });
-            return newState;
-        }
-        // case LOAD_PLAYLIST: {
-        //     const newState = { ...state };
-        //     return { ...newState, [action.playlist.id]: action.playlist };
-        // }
-
-        // case POST_PLAYLIST: {
-        //     const newState = { ...state };
-        //     return { ...newState, [action.playlist.id]: action.playlist };
-        // }
-
-        // case DELETE_PLAYLIST: {
-        //     const newState = { ...state };
-        //     delete newState[action.spotId];
-        //     return newState;
-        // }
-
-        // case UPDATE_PLAYLIST: {
-        //     const newState = { ...state }
-        //     return { ...newState, [action.playlist.id]: action.playlist }
-        // }
-
-        default: {
-            return state;
-        }
+      case LOAD_PLAYLIST_SONGS: {
+        const newState = {};
+        action.songs.forEach((song) => {
+          if (song.id) {
+            newState[song.id] = song;
+          }
+        });
+        return newState;
+      }
+      case ADD_PLAYLIST_SONG: {
+        const newState = {...state};
+        action.playlist.songs.forEach((song) => {
+            if (song.id) {
+              newState[song.id] = song;
+            }
+          });
+        return newState;
+      }
+      default: {
+        return state;
+      }
     }
-}
+  };
 
 export default playlistSongsReducer;

@@ -1,58 +1,36 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useEffect } from "react";
 import { getPlaylistSongs } from "../../store/playlistSongs";
-import { NavLink } from "react-router-dom";
-import { useParams } from "react-router-dom/cjs/react-router-dom.min";
+import { NavLink, useParams } from "react-router-dom";
 
+export default function PlaylistSongs({songs}) {
 
+  if (!songs || !songs.length) {
+    return <div style={{color: "#1db954"}}>Use Search to add some songs to your playlist!</div>;
+  }
 
-export default function PlaylistSongs() {
-  const dispatch = useDispatch()
-  const {playlistId} = useParams()
-  const songsObj = useSelector(state => state.playlistSongsReducer)
-  const songsArr = Object.values(songsObj);
+  function convertDuration(duration_ms) {
+    const minutes = Math.floor(duration_ms / 60000);
+    const seconds = ((duration_ms % 60000) / 1000).toFixed(0);
+    return minutes + ":" + (seconds < 10 ? "0" : "") + seconds;
+  }
 
-
-  useEffect(() => {
-    dispatch(getPlaylistSongs(playlistId))
-  }, [dispatch])
-
-
-
-  if (!songsArr.length) {
-    return <div>Loading...</div>;
+  function convertDate(date) {
+    return date.slice(0, 11)
   }
 
   return (
     <>
       <div>Songs</div>
-      {songsArr.length &&
-        songsArr.map((song) =>
-          song.id !== undefined ? (
-            <div key={song.id}>
-              <NavLink
-                to={`/songs/${song.id}`}
-                className="song-link"
-                key={song.id}
-              >
-
-                <span>
-                  {song.title}
-                </span>
-                <span>
-                  {song.release_date}
-                </span>
-                <span>
-                  {song.duration_ms}
-                </span>
-
-              </NavLink>
-            </div>
-          ) : (
-            "use search to add songs to your playlist"
-          )
-        )}
+      {songs.map((song) => (
+        <div key={song.id}>
+          <NavLink to={`/songs/${song.id}`} className="song-link">
+            <span>Name: {song.title}</span>
+            <span>Date released: {convertDate(song.release_date)}</span>
+            <span>Duration: {convertDuration(song.duration_ms)}</span>
+          </NavLink>
+        </div>
+      ))}
     </>
-  )
+  );
 }

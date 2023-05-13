@@ -7,6 +7,7 @@ from .playlists import seed_playlists, undo_playlists
 from .queues import seed_queues, undo_queues
 from .follows import seed_follows, undo_follows
 
+
 from app.models.db import db, environment, SCHEMA
 
 # Creates a seed group to hold our commands
@@ -24,21 +25,21 @@ def seed():
         # command, which will  truncate all tables prefixed with
         # the schema name (see comment in users.py undo_users function).
         # Make sure to add all your other model's undo functions below
-        undo_users()
-        undo_albums()
+        undo_queues()
         undo_likes()
         undo_playlists()
-        undo_songs()
-        undo_queues()
         undo_follows()
+        undo_songs()
+        undo_albums()
+        undo_users()
         db.session.commit()
     seed_users()
     seed_albums()
-    seed_likes()
-    seed_playlists()
     seed_songs()
-    seed_queues()
     seed_follows()
+    seed_playlists()
+    seed_likes()
+    seed_queues()
     # Add other seed functions here
 
 

@@ -6,6 +6,7 @@ import playlistReducer from './playlists';
 import albumReducer from './albums'
 import playlistSongsReducer from './playlistSongs';
 import userReducer from './users';
+import followerReducer from './followers';
 
 const rootReducer = combineReducers({
   session,
@@ -13,7 +14,8 @@ const rootReducer = combineReducers({
   playlistReducer,
   albumReducer,
   playlistSongsReducer,
-  userReducer
+  userReducer,
+  followerReducer
 });
 
 

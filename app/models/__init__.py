@@ -1,9 +1,8 @@
-from .db import db
+from .db import db, environment, SCHEMA
 from .user import User
-from .playlist import Playlist
-from .song import Song
 from .album import Album
+from .song import Song
+from .follow import Follow
+from .playlist import Playlist
 from .like import Like
 from .queue import Queue
-from .follow import Follow
-from .db import environment, SCHEMA
