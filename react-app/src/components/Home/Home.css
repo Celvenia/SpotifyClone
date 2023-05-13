@@ -18,8 +18,8 @@
   padding-left: 10px;
   padding-right: 10px;
   padding-top: 10px;
-  min-width: 95%;
-  max-width: 95%;
+  min-width: 85%;
+  max-width: 85%;
   height: 100vh;
 }
 
@@ -27,7 +27,7 @@
 html {
     background-color: black;
     font-family: var(--font-family,CircularSp,CircularSp-Arab,CircularSp-Hebr,CircularSp-Cyrl,CircularSp-Grek,CircularSp-Deva,var(--fallback-fonts,sans-serif));
-    color: white;
+    /* color: white; */
     cursor: default;
 }
 
@@ -104,8 +104,12 @@ html {
   height: 24px;
   width: 24px;
   margin: 5px;
-  /* border: 1; */
-  /* border-radius: 50%; */
+  border: 2;
+  border-color: black;
+  border-radius: 50%;
+  background-color: white;
+  cursor: pointer;
+  text-align: center;
 }
 
 

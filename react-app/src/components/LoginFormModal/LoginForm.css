@@ -1,0 +1,59 @@
+.submit {
+    border: 1px solid #CCC;
+    box-sizing: border-box;
+    cursor: pointer;
+    /* padding: .5em 10em; */
+
+    background-color: #1ed760;
+
+    transition: background-color .50s, color .50s;
+
+    font-weight: 400;
+    color: black;
+
+    border: 0;
+    border-radius: 50px;
+    height: 50px;
+    width: 25%;
+
+    font-size: 16px;
+    font-weight: 10;
+}
+
+.profile-input {
+
+    box-sizing: border-box;
+    display: block;
+    padding: .5em 1em;
+    border: 1px solid #CCC;
+    border-radius: 50px;
+    height: 50px;
+    width: 90%;
+    margin: 20px;
+    font-size: 16px;
+    font-weight: 10;
+
+}
+
+button.profile {
+    box-sizing: border-box;
+    cursor: pointer;
+    /* padding: .5em 10em; */
+
+    background: red;
+
+    transition: background-color .50s, color .50s;
+
+    /* font */
+    font-weight: 400;
+    color: black;
+    font-size: 16px;
+    font-weight: 10;
+
+    /* border */
+    border: 0;
+    height: 40px;
+    width: 200px;
+
+    text-align: left;
+}

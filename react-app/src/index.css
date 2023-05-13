@@ -29,3 +29,15 @@
     height: 40px;
     width: 40px;
 }
+
+a:link,
+a:visited  {
+  color: rgb(218, 209, 209);
+  text-decoration: none;
+}
+
+a:hover,
+a:active {
+  color: white;
+  text-decoration: none;
+}

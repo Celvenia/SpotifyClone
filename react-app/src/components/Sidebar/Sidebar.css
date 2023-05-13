@@ -10,15 +10,20 @@
     height: 100vh;
     color: white;
     background-color: #040404;
+    /* background-color: #fe0000; */
     border-radius: 10px;
   }
-  
+
+  .sidebar-nav-item {
+    background-color: black;
+  }
+
   .sidebar_title {
     margin-left: 10px;
     padding: 5px;
     font-size: 12px;
   }
-  
+
   .sidebar_logo {
     margin-right: auto;
     object-fit: contain;
@@ -27,3 +32,8 @@
   }
 
   /* #2a2a2a; */
+
+  /* .home-icon {
+    background-color: white;
+    color: white;
+  } */

@@ -3,6 +3,7 @@ import { NavLink } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import ProfileButton from '../Navigation/ProfileButton';
 import './Home.css';
+import Player from '../Player';
 
 const Home = ({ isLoaded }) => {
 	const sessionUser = useSelector((state) => state.session.user);
@@ -25,15 +26,16 @@ const Home = ({ isLoaded }) => {
 					{/* <div className="top-bar-content-wrapper"></div> */}
 				</div>
 				<div className="top-bar-right">
-					<div className="profile-button">
+					{/* <div className="profile-button">
 						{isLoaded && <ProfileButton user={sessionUser} />}
-					</div>
+					</div> */}
 				</div>
 			</div>
 
 			<div className="content-spacing">
 				<section>Good Morning</section>
 			</div>
+
 			<div className="home-tile-container">
 				{/* spacer */}
 				<div className="home-tile">
@@ -44,7 +46,7 @@ const Home = ({ isLoaded }) => {
 						></img>
 					</div>
 					<div>Liked Songs</div>
-					<div className='play-button-container'>
+					{/* <div className='play-button-container'>
 						{' '}
 						<svg
 							height="24"
@@ -54,7 +56,7 @@ const Home = ({ isLoaded }) => {
 						>
 							<path d="m7.05 3.606 13.49 7.788a.7.7 0 0 1 0 1.212L7.05 20.394A.7.7 0 0 1 6 19.788V4.212a.7.7 0 0 1 1.05-.606z"></path>
 						</svg>
-					</div>
+					</div> */}
 				</div>
 				        {/* spacer */}
                 <div className="home-tile">
@@ -65,7 +67,7 @@ const Home = ({ isLoaded }) => {
 						></img>
 					</div>
 					<div>Liked Songs</div>
-					<div>
+					{/* <div>
 						{' '}
 						<svg
 							height="24"
@@ -75,7 +77,7 @@ const Home = ({ isLoaded }) => {
 						>
 							<path d="m7.05 3.606 13.49 7.788a.7.7 0 0 1 0 1.212L7.05 20.394A.7.7 0 0 1 6 19.788V4.212a.7.7 0 0 1 1.05-.606z"></path>
 						</svg>
-					</div>
+					</div> */}
 				</div>        {/* spacer */}
 				<div className="home-tile">
 					<div>
@@ -85,7 +87,7 @@ const Home = ({ isLoaded }) => {
 						></img>
 					</div>
 					<div>Liked Songs</div>
-					<div>
+					{/* <div>
 						{' '}
 						<svg
 							height="24"
@@ -95,7 +97,7 @@ const Home = ({ isLoaded }) => {
 						>
 							<path d="m7.05 3.606 13.49 7.788a.7.7 0 0 1 0 1.212L7.05 20.394A.7.7 0 0 1 6 19.788V4.212a.7.7 0 0 1 1.05-.606z"></path>
 						</svg>
-					</div>
+					</div> */}
 				</div>        {/* spacer */}
 				<div className="home-tile">
 					<div>
@@ -105,7 +107,7 @@ const Home = ({ isLoaded }) => {
 						></img>
 					</div>
 					<div>Liked Songs</div>
-					<div>
+					{/* <div>
 						{' '}
 						<svg
 							height="24"
@@ -115,7 +117,7 @@ const Home = ({ isLoaded }) => {
 						>
 							<path d="m7.05 3.606 13.49 7.788a.7.7 0 0 1 0 1.212L7.05 20.394A.7.7 0 0 1 6 19.788V4.212a.7.7 0 0 1 1.05-.606z"></path>
 						</svg>
-					</div>
+					</div> */}
 				</div>        {/* spacer */}
 				<div className="home-tile">
 					<div>
@@ -125,7 +127,7 @@ const Home = ({ isLoaded }) => {
 						></img>
 					</div>
 					<div>Liked Songs</div>
-					<div>
+					{/* <div>
 						{' '}
 						<svg
 							height="24"
@@ -135,7 +137,7 @@ const Home = ({ isLoaded }) => {
 						>
 							<path d="m7.05 3.606 13.49 7.788a.7.7 0 0 1 0 1.212L7.05 20.394A.7.7 0 0 1 6 19.788V4.212a.7.7 0 0 1 1.05-.606z"></path>
 						</svg>
-					</div>
+					</div> */}
 				</div>        {/* spacer */}
 				<div className="home-tile">
 					<div>
@@ -145,7 +147,7 @@ const Home = ({ isLoaded }) => {
 						></img>
 					</div>
 					<div>Liked Songs</div>
-					<div>
+					{/* <div>
 						{' '}
 						<svg
 							height="24"
@@ -155,10 +157,12 @@ const Home = ({ isLoaded }) => {
 						>
 							<path d="m7.05 3.606 13.49 7.788a.7.7 0 0 1 0 1.212L7.05 20.394A.7.7 0 0 1 6 19.788V4.212a.7.7 0 0 1 1.05-.606z"></path>
 						</svg>
-					</div>
+					</div> */}
 				</div>
 			</div>
+			<Player />
 		</div>
+
 	);
 };
 

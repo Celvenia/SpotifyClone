@@ -23,7 +23,7 @@ function LoginFormModal() {
 
   return (
     <>
-      <h1>Log In</h1>
+      <h1>Log in to Spotify</h1>
       <form onSubmit={handleSubmit}>
         <ul>
           {errors.map((error, idx) => (
@@ -36,7 +36,9 @@ function LoginFormModal() {
             type="text"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
-            required
+						required
+						placeholder="Email"
+						className="profile-input"
           />
         </label>
         <label>
@@ -45,10 +47,12 @@ function LoginFormModal() {
             type="password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
-            required
+						required
+						placeholder="Password"
+						className="profile-input"
           />
         </label>
-        <button type="submit">Log In</button>
+        <button type="submit" className="profile-input submit">Log In</button>
       </form>
     </>
   );
