@@ -11,7 +11,7 @@ import { faHouse, faSearch } from '@fortawesome/free-solid-svg-icons'
 
 import SidebarPlaylist from '../SidebarPlaylist';
 import './Sidebar.css'
-
+import { getFollowers } from '../../store/followers';
 
 
 const Sidebar = ({ isLoaded }) => {
@@ -24,6 +24,10 @@ const Sidebar = ({ isLoaded }) => {
   const [review, setReview] = useState("");
   const [stars, setStars] = useState(0);
   const [errors, setErrors] = useState([]);
+
+  useEffect(()=> {
+    dispatch(getFollowers(userId))
+  },[dispatch])
 
 
   useEffect(() => {
@@ -68,11 +72,10 @@ const Sidebar = ({ isLoaded }) => {
         </li>
       </ul>
 
-      <div className="sidebar-section">
         <h3>Your Library</h3>
-        <br />
         <strong className="sidebar-section-title">PLAYLISTS</strong>
         <button onClick={handleCreatePlaylistClick}>Create Playlist</button>
+      <div className="sidebar-section">
         <hr />
         {playlistArr.length ? playlistArr?.map((playlist) => (
           <SidebarPlaylist playlist={playlist} key={playlist.id} />

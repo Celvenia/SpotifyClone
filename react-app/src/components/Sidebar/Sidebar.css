@@ -1,5 +1,5 @@
 
-.sidebar {
+  .sidebar {
     display: flex;
     flex-direction: column;
     flex: 0.2;
@@ -11,8 +11,21 @@
     color: white;
     background-color: #212121;
     border-radius: 10px;
+    position: fixed;
+    margin-top: 8px;
+    top: 0;
+    bottom: 0;
   }
-  
+
+  .sidebar-section {
+    height: 400px;
+    overflow-y: auto;
+  }
+
+  .sidebar-section::-webkit-scrollbar {
+    display: none;
+  }
+
   .sidebar-section-title {
     margin-left: 10px;
     padding: 5px;
@@ -50,4 +63,5 @@
     display: flex;
     justify-content: center;
   }
+
   /* #2a2a2a; */

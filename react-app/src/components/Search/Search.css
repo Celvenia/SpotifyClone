@@ -6,6 +6,8 @@
     border-radius: 50px;
     height: 48px;
     width: 364px;
+    border: 2px solid #ccc;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
   }
   
   .search-icon {
@@ -21,9 +23,32 @@
     font-size: 1rem;
     width: 100%;
   }
+
   
   .search-input::placeholder {
     color: #999;
     opacity: 0.6;
   }
-  
+
+  .search-song-link {
+    color: white;
+    text-decoration: none;
+}
+
+.search-song-link:hover {
+  color: #1db954;
+}
+
+.search-add-button {
+  margin-left: 20px;
+  background-color: #212121;
+  color: #fff;
+  font-size: 14px;
+  border: 1px solid #fff;
+  border-radius: 4px;
+  padding: 4px 8px;
+  margin-right: 10px;
+  margin-bottom: 10px;
+  cursor: pointer;
+  transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
+}

@@ -13,6 +13,8 @@ import Playlist from "./components/Playlist";
 import Search from "./components/Search";
 import Home from "./components/Home";
 import Player from "./components/Player";
+import HomeTest from "./components/HomeTest"
+import User from "./components/User";
 // import Testing from "./components/Testing";
 
 function App() {
@@ -53,12 +55,15 @@ function App() {
               <Route path="/search">
                 <Search />
               </Route>
-              <Route path="/">
+              {/* <Route path="/">
                 <Home />
+              </Route> */}
+              <Route path="/">
+                <HomeTest />
               </Route>
-              {/* <Route path="/testing">
-            <Testing />
-          </Route> */}
+              <Route path="/users/:userId">
+                <User />
+              </Route>
             </Switch>
           )}
         </div>

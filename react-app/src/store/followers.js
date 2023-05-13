@@ -20,12 +20,12 @@ const removeFollower = (follower) => ({
 
 
 // thunk action creators - for asynchronous code, i.e fetch calls prior to dispatching action creators
-export const getFollowers = () => async (dispatch) => {
+export const getFollowers = (id) => async (dispatch) => {
     try {
-        const res = await fetch("/api/followers");
+        const res = await fetch(`/api/users/${id}/followers`);
         if (res.ok) {
             const followers = await res.json();
-            dispatch(loadFollowers(followers.followers));
+            dispatch(loadFollowers(followers));
             return followers;
         }
     } catch (err) {
@@ -33,82 +33,25 @@ export const getFollowers = () => async (dispatch) => {
     }
 };
 
-export const getFollower = (followerId) => async (dispatch) => {
-    const res = await fetch(`/api/followers/${followerId}`);
-
-    if (res.ok) {
-        const follower = await res.json();
-        dispatch(loadFollower(follower));
-        return follower;
-    } else return res.json()
-};
-
-
-
-// export const postASong = (song) => async (dispatch) => {
-
-//   const res = await fetch(`/api/songs/${song.id}`, {
-//     method: "POST",
-//     body: JSON.stringify(payload),
-//   });
-
-//   if (res.ok) {
-//     const song = await res.json();
-//     dispatch(postSong(song));
-//     return song;
-//   } else return res.json()
-// };
-
-// export const deleteAUser = (userId) => async (dispatch) => {
-//     const res = await fetch(`/api/followers/${userId}`, {
-//         method: "DELETE",
-//     });
-
-//     if (res.ok) {
-//         const song = await res.json();
-//         dispatch(deleteSong(songId));
-//         return song;
-//     } else return res.json()
-// };
-
-// export const updateASong = (payload, song) => async (dispatch) => {
-//     const res = await fetch(`/api/songs/${song.id}`, {
-//         method: "PUT",
-//         headers: {
-//             "Content-Type": "application/json",
-//         },
-//         body: JSON.stringify(payload),
-//     });
-//     if (res.ok) {
-//         const data = await res.json();
-//         dispatch(updateSong({ ...song, ...data }))
-//         return data
-//     } else return res.json()
-// }
-
 
 const initialState = {};
 
 // // reducer
-const userReducer = (state = initialState, action) => {
+const followerReducer = (state = initialState, action) => {
     switch (action.type) {
 
-        case LOAD_followers: {
+        case LOAD_FOLLOWERS: {
             const newState = { ...state };
-            action.followers.forEach((user) => {
-                newState[user.id] = user;
+            action.followers.forEach((followObj) => {
+                newState[followObj.id] = followObj;
             });
             return newState;
-        }
-
-        case LOAD_USER: {
-            const newState = { ...state };
-            return { ...newState, [action.user.id]: action.user };
         }
         default: {
             return state;
         }
+
     }
 };
 
-export default userReducer;
+export default followerReducer;

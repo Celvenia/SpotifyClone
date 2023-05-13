@@ -86,7 +86,7 @@ export const deleteAPlaylist = (playlistId) => async (dispatch) => {
   } else return res.json()
 };
 
-export const updateAPlaylist = (payload, playlist) => async (dispatch) => {
+export const updateAPlaylist = (playlist, payload) => async (dispatch) => {
   const res = await fetch(`/api/playlists/${playlist.id}`, {
     method: "PUT",
     headers: {
@@ -126,7 +126,6 @@ const playlistReducer = (state = initialState, action) => {
 
     case POST_PLAYLIST: {
       const newState = { ...state };
-      // console.log()
       return { ...newState, [action.playlist.id]: action.playlist };
     }
 
