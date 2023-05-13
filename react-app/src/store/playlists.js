@@ -4,6 +4,7 @@ const LOAD_PLAYLISTS = "/playlists/LOAD_PLAYLISTS";
 const POST_PLAYLIST = "/playlists/POST_PLAYLIST";
 const UPDATE_PLAYLIST = "/playlists/UPDATE_PLAYLIST";
 const DELETE_PLAYLIST  = "/playlists/DELETE_PLAYLIST";
+const RESET_PLAYLISTS = "/playlists/RESET_PLAYLISTS";
 
 // action creators - define actions( objects with type/data )
 const loadPlaylist = (playlist) => ({
@@ -25,6 +26,7 @@ const updatePlaylist = (playlist) => ({
   type: UPDATE_PLAYLIST ,
   playlist
 })
+
 
 // thunk action creators - for asynchronous code, i.e fetch calls prior to dispatching action creators
 export const getPlaylists = () => async (dispatch) => {
@@ -99,6 +101,8 @@ export const updateAPlaylist = (payload, playlist) => async (dispatch) => {
   } else return res.json()
 }
 
+export const resetPlaylists = () => ({ type: RESET_PLAYLISTS });
+
 
 const initialState = {};
 
@@ -135,6 +139,10 @@ const playlistReducer = (state = initialState, action) => {
     case UPDATE_PLAYLIST: {
       const newState = { ...state}
         return {...newState, [action.playlist.id]: action.playlist}
+    }
+
+    case RESET_PLAYLISTS: {
+      return {}
     }
 
     default: {

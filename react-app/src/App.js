@@ -12,6 +12,7 @@ import Sidebar from "./components/Sidebar"
 import Playlist from "./components/Playlist";
 import Search from "./components/Search";
 import Home from "./components/Home";
+import Player from "./components/Player";
 // import Testing from "./components/Testing";
 
 function App() {
@@ -22,12 +23,13 @@ function App() {
   }, [dispatch]);
 
   return (
+    <>
     <div className="main-container">
         <Sidebar isLoaded={isLoaded} />
         <Navigation isLoaded={isLoaded} />
-        <Home isLoaded={isLoaded}/>
-
         <div className="main-content">
+        <Player />
+       
           {isLoaded && (
             <Switch>
               <Route path="/login" >
@@ -51,14 +53,20 @@ function App() {
               <Route path="/search">
                 <Search />
               </Route>
+              <Route path="/">
+                <Home />
+              </Route>
               {/* <Route path="/testing">
             <Testing />
           </Route> */}
             </Switch>
           )}
         </div>
+          
 
+          
     </div>
+    </>
   );
 }
 

@@ -1,10 +1,27 @@
 /* TODO Add site wide styles */
 
-.main-content {
+/* .main-content {
     flex: 1;
-    /* background-color: #333; */
     background-color: #040404;
     color: white;
+} */
+
+.main-content {
+    cursor: default;
+    border: 0;
+    border-radius: 8px;
+    color: white;
+    background-color: #212121;
+    display: flex;
+    flex-direction: column;
+    flex: 0.2;
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-top: 10px;
+    min-width: 95%;
+    max-width: 95%;
+    height: 100vh;
+
 }
 
 .main-container {
@@ -22,10 +39,14 @@
 
 .nav-link:active {
     color: red;
-  }
+}
 
 .small-pic {
     object-fit: contain;
     height: 40px;
     width: 40px;
+}
+
+a {
+    text-decoration: none;
 }

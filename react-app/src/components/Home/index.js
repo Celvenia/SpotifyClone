@@ -4,6 +4,7 @@ import { useSelector } from 'react-redux';
 import ProfileButton from '../Navigation/ProfileButton';
 import './Home.css';
 
+
 const Home = ({ isLoaded }) => {
 	const sessionUser = useSelector((state) => state.session.user);
 
@@ -30,6 +31,7 @@ const Home = ({ isLoaded }) => {
 					</div>
 				</div>
 			</div>
+
 
 			<div className="content-spacing">
 				<section>Good Morning</section>

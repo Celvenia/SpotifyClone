@@ -16,7 +16,7 @@ export default function SidebarPlaylist({ playlist }) {
 
 
   return (
-    <div className='sidebar-block'>
+    <div className='sidebar-block' title={playlist.title}>
       <div>
         <NavLink exact to={`/playlists/${playlist.id}`}>
           <h4>{playlist.title}</h4>
