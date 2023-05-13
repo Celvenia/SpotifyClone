@@ -31,7 +31,7 @@ def seed_follows():
 # it will reset the primary keys for you as well.
 def undo_follows():
     if environment == "production":
-        db.session.execute(f"TRUNCATE table {SCHEMA}.songs RESTART IDENTITY CASCADE;")
+        db.session.execute(f"TRUNCATE table {SCHEMA}.follows RESTART IDENTITY CASCADE;")
     else:
         db.session.execute(text("DELETE FROM follows"))
         db.session.commit()

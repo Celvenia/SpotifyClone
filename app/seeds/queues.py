@@ -25,7 +25,7 @@ def seed_queues():
 # it will reset the primary keys for you as well.
 def undo_queues():
     if environment == "production":
-        db.session.execute(f"TRUNCATE table {SCHEMA}.songs RESTART IDENTITY CASCADE;")
+        db.session.execute(f"TRUNCATE table {SCHEMA}.queued RESTART IDENTITY CASCADE;")
     else:
         db.session.execute(text("DELETE FROM queued"))
         db.session.commit()
