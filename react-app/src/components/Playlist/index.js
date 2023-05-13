@@ -57,34 +57,8 @@ export default function Playlist() {
       <h1>{currentPlaylist?.title}</h1>
       <p>{user?.public_name}</p>
 
-      {songsArr.map((song) =>
-        song.id !== undefined ? (
-          // <div key={song.id}>
-          //   <NavLink
-          //     to={`/songs/${song.id}`}
-          //     className="nav-link"
-          //     key={song.id}
-          //   >
-          //     {/* this still needs to be the song creator's user */}
-          //     <span>
-          //       <div>
-          //         <img src={user?.profile_picture} className='small-pic'></img>
-          //         <div>
-          //           {song.title}
-          //         </div>
-          //         <div>
-          //           {user?.public_name}
-          //         </div>
-          //       </div>
-          //     </span>
+           <PlaylistSongs songs={songsArr} />
 
-          //   </NavLink>
-          // </div>
-          <PlaylistSongs playlistId={playlistId} />
-        ) : (
-          ""
-        )
-      )}
       {currentUserId == userId ?
         <button className="delete-playlist-button" onClick={handleDeleteClick}>
           DELETE PLAYLIST

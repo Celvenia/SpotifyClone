@@ -10,7 +10,7 @@ const Home = ({ isLoaded }) => {
 
 	return (
 		<div className="header">
-			<div>Spacer</div>
+			<div></div>
 			<div className="top-bar">
 				<div className="top-bar-left">
 					<button className="top-bar-back-button">
@@ -25,11 +25,11 @@ const Home = ({ isLoaded }) => {
 					</button>
 					{/* <div className="top-bar-content-wrapper"></div> */}
 				</div>
-				<div className="top-bar-right">
+				{/* <div className="top-bar-right">
 					<div className="profile-button">
 						{isLoaded && <ProfileButton user={sessionUser} />}
 					</div>
-				</div>
+				</div> */}
 			</div>
 
 
@@ -45,7 +45,7 @@ const Home = ({ isLoaded }) => {
 							width="80"
 						></img>
 					</div>
-					<div>Liked Songs</div>
+					<div>Discover Weekly</div>
 					<div className='play-button-container'>
 						{' '}
 						<svg
