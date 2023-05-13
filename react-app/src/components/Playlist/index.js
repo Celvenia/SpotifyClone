@@ -9,6 +9,7 @@ import { getUser, getUsers } from "../../store/users";
 
 import Search from "../Search";
 import PlaylistSongs from "../PlaylistSongs";
+import Player from "../Player";
 import "../../index.css"
 import "./Playlist.css"
 
@@ -94,6 +95,7 @@ export default function Playlist() {
           <PlaylistSongs songs={songsArr} />
         </>
       }
+      <Player songs={songsArr}/>
     </div>
   )
 }

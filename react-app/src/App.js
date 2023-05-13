@@ -30,7 +30,7 @@ function App() {
         <Sidebar isLoaded={isLoaded} />
         <Navigation isLoaded={isLoaded} />
         <div className="main-content">
-        <Player />
+        {/* <Player /> */}
        
           {isLoaded && (
             <Switch>
