@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { getPlaylists, createAPlaylist } from '../../store/playlists';
 import { getSongs } from '../../store/songs';
 import { getAlbums, getLikedAlbums } from '../../store/albums';
+import { getUsers } from '../../store/users';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
@@ -30,21 +31,22 @@ const Sidebar = () => {
 	useEffect(() => {
 		dispatch(getSongs());
 		dispatch(getAlbums());
+    dispatch(getUsers())
 		if (userId) {
 			dispatch(getPlaylists());
 		}
 	}, [dispatch, userId]);
 
-	const handleCreatePlaylistClick = async (e) => {
-		e.preventDefault();
-
-		let playlist;
-		try {
-			playlist = await dispatch(createAPlaylist());
-		} catch (err) {
-			alert(err);
-		}
-	};
+  const handleCreatePlaylistClick = async (e) => {
+    e.preventDefault();
+    
+    try {
+      const playlist = await dispatch(createAPlaylist())
+      await history.push(`/playlists/${playlist.id}`);
+    } catch (err) {
+      alert(err);
+    }
+  };
 
 	return (
 		<div className="sidebar">

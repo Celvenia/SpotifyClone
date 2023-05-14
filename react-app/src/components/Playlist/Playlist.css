@@ -9,6 +9,25 @@
     box-shadow: 2px 2px 2px 1px #1db954;
 }
 
-.edit-playlist-button {
-    margin-bottom: 10px;
+.play-playlist-button {
+    display: flex;
+    background-color: #212121;
+    color: white;
+    border-radius: 20px;
+    margin-bottom: 20px;
+    margin-left: 50px;
+    box-shadow: 2px 2px 2px 1px #1db954;
+}
+
+.playlist-title-edit-input {
+    border: none;
+    border-radius: 10px;
+    padding: 12px;
+    margin-bottom: 20px;
+    margin-top: 10px;
+    width: 100%;
+    font-size: 16px;
+    background-color: #282828;
+    color: #fff;
+
 }

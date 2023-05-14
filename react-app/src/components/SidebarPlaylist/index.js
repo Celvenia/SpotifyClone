@@ -1,18 +1,9 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { NavLink } from 'react-router-dom';
-import { getPlaylists } from '../../store/playlists';
-import { getSongs } from '../../store/songs';
-import { getAlbums, getLikedAlbums } from '../../store/albums';
 import './SidebarPlaylist.css';
-import { useDispatch } from 'react-redux';
+
 
 export default function SidebarPlaylist({ playlist }) {
-	const dispatch = useDispatch();
-	useEffect(() => {
-		dispatch(getSongs());
-		dispatch(getPlaylists());
-		// dispatch(getAlbums())
-	}, [dispatch]);
 
 	return (
 		<div className="sidebar-block" title={playlist.title}>
@@ -30,7 +21,7 @@ export default function SidebarPlaylist({ playlist }) {
 					<span className="playlist-title">{playlist.title}</span>
 					<br />
 					<span className="playlist-description">
-            Playlist · {playlist.songs?.length} Songs
+            Playlist · {playlist.songs.length} Songs
 					</span>
 				</div>
 			</NavLink>

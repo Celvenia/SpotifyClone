@@ -1,11 +1,10 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
-import './HomeTest.css';
+import './HomePage.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faPlay, faCircle } from '@fortawesome/free-solid-svg-icons'
 
-const HomeTest = ({ isLoaded }) => {
-  const sessionUser = useSelector((state) => state.session.user);
+const HomePage = () => {
 
   return (
     <div>
@@ -52,4 +51,4 @@ const HomeTest = ({ isLoaded }) => {
   );
 };
 
-export default HomeTest;
+export default HomePage;

@@ -22,11 +22,13 @@ const Player = ({ songs }) => {
         <button onClick={handlePrevSong}>Prev</button>
         <button onClick={handleNextSong}>Next</button>
       </div>
-      <AudioPlayer
-        autoPlay
-        src={songs[currentSongIndex]?.url}
-        className="audio-player"
-      />
+      {songs != null &&
+        <AudioPlayer
+          // autoPlay
+          src={songs[currentSongIndex]?.url}
+          className="audio-player"
+        />
+      }
     </div>
   );
 };
