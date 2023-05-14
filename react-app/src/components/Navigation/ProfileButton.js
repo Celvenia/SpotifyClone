@@ -45,9 +45,30 @@ function ProfileButton({ user }) {
 		<>
 			{/* <button className="invisible-button profile-picture-div" onClick={openMenu}> */}
 			{/* <i className="fas fa-user-circle" /> */}
-			<div className="profile-picture-div" onClick={openMenu}>
-				<img src={user.profile_picture} className="profile-picture" alt={user.username} />
-			</div>
+			{user ? (
+				<div className="profile-picture-div" onClick={openMenu}>
+					<img
+						src={user.profile_picture}
+						className="profile-picture"
+						// alt={user.username}
+					/>
+				</div>
+			) : (
+				// <i className="fas fa-user-circle" />
+				<>
+					<OpenModalButton
+						buttonText="Log In"
+						onItemClick={closeMenu}
+						modalComponent={<LoginFormModal />}
+					/>
+
+					<OpenModalButton
+						buttonText="Sign Up"
+						onItemClick={closeMenu}
+						modalComponent={<SignupFormModal />}
+					/>
+				</>
+			)}
 			{/* </button> */}
 			<div className={ulClassName} ref={ulRef}>
 				{user ? (

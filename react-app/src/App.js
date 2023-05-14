@@ -15,26 +15,23 @@ import Home from "./components/Home";
 import Player from "./components/Player";
 import HomePage from "./components/HomePage"
 import User from "./components/User";
-// import Testing from "./components/Testing";
 
 function App() {
   const dispatch = useDispatch();
   const [isLoaded, setIsLoaded] = useState(false);
+
+
   useEffect(() => {
     dispatch(authenticate()).then(() => setIsLoaded(true));
   }, [dispatch]);
 
   return (
     <>
-    <div className="main-container">
+      <div className="main-container">
         <Sidebar isLoaded={isLoaded} />
         <Navigation isLoaded={isLoaded} />
-
-        {/* <Home isLoaded={isLoaded}/> */}
-
-
+        <Player isLoaded={isLoaded} />
         <div className="main-content">
-
           {isLoaded && (
             <Switch>
               <Route path="/login" >
@@ -58,9 +55,6 @@ function App() {
               <Route path="/search">
                 <Search />
               </Route>
-              {/* <Route path="/">
-                <Home />
-              </Route> */}
               <Route path="/users/:userId">
                 <User />
               </Route>
@@ -72,7 +66,7 @@ function App() {
         </div>
 
 
-    </div>
+      </div>
     </>
   );
 }

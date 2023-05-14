@@ -14,16 +14,13 @@ export default function Albums() {
     const userId = sessionUser?.id
 
 
-    useEffect(() => {
-        dispatch(getAlbums())
-        if (userId) {
-            dispatch(getLikedAlbums(userId))
-        }
-    }, [dispatch, userId])
+    // useEffect(() => {
+    //     dispatch(getAlbums())
+    //     if (userId) {
+    //         dispatch(getLikedAlbums(userId))
+    //     }
+    // }, [dispatch, userId])
 
-    useEffect(() => {
-        dispatch(getAlbums())
-    }, [dispatch])
 
     if (!albumsArr.length) {
         return <div>Loading...</div>;

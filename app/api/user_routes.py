@@ -191,7 +191,10 @@ def add_following(id):
     db.session.add(follow)
     db.session.commit()
 
-    return jsonify({'message': f'User {current_user.id} is now following user {id}.'})
+    user = User.query.get(current_user.id)
+    return user.to_dict()
+
+    # return jsonify({'message': f'User {current_user.id} is now following user {id}.'})
 
 
 # allows current user to unfollow user by id
@@ -206,4 +209,7 @@ def delete_following(id):
     db.session.delete(follow)
     db.session.commit()
 
-    return jsonify({'message': f'User {current_user.id} is no longer following user {id}.'})
+    user = User.query.get(current_user.id)
+    return user.to_dict()
+
+    # return jsonify({'message': f'User {current_user.id} is no longer following user {id}.'})

@@ -53,33 +53,6 @@ export const getUser = (userId) => async (dispatch) => {
 };
 
 
-
-// export const postASong = (song) => async (dispatch) => {
-
-//   const res = await fetch(`/api/songs/${song.id}`, {
-//     method: "POST",
-//     body: JSON.stringify(payload),
-//   });
-
-//   if (res.ok) {
-//     const song = await res.json();
-//     dispatch(postSong(song));
-//     return song;
-//   } else return res.json()
-// };
-
-// export const deleteAUser = (userId) => async (dispatch) => {
-//     const res = await fetch(`/api/users/${userId}`, {
-//         method: "DELETE",
-//     });
-
-//     if (res.ok) {
-//         const song = await res.json();
-//         dispatch(deleteSong(songId));
-//         return song;
-//     } else return res.json()
-// };
-
 // export const updateASong = (payload, song) => async (dispatch) => {
 //     const res = await fetch(`/api/songs/${song.id}`, {
 //         method: "PUT",
@@ -114,11 +87,6 @@ const userReducer = (state = initialState, action) => {
             const newState = { ...state };
             return { ...newState, [action.user.id]: action.user };
         }
-
-        // case POST_SONG: {
-        //     const newState = { ...state };
-        //     return { ...newState, [action.song.id]: action.song };
-        // }
 
         // case DELETE_SONG: {
         //     const newState = { ...state };
