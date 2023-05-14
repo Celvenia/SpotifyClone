@@ -29,9 +29,11 @@ function App() {
     <div className="main-container">
         <Sidebar isLoaded={isLoaded} />
         <Navigation isLoaded={isLoaded} />
+        {/* <Home isLoaded={isLoaded}/> */}
+
         <div className="main-content">
         {/* <Player /> */}
-       
+
           {isLoaded && (
             <Switch>
               <Route path="/login" >
@@ -61,15 +63,15 @@ function App() {
               <Route exact path="/">
                 <HomeTest />
               </Route>
-              <Route path="/users/:userId">
-                <User />
-              </Route>
+              {/* <Route path="/testing">
+            <Testing />
+          </Route> */}
             </Switch>
           )}
         </div>
-          
 
-          
+
+
     </div>
     </>
   );

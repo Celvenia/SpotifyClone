@@ -7,12 +7,12 @@ def seed_users():
         username='Demo', email='demo@aa.io', password='password', is_artist=False,
         profile_picture='https://w7.pngwing.com/pngs/598/553/png-transparent-computer-icons-spotify-graphics-streaming-media-spotify-icon-logo-grass-feather.png', public_name='Demo',
         banner_image='https://martech.org/wp-content/uploads/2017/09/spotify-logo-1920x1080.jpg')
-    marnie = User(
-        username='marnie', email='marnie@aa.io', password='password', is_artist=False,
+    dylan = User(
+        username='dylan', email='dylan@aa.io', password='password', is_artist=False,
         profile_picture='https://w7.pngwing.com/pngs/598/553/png-transparent-computer-icons-spotify-graphics-streaming-media-spotify-icon-logo-grass-feather.png', public_name='Demo',
         banner_image='https://martech.org/wp-content/uploads/2017/09/spotify-logo-1920x1080.jpg')
-    bobbie = User(
-        username='bobbie', email='bobbie@aa.io', password='password', is_artist=False,
+    kevin = User(
+        username='kevin', email='kevin@aa.io', password='password', is_artist=False,
         profile_picture='https://w7.pngwing.com/pngs/598/553/png-transparent-computer-icons-spotify-graphics-streaming-media-spotify-icon-logo-grass-feather.png', public_name='Demo',
         banner_image='https://martech.org/wp-content/uploads/2017/09/spotify-logo-1920x1080.jpg')
     chris = User(
@@ -23,9 +23,9 @@ def seed_users():
         username='juice_wrld', email='juice_wrld@gmail.com', password='password', is_artist=True,
         profile_picture='https://res.cloudinary.com/dtzv3fsas/image/upload/v1683397266/SpotifyClone/e7d6d436f2794f6cbe077473f7fbf21e_xl_viqv0m.jpg', public_name='Juice Wrld',
         banner_image='https://res.cloudinary.com/dtzv3fsas/image/upload/v1683397267/SpotifyClone/web.ae_.juicewrld.courtesy_vdj4bn.jpg')
-    the_weekend = User(
-        username='the_weekend', email='the_weekend@gmail.com', password='password', is_artist=True,
-        profile_picture='https://res.cloudinary.com/dtzv3fsas/image/upload/v1683397266/SpotifyClone/e7d6d436f2794f6cbe077473f7fbf21e_xl_viqv0m.jpg', public_name='The Weekend',
+    the_weeknd = User(
+        username='the_weeknd', email='the_weeknd@gmail.com', password='password', is_artist=True,
+        profile_picture='https://res.cloudinary.com/dtzv3fsas/image/upload/v1683397266/SpotifyClone/e7d6d436f2794f6cbe077473f7fbf21e_xl_viqv0m.jpg', public_name='The Weeknd',
         banner_image='https://res.cloudinary.com/dtzv3fsas/image/upload/v1683397267/SpotifyClone/web.ae_.juicewrld.courtesy_vdj4bn.jpg')
     calvin_harris = User(
         username='calvin_harris', email='calvin_harris@gmail.com', password='password', is_artist=True,
@@ -37,11 +37,11 @@ def seed_users():
         banner_image='https://res.cloudinary.com/dtzv3fsas/image/upload/v1683397267/SpotifyClone/web.ae_.juicewrld.courtesy_vdj4bn.jpg')
 
     db.session.add(demo)
-    db.session.add(marnie)
-    db.session.add(bobbie)
+    db.session.add(dylan)
+    db.session.add(kevin)
     db.session.add(chris)
     db.session.add(juice_wrld)
-    db.session.add(the_weekend)
+    db.session.add(the_weeknd)
     db.session.add(calvin_harris)
     db.session.add(rihanna)
     db.session.commit()

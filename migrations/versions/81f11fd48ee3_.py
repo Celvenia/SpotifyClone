@@ -1,20 +1,16 @@
 """empty message
 
-Revision ID: bb7c29f358b5
-Revises: 
-Create Date: 2023-05-13 10:36:02.245881
+Revision ID: 81f11fd48ee3
+Revises:
+Create Date: 2023-05-13 15:43:25.812505
 
 """
 from alembic import op
 import sqlalchemy as sa
 
-import os
-environment = os.getenv("FLASK_ENV")
-SCHEMA = os.environ.get("SCHEMA")
-
 
 # revision identifiers, used by Alembic.
-revision = 'bb7c29f358b5'
+revision = '81f11fd48ee3'
 down_revision = None
 branch_labels = None
 depends_on = None
@@ -34,9 +30,6 @@ def upgrade():
     sa.Column('updated_at', sa.DateTime(timezone=True), server_default=sa.text('(CURRENT_TIMESTAMP)'), nullable=True),
     sa.PrimaryKeyConstraint('id')
     )
-    if environment == "production":
-        op.execute(f"ALTER TABLE albums SET SCHEMA {SCHEMA};")
-    # ### end Alembic commands ###qqqqqqqqq
     op.create_table('songs',
     sa.Column('id', sa.Integer(), nullable=False),
     sa.Column('title', sa.String(length=255), nullable=False),
@@ -50,9 +43,6 @@ def upgrade():
     sa.Column('updated_at', sa.DateTime(timezone=True), server_default=sa.text('(CURRENT_TIMESTAMP)'), nullable=True),
     sa.PrimaryKeyConstraint('id')
     )
-    if environment == "production":
-        op.execute(f"ALTER TABLE songs SET SCHEMA {SCHEMA};")
-    # ### end Alembic commands ###qqqqqqqqq
     op.create_table('users',
     sa.Column('id', sa.Integer(), nullable=False),
     sa.Column('username', sa.String(length=40), nullable=False),
@@ -68,9 +58,6 @@ def upgrade():
     sa.UniqueConstraint('email'),
     sa.UniqueConstraint('username')
     )
-    if environment == "production":
-        op.execute(f"ALTER TABLE users SET SCHEMA {SCHEMA};")
-    # ### end Alembic commands ###qqqqqqqqq
     op.create_table('follows',
     sa.Column('id', sa.Integer(), nullable=False),
     sa.Column('user_id', sa.Integer(), nullable=True),
@@ -81,9 +68,6 @@ def upgrade():
     sa.ForeignKeyConstraint(['user_id'], ['users.id'], ),
     sa.PrimaryKeyConstraint('id')
     )
-    if environment == "production":
-        op.execute(f"ALTER TABLE follows SET SCHEMA {SCHEMA};")
-    # ### end Alembic commands ###qqqqqqqqq
     op.create_table('playlists',
     sa.Column('id', sa.Integer(), nullable=False),
     sa.Column('user_id', sa.Integer(), nullable=False),
@@ -95,9 +79,6 @@ def upgrade():
     sa.ForeignKeyConstraint(['user_id'], ['users.id'], ),
     sa.PrimaryKeyConstraint('id')
     )
-    if environment == "production":
-        op.execute(f"ALTER TABLE playlists SET SCHEMA {SCHEMA};")
-    # ### end Alembic commands ###qqqqqqqqq
     op.create_table('queued',
     sa.Column('id', sa.Integer(), nullable=False),
     sa.Column('user_id', sa.Integer(), nullable=False),
@@ -106,9 +87,6 @@ def upgrade():
     sa.ForeignKeyConstraint(['user_id'], ['users.id'], ),
     sa.PrimaryKeyConstraint('id')
     )
-    if environment == "production":
-        op.execute(f"ALTER TABLE queued SET SCHEMA {SCHEMA};")
-    # ### end Alembic commands ###qqqqqqqqq
     op.create_table('likes',
     sa.Column('id', sa.Integer(), nullable=False),
     sa.Column('user_id', sa.Integer(), nullable=False),
@@ -123,9 +101,6 @@ def upgrade():
     sa.ForeignKeyConstraint(['user_id'], ['users.id'], ),
     sa.PrimaryKeyConstraint('id')
     )
-    if environment == "production":
-        op.execute(f"ALTER TABLE likes SET SCHEMA {SCHEMA};")
-    # ### end Alembic commands ###qqqqqqqqq
     op.create_table('playlist_songs',
     sa.Column('playlist_id', sa.Integer(), nullable=False),
     sa.Column('song_id', sa.Integer(), nullable=False),
@@ -133,9 +108,6 @@ def upgrade():
     sa.ForeignKeyConstraint(['song_id'], ['songs.id'], ),
     sa.PrimaryKeyConstraint('playlist_id', 'song_id')
     )
-    if environment == "production":
-        op.execute(f"ALTER TABLE playlist_songs SET SCHEMA {SCHEMA};")
-    # ### end Alembic commands ###qqqqqqqqq
     op.create_table('queued_songs',
     sa.Column('queued_id', sa.Integer(), nullable=False),
     sa.Column('song_id', sa.Integer(), nullable=False),
@@ -143,11 +115,7 @@ def upgrade():
     sa.ForeignKeyConstraint(['song_id'], ['songs.id'], ),
     sa.PrimaryKeyConstraint('queued_id', 'song_id')
     )
-    if environment == "production":
-        op.execute(f"ALTER TABLE queued_songs SET SCHEMA {SCHEMA};")
-    # ### end Alembic commands ###qqqqqqqqq
     # ### end Alembic commands ###
-
 
 
 def downgrade():
