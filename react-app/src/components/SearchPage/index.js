@@ -1,21 +1,28 @@
 
 import React, { useState } from 'react';
 import './SearchPage.css';
+import { NavLink } from 'react-router-dom/cjs/react-router-dom.min';
 
-export default function SearchPage({ recentSearch }) {
+export default function SearchPage({ recentSearch, artists }) {
     const [slideIndex, setSlideIndex] = useState(0);
 
     const browseCards = [];
+    const suggestedArtists = artists
 
-    for (let i = 0; i < 12; i++) {
-        browseCards.push(
-            <div className="browse-card" key={i}>
-                <h3 className="card-title">Artists {i + 1}</h3>
-                <img src="https://picsum.photos/300/200" alt="Card Image" />
-                <div className="card-body"></div>
-            </div>
-        );
+    for (let i = 0; i < suggestedArtists.length; i++) {
+        if (suggestedArtists[i]) {
+            browseCards.push(
+                <div className="browse-card" key={i}>
+                    <NavLink to={`/users/${suggestedArtists[i].id}`}>
+                    <h3 className="card-title">{suggestedArtists[i].public_name}</h3>
+                    </NavLink>
+                    <img src={suggestedArtists[i].profile_picture} alt="Card Image" />
+                    <div className="card-body"></div>
+                </div>
+            );
+        }
     }
+    
     // (0 - 1 + 12) % 12 = index 11 in an array length 12(max)
     const handlePrevSlide = () => {
         setSlideIndex((slideIndex - 1 + browseCards.length) % browseCards.length);

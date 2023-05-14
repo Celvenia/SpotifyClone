@@ -13,7 +13,7 @@ import Playlist from "./components/Playlist";
 import Search from "./components/Search";
 import Home from "./components/Home";
 import Player from "./components/Player";
-import HomeTest from "./components/HomeTest"
+import HomePage from "./components/HomePage"
 import User from "./components/User";
 // import Testing from "./components/Testing";
 
@@ -29,6 +29,10 @@ function App() {
     <div className="main-container">
         <Sidebar isLoaded={isLoaded} />
         <Navigation isLoaded={isLoaded} />
+
+        {/* <Home isLoaded={isLoaded}/> */}
+
+
         <div className="main-content">
         {/* <Player /> */}
         <Player isLoaded={isLoaded}/>
@@ -58,18 +62,17 @@ function App() {
               {/* <Route path="/">
                 <Home />
               </Route> */}
-              <Route path="/">
-                <HomeTest />
-              </Route>
               <Route path="/users/:userId">
                 <User />
+              </Route>
+              <Route exact path="/">
+                <HomePage />
               </Route>
             </Switch>
           )}
         </div>
-          
 
-          
+
     </div>
     </>
   );

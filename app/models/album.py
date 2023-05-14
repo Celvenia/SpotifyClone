@@ -17,7 +17,7 @@ class Album(db.Model):
     created_at = db.Column(db.DateTime(timezone=True), server_default=func.now())
     updated_at = db.Column(db.DateTime(timezone=True), server_default=func.now())
 
-    liked_by = db.relationship('User', secondary='likes', back_populates='liked_albums')
+    # liked_by = db.relationship('User', secondary='likes', back_populates='liked_albums')
     songs = db.relationship('Song', primaryjoin='and_(Song.genre==Album.genre, foreign(Song.album_id)==Album.id)', back_populates='albums')
 
     def to_dict(self):

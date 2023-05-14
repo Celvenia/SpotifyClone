@@ -66,7 +66,7 @@ export const createAPlaylist = (data) => async (dispatch) => {
     if (res.ok) {
       const playlist = await res.json();
       dispatch(loadPlaylist(playlist.playlist));
-      return playlist;
+      return playlist.playlist;
     } else return res.json()
   } catch (error) {
       throw error;

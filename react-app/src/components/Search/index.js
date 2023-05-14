@@ -10,13 +10,14 @@ import './Search.css'
 import { updatePlaylistWithSong } from "../../store/playlistSongs";
 import { useParams } from "react-router-dom";
 import SearchPage from "../SearchPage";
+import { getPlaylists } from "../../store/playlists";
 
 
 export default function Search() {
   const currentUrl = window.location.href;
   const isSearchPage = currentUrl.includes('/search');
   const isPlaylistPage = currentUrl.includes('/playlists')
-
+  
   const dispatch = useDispatch()
   const { playlistId } = useParams()
   const [searchInput, setSearchInput] = useState("");
@@ -29,8 +30,9 @@ export default function Search() {
 
   const songsObj = useSelector(state => state.songReducer)
   const songsArr = Object.values(songsObj);
-  const userObj = useSelector(state => state.userReducer)
-
+  const usersObj = useSelector(state => state.userReducer)
+  const usersArr = Object.values(usersObj)
+  const artists = usersArr.filter(obj => obj.is_artist === true)
 
   const handleChange = (e) => {
     e.preventDefault();
@@ -47,14 +49,17 @@ export default function Search() {
 
   const handleAddClick = async (song) => {
     const data = await dispatch(updatePlaylistWithSong(playlistId, song.id));
+    await dispatch(getPlaylists())
     if (data) {
       setErrors(data);
     }
     localStorage.setItem('recentSearch', song.title);
+
     setState({
       query: "",
       list: []
     })
+    setSearchInput("")
   };
 
   const handleSearchClick = async (song) => {
@@ -96,7 +101,7 @@ export default function Search() {
                   Add Song
                 </button>
 
-                {song.title} By {userObj[song.user_id].public_name}
+                {song.title} By {usersObj[song.user_id].public_name}
 
               </li>
             )
@@ -104,7 +109,7 @@ export default function Search() {
       </ul>
 
       {isSearchPage ? (
-        <SearchPage recentSearch={recentSearch} />
+        <SearchPage artists={artists} recentSearch={recentSearch} />
       ) : ""}
     </>
   )

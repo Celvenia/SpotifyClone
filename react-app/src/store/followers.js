@@ -25,7 +25,7 @@ export const getFollowers = (id) => async (dispatch) => {
         const res = await fetch(`/api/users/${id}/followers`);
         if (res.ok) {
             const followers = await res.json();
-            dispatch(loadFollowers(followers));
+            dispatch(loadFollowers(followers.followers));
             return followers;
         }
     } catch (err) {
@@ -42,8 +42,8 @@ const followerReducer = (state = initialState, action) => {
 
         case LOAD_FOLLOWERS: {
             const newState = { ...state };
-            action.followers.forEach((followObj) => {
-                newState[followObj.id] = followObj;
+            action.followers.forEach((user) => {
+                newState[user.id] = user;
             });
             return newState;
         }
