@@ -1,10 +1,10 @@
-from .db import db, environment, SCHEMA
+from .db import db, environment, SCHEMA, add_prefix_for_prod
 from sqlalchemy.sql import func
 
 # join table for many to many relationship between Playlist and Song models
 playlist_songs = db.Table('playlist_songs',
-    db.Column('playlist_id', db.Integer, db.ForeignKey('playlists.id'), primary_key=True),
-    db.Column('song_id', db.Integer, db.ForeignKey('songs.id'), primary_key=True)
+    db.Column('playlist_id', db.Integer, db.ForeignKey(add_prefix_for_prod('playlists.id')), primary_key=True),
+    db.Column('song_id', db.Integer, db.ForeignKey(add_prefix_for_prod('songs.id')), primary_key=True)
 )
 
 class Playlist(db.Model):
@@ -14,7 +14,7 @@ class Playlist(db.Model):
         __table_args__ = {'schema': SCHEMA}
 
     id = db.Column(db.Integer, primary_key=True)
-    user_id = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=False)
+    user_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('users.id')), nullable=False)
     title = db.Column(db.String(255), nullable=False)
     is_private = db.Column(db.Boolean, default=False)
     created_at = db.Column(db.DateTime(timezone=True), server_default=func.now())
