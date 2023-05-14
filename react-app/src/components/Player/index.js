@@ -19,7 +19,7 @@ if (songs!= null) {
 
   },[]);
 
-  export async function PlayCurrentSong(song)  {
+  async function PlayCurrentSong(song)  {
     console("test this function")
     // setSongName(song.title);
     // setSongArtist(userObj[song.user_id]?.public_name);
