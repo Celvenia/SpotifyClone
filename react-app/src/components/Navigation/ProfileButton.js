@@ -6,6 +6,7 @@ import LoginFormModal from '../LoginFormModal';
 import SignupFormModal from '../SignupFormModal';
 import { getPlaylists } from '../../store/playlists';
 import { resetPlaylists } from '../../store/playlists';
+import { NavLink } from 'react-router-dom';
 import './Navigation.css';
 
 function ProfileButton({ user }) {
@@ -74,7 +75,7 @@ function ProfileButton({ user }) {
 				{user ? (
 					<>
 						<div>{user.username}</div>
-						<div>{user.is_artist ? 'Upload Songs' : ''}</div>
+						<div>{user.is_artist ? <NavLink to="/songs/create">Upload Songs</NavLink> : ''}</div>
 						<hr className="profile-hr" />
 						<div>
 							<button onClick={handleLogout}>Log Out</button>

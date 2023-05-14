@@ -15,6 +15,7 @@ import Home from "./components/Home";
 import Player from "./components/Player";
 import HomePage from "./components/HomePage"
 import User from "./components/User";
+import SongCreate from "./components/SongCreate";
 
 function App() {
   const dispatch = useDispatch();
@@ -42,6 +43,9 @@ function App() {
               </Route>
               <Route exact path="/songs">
                 <Songs />
+              </Route>
+              <Route exact path="/songs/create">
+                <SongCreate />
               </Route>
               <Route exact path="/songs/:songId">
                 <SongInfo />

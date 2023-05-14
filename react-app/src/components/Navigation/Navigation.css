@@ -18,8 +18,15 @@
 .profile-button {
   position: fixed;
   top: 10px;
-  right: 30px;
+  right: 80px;
   z-index: 1;
+  height: 50px;
+
+}
+
+.profile-button > button {
+  height: 40px;
+  margin-right: 5px;
 }
 
 .fas.fa-user-circle {

@@ -1,0 +1,58 @@
+
+.song_create_container {
+    max-width: 400px;
+    margin: 0 auto;
+    padding: 30px;
+    background-color: #000;
+    color: #fff;
+  }
+  
+
+  .song_create_form {
+    display: flex;
+    flex-direction: column;
+  }
+  
+
+  label {
+    margin-bottom: 5px;
+    font-size: 14px;
+  }
+  
+  input,
+  select {
+    padding: 10px;
+    margin-bottom: 20px;
+    border: none;
+    border-radius: 5px;
+    background-color: #282828;
+    color: #fff;
+    font-size: 16px;
+  }
+  
+  input::placeholder,
+  select::placeholder {
+    color: #b3b3b3;
+  }
+  
+  .song_create_button {
+    padding: 10px;
+    margin-top: 20px;
+    border: none;
+    border-radius: 5px;
+    background-color: #1db954;
+    color: #fff;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.2s ease-in-out;
+  }
+  
+  .song_create_button:disabled {
+    background-color: #b3b3b3;
+    cursor: not-allowed;
+  }
+  
+  .song_create_button:hover:not(:disabled) {
+    background-color: #1ed760;
+  }
+  
