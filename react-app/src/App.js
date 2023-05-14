@@ -31,7 +31,7 @@ function App() {
         <Navigation isLoaded={isLoaded} />
         <div className="main-content">
         {/* <Player /> */}
-       
+        <Player isLoaded={isLoaded}/>
           {isLoaded && (
             <Switch>
               <Route path="/login" >
