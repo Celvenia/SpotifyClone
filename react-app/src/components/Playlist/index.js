@@ -12,14 +12,15 @@ import { faPenToSquare } from '@fortawesome/free-solid-svg-icons'
 
 import Search from "../Search";
 import PlaylistSongs from "../PlaylistSongs";
+import NotFound from "../NotFound";
 import Player from "../Player";
 import "../../index.css"
 import "./Playlist.css"
 
-export default function Playlist({appQueue}) {
+export default function Playlist({onQueueChange}) {
   const dispatch = useDispatch()
   const history = useHistory();
-  const [queue, setQueue] = useState(appQueue)
+  const [queue, setQueue] = useState([])
   const { playlistId } = useParams();
 
   const sessionUser = useSelector(state => state.session.user);
@@ -68,9 +69,11 @@ export default function Playlist({appQueue}) {
     if (queue?.length && queue !== undefined) {
       const combinedQueue = new Set([...queue, ...songsArr])
       setQueue([...combinedQueue])
+      onQueueChange([...combinedQueue])
     } else {
       new Set([...songsArr])
       setQueue([...songsArr])
+      onQueueChange([...songsArr])
     }
   }
 
@@ -81,22 +84,24 @@ export default function Playlist({appQueue}) {
   const handleTitleSubmit = (e) => {
     e.preventDefault();
     dispatch(updateAPlaylist(currentPlaylist, { title }))
-      .then(() => dispatch(getPlaylist(playlistId)))
+      .then(() => dispatch(getPlaylist(currentPlaylist.id)))
       .then(() => setIsEditing(false));
   };
+
 
   return (
     <div>
       <Search />
-      <p>Playlist - Made By {user?.public_name}</p>
-      {isEditing ?
+
+      {!currentPlaylist ? "Playlist Not Found" : isEditing ?
         <form className="playlist-title-edit-form" onSubmit={handleTitleSubmit}>
-          <input className="playlist-edit-title-input" type="text" value={title} onChange={handleTitleChange} />
+          <input className="playlist-edit-title-input" type="text" onChange={handleTitleChange} />
           <button type="submit">Save</button>
           <button type="button" onClick={() => setIsEditing(false)}>Cancel</button>
         </form> :
-        <>
+            <>
           <div className="playlist-header">
+            <p>Playlist - Made By {user?.public_name}</p>
             <h1>{currentPlaylist?.title} <FontAwesomeIcon size="sm" icon={faPenToSquare} onClick={handleEditClick} /> </h1>
             {currentUserId == userId && (
               <div className="playlist-actions">
@@ -113,8 +118,6 @@ export default function Playlist({appQueue}) {
           <PlaylistSongs songs={songsArr} />
         </>
       }
-
-      <Player songs={queue} />
     </div>
   )
 }

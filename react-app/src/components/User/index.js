@@ -17,42 +17,35 @@ export default function User() {
   const { userId } = useParams()
   const pageUser = pageUserObj[userId]
   const [isFollowing, setIsFollowing] = useState(false)
-  const [isClickDisabled, setIsClickDisabled] = useState(false)
-  
+
+
   const handleFollowClick = async (e) => {
-  e.preventDefault()
-    if (isClickDisabled) return;
+    e.preventDefault()
+    if (!sessionUser) alert("Log in to Follow")
+
     try {
-      setIsClickDisabled(true);
       if (userId && userId !== 0) {
-        dispatch(followUser(userId))
-        dispatch(getFollowers(userId))
-        setIsFollowing(true)
+        await dispatch(followUser(userId))
+        await dispatch(getFollowers(userId))
+
       }
     } catch (err) {
       alert(err)
     }
-    setTimeout(() => {
-      setIsClickDisabled(false);
-    }, 1000)
   }
-  
+
   const handleUnfollowClick = async (e) => {
     e.preventDefault()
-    if (isClickDisabled) return;
+
     try {
-      setIsClickDisabled(true);
       if (userId && userId !== 0) {
-        dispatch(unfollowUser(userId))
-        dispatch(getFollowers(userId))
-        setIsFollowing(false)
+          await dispatch(unfollowUser(userId))
+          await dispatch(getFollowers(userId))
+          // setIsFollowing(false)
       }
     } catch (err) {
       alert(err)
     }
-    setTimeout(() => {
-      setIsClickDisabled(false);
-    }, 1000)
   }
 
   useEffect(() => {
@@ -74,7 +67,7 @@ export default function User() {
         <div className="user-info">
           <h1>{pageUser?.public_name}</h1>
           <div>{followersArr.length ? `${followersArr.length} Followers` : currentUserId == userId ? "" : "Be the first to follow!"}</div>
-          {currentUserId == userId ? "" : followersObj[currentUserId] ? 
+          {currentUserId == userId ? "" : followersObj[currentUserId] ?
             <button className="unfollow-button" onClick={handleUnfollowClick}>Following</button>
             :
             <button className="follow-button" onClick={handleFollowClick}>Follow</button>

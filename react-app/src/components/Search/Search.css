@@ -8,6 +8,8 @@
     width: 364px;
     border: 2px solid #ccc;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    position: absolute;
+    right: 350px;
   }
   
   .search-icon {
@@ -51,4 +53,10 @@
   margin-bottom: 10px;
   cursor: pointer;
   transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
+}
+
+.search-song-result {
+  position: fixed;
+  right: 300px;
+  top: 100px;
 }

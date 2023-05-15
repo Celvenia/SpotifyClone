@@ -4,7 +4,7 @@ import { getSongs } from "../../store/songs";
 import "./Songs.css";
 import Song from "../Song";
 
-export default function Songs(props) {
+export default function Songs() {
   const dispatch = useDispatch();
   const songsObj = useSelector((state) => state.songReducer);
   const songsArr = Object.values(songsObj);

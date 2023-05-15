@@ -39,7 +39,7 @@ export default function SearchPage({ recentSearch, artists }) {
                 <img src="https://picsum.photos/300/200" alt="Card Image" />
                 <div className="card-body"></div>
             </div>
-            <h3>Artist Suggestions</h3>
+            <h3 className="carousel-title">Artist Suggestions</h3>
             <div className="search-page">
                 <div className="carousel-container">
                     {/* translateX, moves card backwards based on slideIndex -slideIndex * 100% */}

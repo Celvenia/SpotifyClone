@@ -4,13 +4,13 @@ import { logout } from "../../store/session";
 import OpenModalButton from "../OpenModalButton";
 import LoginFormModal from "../LoginFormModal";
 import SignupFormModal from "../SignupFormModal";
-import { getPlaylists } from "../../store/playlists";
 import { resetPlaylists } from "../../store/playlists";
-import { NavLink } from "react-router-dom";
+import { NavLink, useHistory } from "react-router-dom";
 import "./Navigation.css"
 
 function ProfileButton({ user }) {
   const dispatch = useDispatch();
+  const history = useHistory()
   const [showMenu, setShowMenu] = useState(false);
   const ulRef = useRef();
 
@@ -35,8 +35,9 @@ function ProfileButton({ user }) {
 
   const handleLogout = async (e) => {
     e.preventDefault();
-    await dispatch(logout());
-    dispatch(resetPlaylists())
+    await dispatch(logout())
+    .then(dispatch(resetPlaylists()))
+    .then(history.push('/'))
   };
 
   const ulClassName = "profile-dropdown" + (showMenu ? "" : " hidden");

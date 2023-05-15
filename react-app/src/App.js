@@ -16,11 +16,16 @@ import Player from "./components/Player";
 import HomePage from "./components/HomePage"
 import User from "./components/User";
 import SongCreate from "./components/SongCreate";
+import NotFound from "./components/NotFound";
 
 function App() {
   const dispatch = useDispatch();
   const [isLoaded, setIsLoaded] = useState(false);
   const [queue, setQueue] = useState([])
+
+  function handleQueueChange(newQueue) {
+    setQueue(newQueue);
+  }
 
   useEffect(() => {
     dispatch(authenticate()).then(() => setIsLoaded(true));
@@ -31,7 +36,7 @@ function App() {
       <div className="main-container">
         <Sidebar isLoaded={isLoaded} />
         <Navigation isLoaded={isLoaded} />
-        <Player isLoaded={isLoaded} />
+        <Player songs={queue}/>
         <div className="main-content">
           {isLoaded && (
             <Switch>
@@ -54,7 +59,7 @@ function App() {
                 <Albums />
               </Route>
               <Route path="/playlists/:playlistId">
-                <Playlist queue={queue}/>
+                <Playlist queue={queue} onQueueChange={handleQueueChange}/>
               </Route>
               <Route path="/search">
                 <Search />
@@ -65,6 +70,7 @@ function App() {
               <Route exact path="/">
                 <HomePage />
               </Route>
+                <NotFound />
             </Switch>
           )}
         </div>

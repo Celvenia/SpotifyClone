@@ -1,0 +1,10 @@
+.delete-song-button {
+    position: fixed;
+    bottom: 150px;
+    right: 50px;
+    height: 50px;
+    background-color: #212121;
+    color: white;
+    border-radius: 20px;
+    box-shadow: 2px 2px 2px 1px #1db954;
+}
