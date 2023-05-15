@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getPlaylistSongs } from "../../store/playlistSongs";
 import { NavLink, useParams } from "react-router-dom";
-import {PlayCurrentSong} from "../Player";
+import Player from "../Player";
 
 export default function PlaylistSongs({songs}) {
 
@@ -25,7 +25,7 @@ export default function PlaylistSongs({songs}) {
       <div>Songs</div>
       {songs.map((song) => (
         <div key={song.id}>
-          <a onClick={()=> PlayCurrentSong(song)} className="song-link">
+          <a onClick={Player(song)} className="song-link">
             <span>Name: {song.title}</span>
             <span>Date released: {convertDate(song.release_date)}</span>
             <span>Duration: {convertDuration(song.duration_ms)}</span>

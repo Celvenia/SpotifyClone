@@ -46,7 +46,7 @@ function ProfileButton({ user }) {
 			{/* <button className="invisible-button profile-picture-div" onClick={openMenu}> */}
 			{/* <i className="fas fa-user-circle" /> */}
 			<div className="profile-picture-div" onClick={openMenu}>
-				<img src={user.profile_picture} className="profile-picture" alt={user.username} />
+				<img src={user ? user.profile_picture:""} className="profile-picture" alt={user ? user.username:""} />
 			</div>
 			{/* </button> */}
 			<div className={ulClassName} ref={ulRef}>

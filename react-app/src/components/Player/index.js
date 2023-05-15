@@ -11,8 +11,19 @@ const Player = ({ songs }) => {
   const [songArtist,setSongArtist] = useState('');
   const player = useRef();
 
+  
+
   useEffect(()=>{
-if (songs!= null) {
+    let song = JSON.parse(window.localStorage.getItem('song') || "[]");
+   if (window.localStorage.getItem('song') != null) {
+    console.log(song);
+    setSongName(song.title);
+     setSongArtist(userObj[song.user_id]?.public_name);
+     setCurrentSongIndex(song.url);
+     //player.current.audio.current.play();
+     window.localStorage.removeItem('song');
+   }
+if (songs != null) {
   setSongName(songs[currentSongIndex]?.title);
   setSongArtist(userObj[songs[currentSongIndex]?.user_id]?.public_name);
 }
@@ -39,6 +50,8 @@ if (songs!= null) {
   const handlePrevSong = () => {
     if (songs!= null) {
     const prevSongIndex = currentSongIndex === 0 ? songs.length - 1 : currentSongIndex - 1;
+    setSongName(songs[currentSongIndex - 1]?.title);
+    setSongArtist(userObj[songs[currentSongIndex - 1]?.user_id]?.public_name);
     setCurrentSongIndex(prevSongIndex);
     }
   };
@@ -54,6 +67,7 @@ if (songs!= null) {
         autoPlay
         src={songs ? songs[currentSongIndex]?.url:currentSongIndex}
         className="audio-player"
+        ref={player}
         onEnded={handleNextSong}
       />
      
