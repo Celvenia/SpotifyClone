@@ -9,12 +9,6 @@ function Navigation({ isLoaded }) {
 
 	return (
 		<div className="gap">
-			{/* <li>
-				<NavLink exact to="/">Home</NavLink>
-			</li>
-			<li>
-				<NavLink exact to="/search">Search</NavLink>
-			</li> */}
 			{isLoaded && (
 				<li className='profile-button'>
 					<ProfileButton user={sessionUser} />
