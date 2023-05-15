@@ -16,7 +16,14 @@ function OpenModalButton({
   };
 
   return (
-    <button onClick={onClick}>{buttonText}</button>
+    <button style={{ 
+      height: "30px", 
+      backgroundColor: "#212121",
+      margin: "2px 2px 2px",
+      color: "white", 
+      borderRadius: "20px", 
+      boxShadow: "2px 2px 2px 1px #1db954" 
+    }} onClick={onClick}>{buttonText}</button>
   );
 }
 

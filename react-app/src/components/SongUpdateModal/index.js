@@ -1,28 +1,31 @@
 import React, { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
-import { useHistory } from 'react-router-dom/cjs/react-router-dom.min';
-import { createASong } from '../../store/songs';
-import "./SongCreate.css"
+import { useHistory } from 'react-router-dom';
+import { updateASong } from '../../store/songs';
+import { useModal } from '../../context/Modal';
+import "./SongUpdateModal.css"
 
-export default function SongCreate() {
+export default function SongmodalModal({song}) {
     const dispatch = useDispatch()
     const history = useHistory()
-    const [albumId, setAlbumId] = useState(0)
-    const [title, setTitle] = useState("")
-    const [duration, setDuration] = useState(0)
-    const [url, setUrl] = useState("")
-    const [releaseDate, setReleaseDate] = useState(null)
-    const [genre, setGenre] = useState(null)
+    const [albumId, setAlbumId] = useState(song.album_id)
+    const [title, setTitle] = useState(song.title)
+    const [duration, setDuration] = useState(song.duration_ms)
+    const [url, setUrl] = useState(song.url)
+    const [releaseDate, setReleaseDate] = useState(song.release_date)
+    const [genre, setGenre] = useState(song.genre)
     const [errors, setErrors] = useState([])
+    const { closeModal } = useModal();
+
     const sessionUser = useSelector(state => state.session?.user)
 
 
-    const handleCreateSongSubmit = async (e) => {
+    const handleUpdateSongSubmit = async (e) => {
         e.preventDefault();
 
 
         try {
-            const song = await dispatch(createASong({
+            const data = await dispatch(updateASong({
                 album_id: albumId,
                 title: title,
                 duration_ms: duration,
@@ -30,18 +33,23 @@ export default function SongCreate() {
                 release_date: releaseDate,
                 genre: genre
             }))
-            await history.push(`/songs/${song.id}`);
+            if (data) {
+                setErrors(data);
+              } else {
+                  closeModal()
+              }
         } catch (err) {
             alert(err);
         }
     };
+
     return (
         <>
             {sessionUser?.is_artist ? (
                 <div className="song-modal-container">
-                    <h2>Create a New Song</h2>
+                    <h2>Update a Song</h2>
 
-                    <form className="song-modal-form" onSubmit={handleCreateSongSubmit}>
+                    <form className="song-modal-form" onSubmit={handleUpdateSongSubmit}>
                         <ul>
                             {errors.length ? <h3>Errors</h3> : ""}
                             <div className="errors">
@@ -59,6 +67,7 @@ export default function SongCreate() {
                             min="1"
                             max="4"
                             placeholder="Album Id"
+                            value={albumId}
                             onChange={(e) => setAlbumId(e.target.value)}
                             required
                         />
@@ -68,6 +77,7 @@ export default function SongCreate() {
                             className="song-modal-input"
                             type="text"
                             placeholder="Song Title"
+                            value={title}
                             onChange={(e) => setTitle(e.target.value)}
                             required
                         />
@@ -76,6 +86,7 @@ export default function SongCreate() {
                             className="song-modal-input"
                             type="number"
                             placeholder="Song Duration in ms"
+                            value={duration}
                             onChange={(e) => setDuration(e.target.value)}
                             required
                         />
@@ -84,6 +95,7 @@ export default function SongCreate() {
                             className="song-modal-input"
                             type="url"
                             placeholder="Song URL for upload"
+                            value={url}
                             onChange={(e) => setUrl(e.target.value)}
                             required
                         />
@@ -93,6 +105,7 @@ export default function SongCreate() {
                             className="song-modal-input"
                             type="date"
                             placeholder="Release Date"
+                            value={releaseDate}
                             onChange={(e) => setReleaseDate(e.target.value)}
                             max={new Date().toISOString().split("T")[0]}
                             required
@@ -110,7 +123,7 @@ export default function SongCreate() {
                             type="submit"
                             disabled={errors.length ? true : false}
                         >
-                            Create
+                            modal
                         </button>
                     </form>
                 </div>

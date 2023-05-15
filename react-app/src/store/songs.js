@@ -99,7 +99,7 @@ export const updateASong = (payload, song) => async (dispatch) => {
   });
   if(res.ok) {
     const data = await res.json();
-     dispatch(updateSong({...song, ...data}))
+     dispatch(updateSong({song,...data}))
      return data
   } else return res.json()
 }

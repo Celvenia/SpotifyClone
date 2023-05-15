@@ -7,6 +7,7 @@ import SignupFormModal from "../SignupFormModal";
 import { resetPlaylists } from "../../store/playlists";
 import { NavLink, useHistory } from "react-router-dom";
 import "./Navigation.css"
+import SongCreate from "../SongCreate";
 
 function ProfileButton({ user }) {
   const dispatch = useDispatch();
@@ -36,8 +37,8 @@ function ProfileButton({ user }) {
   const handleLogout = async (e) => {
     e.preventDefault();
     await dispatch(logout())
-    .then(dispatch(resetPlaylists()))
-    .then(history.push('/'))
+      .then(dispatch(resetPlaylists()))
+      .then(history.push('/'))
   };
 
   const ulClassName = "profile-dropdown" + (showMenu ? "" : " hidden");
@@ -47,18 +48,29 @@ function ProfileButton({ user }) {
     <>
       <button className="invisible-button" onClick={openMenu}>
         {user ? <img className="small-profile-pic" src={user.profile_picture} />
-        :
-        <i className="fas fa-user-circle" />}
-        
+          :
+          <i className="fas fa-user-circle" />}
+
       </button>
       <ul className={ulClassName} ref={ulRef}>
         {user ? (
           <>
             <li>{user.username}</li>
             <li>{user.email}</li>
-            {user.is_artist ? <NavLink className="song-link" to={"/songs/create"}>Upload Song</NavLink> : ""}
+            {user.is_artist ? <OpenModalButton
+              buttonText="Create Song"
+              onItemClick={closeMenu}
+              modalComponent={<SongCreate />}
+            /> : ""}
             <li>
-              <button onClick={handleLogout}>Log Out</button>
+              <button style={{
+                height: "30px",
+                backgroundColor: "#212121",
+                margin: "3px 3px 3px",
+                color: "white",
+                borderRadius: "20px",
+                boxShadow: "2px 2px 2px 1px #1db954"
+              }} onClick={handleLogout}>Log Out</button>
             </li>
           </>
         ) : (
