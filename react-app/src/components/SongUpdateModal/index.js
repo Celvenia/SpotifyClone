@@ -8,9 +8,9 @@ import "./SongUpdateModal.css"
 export default function SongmodalModal({song}) {
     const dispatch = useDispatch()
     const history = useHistory()
-    const [albumId, setAlbumId] = useState(song.album_id)
-    const [title, setTitle] = useState(song.title)
-    const [duration, setDuration] = useState(song.duration_ms)
+    const [albumId, setAlbumId] = useState()
+    const [title, setTitle] = useState()
+    const [duration, setDuration] = useState()
     const [url, setUrl] = useState(song.url)
     const [releaseDate, setReleaseDate] = useState(song.release_date)
     const [genre, setGenre] = useState(song.genre)
@@ -22,25 +22,34 @@ export default function SongmodalModal({song}) {
 
     const handleUpdateSongSubmit = async (e) => {
         e.preventDefault();
-
-
-        try {
+        // console.log(albumId)
+        const what = {
+            album_id: albumId,
+            title: title,
+            duration_ms: duration,
+            url: url,
+            release_date: releaseDate,
+            genre: genre,
+        ...song}
+        console.log(what)
+        console.log(window.location.href)
+        // try {
             const data = await dispatch(updateASong({
                 album_id: albumId,
                 title: title,
                 duration_ms: duration,
                 url: url,
                 release_date: releaseDate,
-                genre: genre
-            }))
-            if (data) {
-                setErrors(data);
-              } else {
-                  closeModal()
-              }
-        } catch (err) {
-            alert(err);
-        }
+                genre: genre,
+            ...song}))
+            // if (data) {
+            //     setErrors(data);
+        //       } else {
+        //           closeModal()
+        //       }
+        // } catch (err) {
+        //     alert(err);
+        // }
     };
 
     return (
@@ -77,7 +86,7 @@ export default function SongmodalModal({song}) {
                             className="song-modal-input"
                             type="text"
                             placeholder="Song Title"
-                            value={title}
+                            // value={title}
                             onChange={(e) => setTitle(e.target.value)}
                             required
                         />

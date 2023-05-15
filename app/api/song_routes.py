@@ -75,14 +75,14 @@ def update_song(id):
     duration_ms = request.json.get('duration_ms')
     url = request.json.get('url')
     release_date = request.json.get('release_date')
-    genres = request.json.get('genres')
+    genre = request.json.get('genre')
 
     song.title = title or song.title
     song.album_id = album_id or song.album_id
     song.duration_ms = duration_ms or song.duration_ms
     song.url = url or song.url
     song.release_date = release_date or song.release_date
-    song.genres = genres or song.genres
+    song.genre = genre or song.genre
     song.updated_at = datetime.now()
 
     db.session.commit()

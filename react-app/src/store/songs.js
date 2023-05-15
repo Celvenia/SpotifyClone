@@ -89,18 +89,20 @@ export const deleteASong = (songId) => async (dispatch) => {
   } else return res.json()
 };
 
-export const updateASong = (payload, song) => async (dispatch) => {
+export const updateASong = (song) => async (dispatch) => {
   const res = await fetch(`/api/songs/${song.id}`, {
     method: "PUT",
     headers: {
       "Content-Type": "application/json",
     },
-    body: JSON.stringify(payload),
+    body: JSON.stringify(song),
   });
+
   if(res.ok) {
-    const data = await res.json();
-     dispatch(updateSong({song,...data}))
-     return data
+    const song = await res.json();
+    console.log(song)
+     dispatch(updateSong({...song}))
+     return song
   } else return res.json()
 }
 
