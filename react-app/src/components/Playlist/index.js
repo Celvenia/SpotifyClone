@@ -16,9 +16,10 @@ import Player from "../Player";
 import "../../index.css"
 import "./Playlist.css"
 
-export default function Playlist() {
+export default function Playlist({appQueue}) {
   const dispatch = useDispatch()
   const history = useHistory();
+  const [queue, setQueue] = useState(appQueue)
   const { playlistId } = useParams();
 
   const sessionUser = useSelector(state => state.session.user);
@@ -29,7 +30,7 @@ export default function Playlist() {
 
   const songsObj = useSelector(state => state.playlistSongsReducer)
   const songsArr = Object.values(songsObj);
-
+  // queue = {...songsArr}
 
   // this is playlist's user
   const users = useSelector(state => state.userReducer)
@@ -38,8 +39,6 @@ export default function Playlist() {
 
   const [title, setTitle] = useState(currentPlaylist?.title);
   const [isEditing, setIsEditing] = useState(false);
-  const [isPlaying, setIsPlaying] = useState(false)
-  const [currentSongUrl, setCurrentSongUrl] = useState(null);
 
 
   useEffect(() => {
@@ -65,7 +64,14 @@ export default function Playlist() {
 
   const handlePlayClick = async (e) => {
     e.preventDefault();
-    setIsPlaying(!isPlaying)
+   
+    if (queue?.length && queue !== undefined) {
+      const combinedQueue = new Set([...queue, ...songsArr])
+      setQueue([...combinedQueue])
+    } else {
+      new Set([...songsArr])
+      setQueue([...songsArr])
+    }
   }
 
   const handleTitleChange = (e) => {
@@ -95,7 +101,7 @@ export default function Playlist() {
             {currentUserId == userId && (
               <div className="playlist-actions">
                 <button className="play-playlist-button" onClick={handlePlayClick}>
-                  PLAY PLAYLIST
+                  ADD PLAYLIST TO QUEUE
                 </button>
                 <button className="delete-playlist-button" onClick={handleDeleteClick}>
                   DELETE PLAYLIST
@@ -108,7 +114,7 @@ export default function Playlist() {
         </>
       }
 
-      <Player songs={songsArr} />
+      <Player songs={queue} />
     </div>
   )
 }

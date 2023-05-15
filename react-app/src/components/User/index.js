@@ -20,7 +20,7 @@ export default function User() {
   const [isClickDisabled, setIsClickDisabled] = useState(false)
   
   const handleFollowClick = async (e) => {
-    e.preventDefault()
+  e.preventDefault()
     if (isClickDisabled) return;
     try {
       setIsClickDisabled(true);
@@ -83,17 +83,16 @@ export default function User() {
       </div>
       <div className="user-tabs">
         <ul>
-          <li><a href="">Overview</a></li>
-          <li><a href="">Related Artists</a></li>
-          <li><a href="">Top Tracks</a></li>
-          <li><a href="">Albums</a></li>
-          <li><a href="">Singles and EPs</a></li>
-          <li><a href="">Appears On</a></li>
-          <li><a href="">Compilations</a></li>
+          <li><a>Overview</a></li>
+          <li><a>Related Artists</a></li>
+          <li><a>Top Tracks</a></li>
+          <li><a>Albums</a></li>
+          <li><a>Singles and EPs</a></li>
+          <li><a>Appears On</a></li>
+          <li><a>Compilations</a></li>
         </ul>
       </div>
       <div className="user-content">
-        {/* Add content here */}
       </div>
     </>
   )

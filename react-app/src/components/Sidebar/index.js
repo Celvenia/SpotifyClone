@@ -39,6 +39,7 @@ const Sidebar = () => {
 
   const handleCreatePlaylistClick = async (e) => {
     e.preventDefault();
+    if(!sessionUser) alert("Log In To Create Playlist")
     
     try {
       const playlist = await dispatch(createAPlaylist())

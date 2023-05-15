@@ -20,7 +20,7 @@ import SongCreate from "./components/SongCreate";
 function App() {
   const dispatch = useDispatch();
   const [isLoaded, setIsLoaded] = useState(false);
-
+  const [queue, setQueue] = useState([])
 
   useEffect(() => {
     dispatch(authenticate()).then(() => setIsLoaded(true));
@@ -54,7 +54,7 @@ function App() {
                 <Albums />
               </Route>
               <Route path="/playlists/:playlistId">
-                <Playlist />
+                <Playlist queue={queue}/>
               </Route>
               <Route path="/search">
                 <Search />

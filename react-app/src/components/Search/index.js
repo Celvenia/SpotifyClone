@@ -81,7 +81,7 @@ export default function Search() {
         </div>
         <input
           type="text"
-          placeholder="What songs do you want to listen to"
+          placeholder={window.location.href.includes('/search') ? "Navigate To Song Page" : "What songs do you want to listen to"}
           className="search-input"
           value={searchInput}
           onChange={handleChange}

@@ -1,25 +1,24 @@
-
 .song_create_container {
     max-width: 400px;
     margin: 0 auto;
     padding: 30px;
-    background-color: #000;
+    background-color: #191414;
     color: #fff;
+    border-radius: 20px;
   }
   
-
   .song_create_form {
     display: flex;
     flex-direction: column;
   }
   
-
-  label {
-    margin-bottom: 5px;
-    font-size: 14px;
+  .song-create-label {
+    margin-bottom: 2px;
+    font-size: 10px;
+    font-weight: bold;
   }
   
-  input,
+  .song-create-input,
   select {
     padding: 10px;
     margin-bottom: 20px;
@@ -29,7 +28,7 @@
     color: #fff;
     font-size: 16px;
   }
-  
+
   input::placeholder,
   select::placeholder {
     color: #b3b3b3;
@@ -37,12 +36,13 @@
   
   .song_create_button {
     padding: 10px;
-    margin-top: 20px;
+    margin-top: 10px;
     border: none;
-    border-radius: 5px;
+    border-radius: 30px;
     background-color: #1db954;
     color: #fff;
     font-size: 16px;
+    font-weight: bold;
     cursor: pointer;
     transition: background-color 0.2s ease-in-out;
   }
