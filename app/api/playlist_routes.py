@@ -30,7 +30,7 @@ def playlists(id):
 @playlist_routes.route('', methods=['POST'])
 @login_required
 def create_playlist():
-    playlist = Playlist(title='New Playlist', user_id=current_user.id)
+    playlist = Playlist(title='New Playlist',tile_image_url="https://t.scdn.co/images/3099b3803ad9496896c43f22fe9be8c4.png", user_id=current_user.id)
     db.session.add(playlist)
     db.session.commit()
 
