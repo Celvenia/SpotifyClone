@@ -90,6 +90,7 @@ export const deleteASong = (songId) => async (dispatch) => {
 };
 
 export const updateASong = (song) => async (dispatch) => {
+
   const res = await fetch(`/api/songs/${song.id}`, {
     method: "PUT",
     headers: {
@@ -99,10 +100,10 @@ export const updateASong = (song) => async (dispatch) => {
   });
 
   if(res.ok) {
-    const song = await res.json();
-    console.log(song)
-     dispatch(updateSong({...song}))
-     return song
+    const data = await res.json();
+
+     dispatch(updateSong({...song,...data}))
+     return data
   } else return res.json()
 }
 
@@ -133,7 +134,7 @@ const songReducer = (state = initialState, action) => {
 
     case DELETE_SONG: {
       const newState = { ...state };
-      delete newState[action.spotId];
+      delete newState[action.songId];
       return newState;
     }
 

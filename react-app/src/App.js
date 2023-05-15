@@ -11,7 +11,6 @@ import Albums from "./components/Albums";
 import Sidebar from "./components/Sidebar"
 import Playlist from "./components/Playlist";
 import Search from "./components/Search";
-import Home from "./components/Home";
 import Player from "./components/Player";
 import HomePage from "./components/HomePage"
 import User from "./components/User";

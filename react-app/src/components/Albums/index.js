@@ -1,17 +1,18 @@
 import React from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { useEffect } from "react";
-import { getAlbums, getLikedAlbums } from "../../store/albums";
+// import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
+// import { useEffect } from "react";
+// import { getAlbums, getLikedAlbums } from "../../store/albums";
 import { NavLink } from "react-router-dom";
 
 export default function Albums() {
-    const dispatch = useDispatch()
+    // const dispatch = useDispatch()
     const albumsObj = useSelector(state => state.albumReducer)
     const albumsArr = Object.values(albumsObj);
     const likedAlbumsObj = useSelector(state => state.albumReducer.liked_albums)
-    const likedAlbumsArr = Object.values(likedAlbumsObj)
+    // const likedAlbumsArr = Object.values(likedAlbumsObj)
     const sessionUser = useSelector(state => state.session.user);
-    const userId = sessionUser?.id
+    // const userId = sessionUser?.id
 
 
     // useEffect(() => {

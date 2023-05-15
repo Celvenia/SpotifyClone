@@ -1,16 +1,18 @@
 import React, { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
-import { updateASong } from '../../store/songs';
+import { getSongs, updateASong } from '../../store/songs';
 import { useModal } from '../../context/Modal';
 import "./SongUpdateModal.css"
+import { useParams } from 'react-router-dom/cjs/react-router-dom.min';
 
-export default function SongmodalModal({song}) {
+export default function SongmodalModal({ song }) {
     const dispatch = useDispatch()
     const history = useHistory()
-    const [albumId, setAlbumId] = useState()
-    const [title, setTitle] = useState()
-    const [duration, setDuration] = useState()
+    const { songId } = useParams()
+    const [albumId, setAlbumId] = useState(song.album_id)
+    const [title, setTitle] = useState(song.title)
+    const [duration, setDuration] = useState(song.duration_ms)
     const [url, setUrl] = useState(song.url)
     const [releaseDate, setReleaseDate] = useState(song.release_date)
     const [genre, setGenre] = useState(song.genre)
@@ -22,35 +24,27 @@ export default function SongmodalModal({song}) {
 
     const handleUpdateSongSubmit = async (e) => {
         e.preventDefault();
-        // console.log(albumId)
-        const what = {
-            album_id: albumId,
-            title: title,
-            duration_ms: duration,
-            url: url,
-            release_date: releaseDate,
-            genre: genre,
-        ...song}
-        console.log(what)
-        console.log(window.location.href)
-        // try {
-            const data = await dispatch(updateASong({
-                album_id: albumId,
-                title: title,
-                duration_ms: duration,
-                url: url,
-                release_date: releaseDate,
-                genre: genre,
-            ...song}))
-            // if (data) {
-            //     setErrors(data);
-        //       } else {
-        //           closeModal()
-        //       }
-        // } catch (err) {
-        //     alert(err);
-        // }
+
+        song.title = title
+        song.duration_ms = duration
+        song.url = url
+        song.release_date = releaseDate
+        song.genre = genre
+
+        try {
+        const data = await dispatch(updateASong(song))
+
+        dispatch(getSongs())
+        if (data) {
+            setErrors(data);
+              } else {
+                  closeModal()
+              }
+        } catch (err) {
+            alert(err);
+        }
     };
+
 
     return (
         <>
@@ -59,16 +53,8 @@ export default function SongmodalModal({song}) {
                     <h2>Update a Song</h2>
 
                     <form className="song-modal-form" onSubmit={handleUpdateSongSubmit}>
-                        <ul>
-                            {errors.length ? <h3>Errors</h3> : ""}
-                            <div className="errors">
-                                {errors.map((error, idx) => (
-                                    <li key={idx}>{error}</li>
-                                ))}
-                            </div>
-                        </ul>
 
-                        <label className="song-modal-label">AlbumId</label>
+                        {/* <label className="song-modal-label">AlbumId</label>
                         <input
                             className="song-modal-input"
                             type="number"
@@ -79,14 +65,14 @@ export default function SongmodalModal({song}) {
                             value={albumId}
                             onChange={(e) => setAlbumId(e.target.value)}
                             required
-                        />
+                        /> */}
 
                         <label className="song-modal-label">Song Title</label>
                         <input
                             className="song-modal-input"
                             type="text"
                             placeholder="Song Title"
-                            // value={title}
+                            value={title}
                             onChange={(e) => setTitle(e.target.value)}
                             required
                         />

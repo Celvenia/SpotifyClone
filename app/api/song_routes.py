@@ -59,16 +59,16 @@ def create_song():
     return new_song.to_dict(), 201
 
 
-@song_routes.route('/<int:id>', methods=['PUT'])
+@song_routes.route('/<int:songId>', methods=['PUT'])
 @login_required
-def update_song(id):
+def update_song(songId):
     """
     Updates an existing song with the given id if the user is the song's artist
     """
-    song = Song.query.get(id)
+    song = Song.query.get(songId)
 
     if song.user_id != current_user.id:
-        return jsonify(error="You don't have the permission to update this song"), 401
+        return jsonify(error=["You don't have the permission to update this song"]), 401
 
     title = request.json.get('title')
     album_id = request.json.get('album_id')
@@ -76,6 +76,7 @@ def update_song(id):
     url = request.json.get('url')
     release_date = request.json.get('release_date')
     genre = request.json.get('genre')
+    
 
     song.title = title or song.title
     song.album_id = album_id or song.album_id
@@ -90,18 +91,18 @@ def update_song(id):
     return song.to_dict()
 
 
-@song_routes.route('/<int:id>', methods=['DELETE'])
+@song_routes.route('/<int:songId>', methods=['DELETE'])
 @login_required
-def delete_song(id):
+def delete_song(songId):
     """
     Deletes an existing song with the given id if the user is the song's artist
     """
-    song = Song.query.get(id)
+    song = Song.query.get(songId)
 
     if song.user_id != current_user.id:
-        return jsonify(error="You don't have the permission to delete this song"), 401
+        return jsonify(error=["You don't have the permission to delete this song"]), 401
 
     db.session.delete(song)
     db.session.commit()
 
-    return jsonify(message=f"Song with id {id} has been deleted"), 200
+    return {"song": song.to_dict()}
