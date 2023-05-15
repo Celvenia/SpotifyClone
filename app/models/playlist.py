@@ -17,7 +17,7 @@ class Playlist(db.Model):
     user_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('users.id')), nullable=False)
     title = db.Column(db.String(255), nullable=False)
     is_private = db.Column(db.Boolean, default=False)
-    tile_image_url = db.Column(db.String, nullable=True, default="https://t.scdn.co/images/3099b3803ad9496896c43f22fe9be8c4.png")
+    tile_image_url = db.Column(db.String(255), nullable=True, default="https://t.scdn.co/images/3099b3803ad9496896c43f22fe9be8c4.png")
     created_at = db.Column(db.DateTime(timezone=True), server_default=func.now())
     updated_at = db.Column(db.DateTime(timezone=True), server_default=func.now())
 

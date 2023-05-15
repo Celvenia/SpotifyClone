@@ -10,7 +10,7 @@ export default function SongInfo() {
     const history = useHistory()
     const { songId } = useParams();
     const songsObj = useSelector(state => state.songReducer)
-    const sessionUser = useSelector(state => state.session)
+    const sessionUser = useSelector(state => state.session.user)
     const song = songsObj[songId]
 
         useEffect(() => {
@@ -26,7 +26,7 @@ export default function SongInfo() {
 
     return ( !song ? <div>Sorry Song with Id #{songId} Not Found </div> :
 <div>
-    <div>{song.title}</div> {sessionUser.user.id == song.user_id ? <button className="delete-song-button" onClick={handleDeleteClick}>Delete</button> : ""}
+    <div>{song.title}</div> {sessionUser && sessionUser?.id == song?.user_id ? <button className="delete-song-button" onClick={handleDeleteClick}>Delete</button> : ""}
     <div> This is where something like lyrics would go</div>
 </div>
         
