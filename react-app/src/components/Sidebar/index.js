@@ -1,10 +1,9 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import { NavLink, useHistory } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 
 import { getPlaylists, createAPlaylist } from '../../store/playlists';
 import { getSongs } from '../../store/songs';
-import { getAlbums, getLikedAlbums } from '../../store/albums';
 import { getUsers } from '../../store/users';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -17,7 +16,7 @@ import {
 
 import SidebarPlaylist from '../SidebarPlaylist';
 import './Sidebar.css';
-import { getFollowers } from '../../store/followers';
+
 
 const Sidebar = () => {
   const dispatch = useDispatch();
@@ -30,7 +29,6 @@ const Sidebar = () => {
 
   useEffect(() => {
     dispatch(getSongs());
-    // dispatch(getAlbums());
     dispatch(getUsers())
     if (userId) {
       dispatch(getPlaylists());
@@ -88,7 +86,7 @@ const Sidebar = () => {
 
       <div className="sidebar-section">
         {/* <hr /> */}
-        {playlistArr.length
+        {sessionUser && playlistArr.length
           ? playlistArr?.map((playlist) => (
             <SidebarPlaylist
               playlist={playlist}

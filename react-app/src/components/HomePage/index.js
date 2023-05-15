@@ -1,5 +1,4 @@
 import React from 'react';
-import { useSelector } from 'react-redux';
 import './HomePage.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faPlay, faCircle } from '@fortawesome/free-solid-svg-icons'

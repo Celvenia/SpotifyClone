@@ -16,7 +16,7 @@ export default function SearchPage({ recentSearch, artists }) {
                     <NavLink to={`/users/${suggestedArtists[i].id}`}>
                     <h3 className="card-title">{suggestedArtists[i].public_name}</h3>
                     </NavLink>
-                    <img src={suggestedArtists[i].profile_picture} alt="Card Image" />
+                    <img src={suggestedArtists[i].profile_picture} alt="Card" />
                     <div className="card-body"></div>
                 </div>
             );
@@ -36,7 +36,7 @@ export default function SearchPage({ recentSearch, artists }) {
         <>
              <div className="browse-card">
                 <h3 className="card-title">Recent Search - {recentSearch} </h3>
-                <img src="https://picsum.photos/300/200" alt="Card Image" />
+                <img src="https://picsum.photos/300/200" alt="Card" />
                 <div className="card-body"></div>
             </div>
             <h3 className="carousel-title">Artist Suggestions</h3>

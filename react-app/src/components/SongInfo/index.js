@@ -17,7 +17,7 @@ export default function SongInfo() {
 
     useEffect(() => {
         dispatch(getSong(songId))
-    }, [dispatch])
+    }, [dispatch, songId])
 
 
     const handleDeleteClick = async (e) => {
@@ -29,8 +29,8 @@ export default function SongInfo() {
 
     return (!song ? <div>Sorry Song with Id #{songId} Not Found </div> :
         <div>
-            <div>{song.title}</div> {sessionUser.user.id == song.user_id ? <button className="delete-song-button" onClick={handleDeleteClick}>Delete</button> : ""}
-            {sessionUser.user.id == song.user_id ?
+            <div>{song.title}</div> {sessionUser.user.id === song.user_id ? <button className="delete-song-button" onClick={handleDeleteClick}>Delete</button> : ""}
+            {sessionUser.user.id === song.user_id ?
                 <OpenModalButton
                     buttonText="Update"
                     className="update-song-button"

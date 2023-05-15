@@ -1,12 +1,14 @@
 import React, { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
-import { useHistory } from 'react-router-dom/cjs/react-router-dom.min';
-import { createASong } from '../../store/songs';
+import { useHistory } from 'react-router-dom';
+import { createASong } from '../../store/songs'
+import { useModal } from "../../context/Modal";
 import "./SongCreate.css"
 
 export default function SongCreate() {
     const dispatch = useDispatch()
     const history = useHistory()
+    const closeModal = useModal()
     const [albumId, setAlbumId] = useState(0)
     const [title, setTitle] = useState("")
     const [duration, setDuration] = useState(0)
@@ -19,7 +21,7 @@ export default function SongCreate() {
 
     const handleCreateSongSubmit = async (e) => {
         e.preventDefault();
-
+        setErrors([])
 
         try {
             const song = await dispatch(createASong({
@@ -31,9 +33,11 @@ export default function SongCreate() {
                 genre: genre
             }))
             await history.push(`/songs/${song.id}`);
-        } catch (err) {
-            alert(err);
-        }
+             closeModal()
+
+            } catch (err) {
+                alert(err);
+            }
     };
     return (
         <>

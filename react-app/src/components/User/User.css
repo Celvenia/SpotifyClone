@@ -59,12 +59,12 @@
     padding: 0;
   }
   
-  .user-tabs li {
+  .user-tabs button {
     flex: 1;
     text-align: center;
   }
   
-  .user-tabs a {
+  .user-tabs button {
     display: block;
     padding: 20px;
     color: #666;

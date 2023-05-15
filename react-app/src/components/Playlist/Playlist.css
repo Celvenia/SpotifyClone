@@ -22,9 +22,11 @@
 
 .playlist-title-edit-form {
     display: flex;
+    flex-direction: column;
     align-items: center;
     margin-top: 1rem;
   }
+
   
   .playlist-edit-title-input {
     font-size: 1.5rem;

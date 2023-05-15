@@ -1,7 +1,6 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
-import { getSongs } from "../../store/songs"
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faSearch } from '@fortawesome/free-solid-svg-icons'
 import { useState } from 'react'
@@ -16,7 +15,6 @@ import { getPlaylists } from "../../store/playlists";
 export default function Search() {
   const currentUrl = window.location.href;
   const isSearchPage = currentUrl.includes('/search');
-  const isPlaylistPage = currentUrl.includes('/playlists')
 
   const dispatch = useDispatch()
   const { playlistId } = useParams()
@@ -101,7 +99,7 @@ export default function Search() {
             </div>
             <input
               type="text"
-              placeholder={window.location.href.includes('/search') ? "Navigate To Song Page" : "What songs do you want to listen to"}
+              placeholder={isSearchPage ? "Navigate To Song Page" : "What songs do you want to listen to"}
               className="search-input"
               value={searchInput}
               onChange={handleChange}

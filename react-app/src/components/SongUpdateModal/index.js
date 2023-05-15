@@ -4,13 +4,10 @@ import { useHistory } from 'react-router-dom';
 import { getSongs, updateASong } from '../../store/songs';
 import { useModal } from '../../context/Modal';
 import "./SongUpdateModal.css"
-import { useParams } from 'react-router-dom/cjs/react-router-dom.min';
 
 export default function SongmodalModal({ song }) {
     const dispatch = useDispatch()
     const history = useHistory()
-    const { songId } = useParams()
-    const [albumId, setAlbumId] = useState(song.album_id)
     const [title, setTitle] = useState(song.title)
     const [duration, setDuration] = useState(song.duration_ms)
     const [url, setUrl] = useState(song.url)
@@ -53,19 +50,6 @@ export default function SongmodalModal({ song }) {
                     <h2>Update a Song</h2>
 
                     <form className="song-modal-form" onSubmit={handleUpdateSongSubmit}>
-
-                        {/* <label className="song-modal-label">AlbumId</label>
-                        <input
-                            className="song-modal-input"
-                            type="number"
-                            step="1"
-                            min="1"
-                            max="4"
-                            placeholder="Album Id"
-                            value={albumId}
-                            onChange={(e) => setAlbumId(e.target.value)}
-                            required
-                        /> */}
 
                         <label className="song-modal-label">Song Title</label>
                         <input
@@ -118,7 +102,7 @@ export default function SongmodalModal({ song }) {
                             type="submit"
                             disabled={errors.length ? true : false}
                         >
-                            modal
+                            Update
                         </button>
                     </form>
                 </div>

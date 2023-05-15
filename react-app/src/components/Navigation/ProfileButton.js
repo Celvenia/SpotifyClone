@@ -5,7 +5,7 @@ import OpenModalButton from "../OpenModalButton";
 import LoginFormModal from "../LoginFormModal";
 import SignupFormModal from "../SignupFormModal";
 import { resetPlaylists } from "../../store/playlists";
-import { NavLink, useHistory } from "react-router-dom";
+import {  useHistory } from "react-router-dom";
 import "./Navigation.css"
 import SongCreate from "../SongCreate";
 
@@ -47,7 +47,7 @@ function ProfileButton({ user }) {
   return (
     <>
       <button className="invisible-button" onClick={openMenu}>
-        {user ? <img className="small-profile-pic" src={user.profile_picture} />
+        {user ? <img alt="profile" className="small-profile-pic" src={user.profile_picture} />
           :
           <i className="fas fa-user-circle" />}
 

@@ -13,10 +13,10 @@ const addPlaylistSong = (playlist) => ({
     playlist,
 });
 
-const removePlaylistSong = (songId) => ({
-    type: REMOVE_PLAYLIST_SONG,
-    songId,
-});
+// const removePlaylistSong = (songId) => ({
+//     type: REMOVE_PLAYLIST_SONG,
+//     songId,
+// });
 
 export const getPlaylistSongs = (playlistId) => async (dispatch) => {
     try {
