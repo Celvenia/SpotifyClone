@@ -4,11 +4,13 @@ import 'react-h5-audio-player/lib/styles.css';
 import './Player.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faForwardStep, faBackwardStep } from '@fortawesome/free-solid-svg-icons'
+import { useSelector } from 'react-redux';
 // import { useSelector } from 'react-redux';
 
 
 const Player = ({ songs }) => {
   const [currentSongIndex, setCurrentSongIndex] = useState(0);
+  const sessionUser = useSelector(state => state.session.user)
   // const usersObj = useSelector(state => state.users)
 
   const handleNextSong = () => {
@@ -37,7 +39,7 @@ const Player = ({ songs }) => {
       { songs != null ?
       <>
       <div className="audio-player-current-song">
-        {songs?.[currentSongIndex]?.title}
+        {sessionUser ? songs?.[currentSongIndex]?.title : ""}
       </div>
         <AudioPlayer
         // autoPlay
