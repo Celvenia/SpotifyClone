@@ -46,7 +46,7 @@ export default function Playlist({ onQueueChange }) {
     if (currentPlaylist) {
       dispatch(getUser(currentPlaylist['user_id']))
     }
-  }, [dispatch, playlistId, currentPlaylist])
+  }, [dispatch, playlistId])
 
 
   const handleDeleteClick = async (e) => {
@@ -93,7 +93,7 @@ export default function Playlist({ onQueueChange }) {
       {!currentPlaylist ? "Playlist Not Found" : isEditing ?
         <div>
           <form className="playlist-title-edit-form" onSubmit={handleTitleSubmit}>
-            <input className="playlist-edit-title-input" maxLength={20} type="text" onChange={handleTitleChange} />
+            <input className="playlist-edit-title-input" maxLength={20} value={title} type="text" onChange={handleTitleChange} />
             <div>
               <button type="submit">Save</button>
               <button type="button" onClick={() => setIsEditing(false)}>Cancel</button>
