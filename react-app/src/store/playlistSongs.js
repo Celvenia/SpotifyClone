@@ -13,10 +13,11 @@ const addPlaylistSong = (playlist) => ({
     playlist,
 });
 
-// const removePlaylistSong = (songId) => ({
-//     type: REMOVE_PLAYLIST_SONG,
-//     songId,
-// });
+const removePlaylistSong = (playlist, songId) => ({
+    type: REMOVE_PLAYLIST_SONG,
+    playlist,
+    songId,
+});
 
 export const getPlaylistSongs = (playlistId) => async (dispatch) => {
     try {
@@ -50,6 +51,22 @@ export const updatePlaylistWithSong = (playlistId, songId) => async (dispatch) =
     }
   };
 
+  export const deleteAPlaylistSong = (playlistId, songId) => async (dispatch) => {
+    const res = await fetch(`/api/playlists/${playlistId}/songs`, {
+      method: "DELETE",
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({ song_id: songId})
+    });
+    if (res.ok) {
+      const song = await res.json();
+
+      dispatch(removePlaylistSong(playlistId, songId));
+      return song;
+    } else return res.json()
+  };
+
 const initialState = {};
 
 // reducer
@@ -72,6 +89,12 @@ const playlistSongsReducer = (state = initialState, action) => {
             }
           });
         return newState;
+      }
+      case REMOVE_PLAYLIST_SONG: {
+        const newState = {...state};
+        console.log(action)
+        delete newState[action.songId]
+        return newState
       }
       default: {
         return state;

@@ -13,3 +13,14 @@
     text-align: right;
     margin-right: 10px;
 }
+
+.remove-playlist-song-button {
+    display: flex;
+    justify-content: space-between;
+    background-color: #212121;
+    color: white;
+    border-radius: 20px;
+    margin-bottom: 20px;
+    margin-left: 50px;
+    box-shadow: 2px 2px 2px 1px #1db954;
+}
