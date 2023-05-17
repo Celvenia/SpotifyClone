@@ -1,0 +1,26 @@
+.song-link {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    padding: 10px;
+    margin: 2px 2px 2px;
+}
+
+.song-label {
+    width: 120px;
+    display: inline-block;
+    text-align: right;
+    margin-right: 10px;
+}
+
+.remove-playlist-song-button {
+    display: flex;
+    justify-content: space-between;
+    background-color: #212121;
+    color: white;
+    border-radius: 20px;
+    margin-bottom: 20px;
+    margin-left: 50px;
+    box-shadow: 2px 2px 2px 1px #1db954;
+}

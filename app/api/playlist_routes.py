@@ -31,6 +31,7 @@ def playlists(id):
 @login_required
 def create_playlist():
     playlist = Playlist(title='New Playlist', user_id=current_user.id)
+    # playlist = Playlist(title='New Playlist', user_id=current_user.id)
     db.session.add(playlist)
     db.session.commit()
 
@@ -101,6 +102,28 @@ def add_song_to_playlist(playlist_id):
     db.session.commit()
 
     return playlist.to_dict(), 200
+
+@playlist_routes.route('/<int:playlist_id>/songs', methods=['DELETE'])
+@login_required
+def remove_song_from_playlist(playlist_id):
+    playlist = Playlist.query.get(playlist_id)
+    if not playlist:
+        return {'errors': ['Playlist not found']}, 404
+
+    song_id = request.json.get('song_id')
+    if not song_id:
+        return {'errors': ['Song id is required']}, 400
+
+    song = Song.query.get(song_id)
+    if not song:
+        return {'errors': ['Song not found']}, 404
+
+    # delete the song from the playlist
+    playlist.songs.remove(song)
+    db.session.commit()
+
+    return {"song": song.to_dict()}, 200
+
 
 # add every song in album to playlist
 @playlist_routes.route('/<int:playlist_id>/albums', methods=['POST'])

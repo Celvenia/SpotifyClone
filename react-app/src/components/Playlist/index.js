@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useParams, useHistory, NavLink } from "react-router-dom";
+import { useParams, useHistory } from "react-router-dom";
 
 import { deleteAPlaylist, getPlaylist, updateAPlaylist } from "../../store/playlists";
 import { getPlaylistSongs } from "../../store/playlistSongs";
@@ -12,13 +12,13 @@ import { faPenToSquare } from '@fortawesome/free-solid-svg-icons'
 
 import Search from "../Search";
 import PlaylistSongs from "../PlaylistSongs";
-import Player from "../Player";
 import "../../index.css"
 import "./Playlist.css"
 
-export default function Playlist() {
+export default function Playlist({ onQueueChange }) {
   const dispatch = useDispatch()
   const history = useHistory();
+  const [queue, setQueue] = useState([])
   const { playlistId } = useParams();
 
   const sessionUser = useSelector(state => state.session.user);
@@ -30,7 +30,6 @@ export default function Playlist() {
   const songsObj = useSelector(state => state.playlistSongsReducer)
   const songsArr = Object.values(songsObj);
 
-
   // this is playlist's user
   const users = useSelector(state => state.userReducer)
   const userId = currentPlaylist?.['user_id']
@@ -38,8 +37,6 @@ export default function Playlist() {
 
   const [title, setTitle] = useState(currentPlaylist?.title);
   const [isEditing, setIsEditing] = useState(false);
-  const [isPlaying, setIsPlaying] = useState(false)
-  const [currentSongUrl, setCurrentSongUrl] = useState(null);
 
 
   useEffect(() => {
@@ -65,7 +62,16 @@ export default function Playlist() {
 
   const handlePlayClick = async (e) => {
     e.preventDefault();
-    setIsPlaying(!isPlaying)
+
+    if (queue?.length && queue !== undefined) {
+      const combinedQueue = new Set([...queue, ...songsArr])
+      setQueue([...combinedQueue])
+      onQueueChange([...combinedQueue])
+    } else {
+      new Set([...songsArr])
+      setQueue([...songsArr])
+      onQueueChange([...songsArr])
+    }
   }
 
   const handleTitleChange = (e) => {
@@ -75,27 +81,34 @@ export default function Playlist() {
   const handleTitleSubmit = (e) => {
     e.preventDefault();
     dispatch(updateAPlaylist(currentPlaylist, { title }))
-      .then(() => dispatch(getPlaylist(playlistId)))
+      .then(() => dispatch(getPlaylist(currentPlaylist.id)))
       .then(() => setIsEditing(false));
   };
+
 
   return (
     <div>
       <Search />
-      <p>Playlist - Made By {user?.public_name}</p>
-      {isEditing ?
-        <form className="playlist-title-edit-form" onSubmit={handleTitleSubmit}>
-          <input className="playlist-edit-title-input" type="text" value={title} onChange={handleTitleChange} />
-          <button type="submit">Save</button>
-          <button type="button" onClick={() => setIsEditing(false)}>Cancel</button>
-        </form> :
+
+      {!currentPlaylist ? "Playlist Not Found" : isEditing ?
+        <div>
+          <form className="playlist-title-edit-form" onSubmit={handleTitleSubmit}>
+            <input className="playlist-edit-title-input" maxLength={20} value={title} type="text" onChange={handleTitleChange} />
+            <div>
+              <button type="submit">Save</button>
+              <button type="button" onClick={() => setIsEditing(false)}>Cancel</button>
+            </div>
+          </form>
+        </div>
+        :
         <>
           <div className="playlist-header">
+            <p>Playlist - Made By {user?.public_name}</p>
             <h1>{currentPlaylist?.title} <FontAwesomeIcon size="sm" icon={faPenToSquare} onClick={handleEditClick} /> </h1>
-            {currentUserId == userId && (
+            {currentUserId === userId && (
               <div className="playlist-actions">
                 <button className="play-playlist-button" onClick={handlePlayClick}>
-                  PLAY PLAYLIST
+                  ADD PLAYLIST TO QUEUE
                 </button>
                 <button className="delete-playlist-button" onClick={handleDeleteClick}>
                   DELETE PLAYLIST
@@ -107,8 +120,6 @@ export default function Playlist() {
           <PlaylistSongs songs={songsArr} />
         </>
       }
-
-      <Player songs={songsArr} />
-    </div>
+    </div >
   )
 }

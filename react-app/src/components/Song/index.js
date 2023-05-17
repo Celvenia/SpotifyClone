@@ -8,6 +8,7 @@ export default function Song({ song }) {
             <NavLink
                 to={`/songs/${song.id}`}
                 className="song-link"
+                activeClassName="active-song-link"
                 key={song.id}
             >
 

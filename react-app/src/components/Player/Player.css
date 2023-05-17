@@ -13,11 +13,11 @@
     right: 500px;
     width: 400px;
     z-index: 1;
-    /* pointer-events: none; */
+    pointer-events: none;
 }
 .audio-player-buttons > * {
     cursor: pointer;
-    /* pointer-events: auto; */
+    pointer-events: auto;
 }
 
 .audio-player-buttons > *:hover {
@@ -30,9 +30,27 @@
     left: 0;
     width: 100%
 }
-.songName {
-    position: fixed;
-    bottom: 20px;
-   left: 100px;
-    color: white;
-}
+
+
+.audio-player-current-song {
+    display: flex;
+    justify-content: center;
+    animation: moveAndDisappear 10s linear infinite;
+    /* animation: moveAndDisappear 5s ease-in-out infinite; */
+  }
+
+  @keyframes moveAndDisappear {
+    0% {
+      transform: translateX(0);
+      opacity: 1;
+    }
+    50% {
+      transform: translateX(-20px);
+      opacity: 1;
+    }
+    100% {
+      transform: translateX(-40px);
+      opacity: 0;
+    }
+  }
+  

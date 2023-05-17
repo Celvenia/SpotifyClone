@@ -1,7 +1,6 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
-import { getSongs } from "../../store/songs"
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faSearch } from '@fortawesome/free-solid-svg-icons'
 import { useState } from 'react'
@@ -16,8 +15,7 @@ import { getPlaylists } from "../../store/playlists";
 export default function Search() {
   const currentUrl = window.location.href;
   const isSearchPage = currentUrl.includes('/search');
-  const isPlaylistPage = currentUrl.includes('/playlists')
-  
+
   const dispatch = useDispatch()
   const { playlistId } = useParams()
   const [searchInput, setSearchInput] = useState("");
@@ -66,6 +64,10 @@ export default function Search() {
     localStorage.setItem('recentSearch', song.title);
   };
 
+  const [showComponent, setShowComponent] = useState(
+    window.innerWidth > 1299
+  );
+
   useEffect(() => {
     const storedRecentSearch = localStorage.getItem('recentSearch');
     if (storedRecentSearch) {
@@ -73,44 +75,62 @@ export default function Search() {
     }
   }, []);
 
+
+  useEffect(() => {
+    const handleResize = () => {
+      setShowComponent(window.innerWidth > 1299);
+    };
+    // events: click, keydown, keyup, submit, load, mouseover, mouseout, resize
+    window.addEventListener("resize", handleResize);
+
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, []);
+
   return (
     <>
-      <div className="search-container">
-        <div className="search-icon">
-          <FontAwesomeIcon icon={faSearch} />
-        </div>
-        <input
-          type="text"
-          placeholder="What songs do you want to listen to"
-          className="search-input"
-          value={searchInput}
-          onChange={handleChange}
+      {showComponent && (
+        <div>
 
-        />
-      </div>
-
-      <ul>
-        {(state.query === '' ? "" : state.list.map(song => (
-          isSearchPage ?
-            <div className="search-song-container">
-              <NavLink to={`/songs/${song.id}`} onClick={() => handleSearchClick(song)} className="search-song-link">{song.title}</NavLink>
+          <div className="search-container">
+            <div className="search-icon">
+              <FontAwesomeIcon icon={faSearch} />
             </div>
-            : (
-              <li key={song.title}>
-                <button className="search-add-button" onClick={() => handleAddClick(song)}>
-                  Add Song
-                </button>
+            <input
+              type="text"
+              placeholder={isSearchPage ? "Navigate To Song Page" : "What songs do you want to listen to"}
+              className="search-input"
+              value={searchInput}
+              onChange={handleChange}
+            />
+          </div>
 
-                {song.title} By {usersObj[song.user_id].public_name}
+          <ul className="search-song-result" >
+            {(state.query === '' ? "" : state.list.slice(0, 13).map(song => (
+              isSearchPage ?
+                <div className="search-song-container">
+                  <NavLink to={`/songs/${song.id}`} onClick={() => handleSearchClick(song)} className="search-song-link">{song.title} By {usersObj[song.user_id].public_name}</NavLink>
+                </div>
+                : (
+                  <li key={song.title}>
+                    <button className="search-add-button" onClick={() => handleAddClick(song)}>
+                      Add Song
+                    </button>
+                    {song.title} By {usersObj[song.user_id].public_name}
+                  </li>
 
-              </li>
-            )
-        )))}
-      </ul>
+                )
+            )))}
+          </ul>
 
-      {isSearchPage ? (
-        <SearchPage artists={artists} recentSearch={recentSearch} />
-      ) : ""}
+          {isSearchPage ? (
+            <SearchPage artists={artists} recentSearch={recentSearch} />
+          ) : ""}
+
+        </div>
+      )}
     </>
   )
+
 }

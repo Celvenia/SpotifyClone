@@ -5,6 +5,7 @@ import './SidebarPlaylist.css';
 
 export default function SidebarPlaylist({ playlist }) {
 
+  console.log(playlist)
 	return (
 		<div className="sidebar-block" title={playlist.title}>
 			<NavLink exact to={`/playlists/${playlist.id}`}>

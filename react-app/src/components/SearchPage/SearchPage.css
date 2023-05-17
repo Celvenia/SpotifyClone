@@ -1,6 +1,7 @@
 .search-page {
     width: 100%;
     overflow: hidden;
+    height:  200px;
   }
   
   .carousel-container {
@@ -11,6 +12,10 @@
     position: relative;
     width: 888px;
     height: 222px;
+  }
+  
+  .carousel-title {
+    margin-top: 180px;
   }
   
   .carousel-slide {

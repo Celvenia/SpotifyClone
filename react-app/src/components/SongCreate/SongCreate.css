@@ -1,0 +1,53 @@
+.song-modal-container {
+    max-width: 400px;
+    margin: 0 auto;
+    padding: 30px;
+    background-color: #181818;
+    color: #fff;
+    border-radius: 20px;
+  }
+  
+  .song-modal-form {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .song-modal-label {
+    margin-bottom: 2px;
+    font-size: 12px;
+    font-weight: bold;
+  }
+  
+  .song-modal-input,
+  select {
+    padding: 10px;
+    margin-bottom: 20px;
+    border: none;
+    border-radius: 5px;
+    background-color: #282828;
+    color: #fff;
+    font-size: 16px;
+  }
+  
+  input::placeholder,
+  select::placeholder {
+    color: #b3b3b3;
+  }
+  
+  .song-modal-button {
+    padding: 10px;
+    margin-top: 10px;
+    border: none;
+    border-radius: 30px;
+    background-color: #1db954;
+    color: #fff;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.2s;
+  }
+  
+  .song-modal-button:hover {
+    background-color: #1ed760;
+  }
+  

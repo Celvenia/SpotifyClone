@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useParams } from 'react-router-dom'
 import { getFollowers } from '../../store/followers'
@@ -16,43 +16,33 @@ export default function User() {
   const pageUserObj = useSelector(state => state.userReducer)
   const { userId } = useParams()
   const pageUser = pageUserObj[userId]
-  const [isFollowing, setIsFollowing] = useState(false)
-  const [isClickDisabled, setIsClickDisabled] = useState(false)
-  
+
+
   const handleFollowClick = async (e) => {
     e.preventDefault()
-    if (isClickDisabled) return;
+    if (!sessionUser) alert("Log in to Follow")
+
     try {
-      setIsClickDisabled(true);
       if (userId && userId !== 0) {
-        dispatch(followUser(userId))
-        dispatch(getFollowers(userId))
-        setIsFollowing(true)
+        await dispatch(followUser(userId))
+        await dispatch(getFollowers(userId))
       }
     } catch (err) {
       alert(err)
     }
-    setTimeout(() => {
-      setIsClickDisabled(false);
-    }, 1000)
   }
-  
+
   const handleUnfollowClick = async (e) => {
     e.preventDefault()
-    if (isClickDisabled) return;
+
     try {
-      setIsClickDisabled(true);
       if (userId && userId !== 0) {
-        dispatch(unfollowUser(userId))
-        dispatch(getFollowers(userId))
-        setIsFollowing(false)
+          await dispatch(unfollowUser(userId))
+          await dispatch(getFollowers(userId))
       }
     } catch (err) {
       alert(err)
     }
-    setTimeout(() => {
-      setIsClickDisabled(false);
-    }, 1000)
   }
 
   useEffect(() => {
@@ -65,16 +55,16 @@ export default function User() {
   return (
     <>
       <div className="user-banner-container">
-        <img className="user-banner" src={pageUser?.banner_image}></img>
+        <img alt="banner" className="user-banner" src={pageUser?.banner_image}></img>
       </div>
       <div className="user-info-container">
         <div className="user-profile-image-container">
-          <img className="user-profile-image" src={pageUser?.profile_image}></img>
+          <img alt="user profile" className="user-profile-image" src={pageUser?.profile_image}></img>
         </div>
         <div className="user-info">
           <h1>{pageUser?.public_name}</h1>
-          <div>{followersArr.length ? `${followersArr.length} Followers` : currentUserId == userId ? "" : "Be the first to follow!"}</div>
-          {currentUserId == userId ? "" : followersObj[currentUserId] ? 
+          <div>{followersArr.length ? `${followersArr.length} Followers` : currentUserId === userId ? "" : "Be the first to follow!"}</div>
+          {currentUserId === userId ? "" : followersObj[currentUserId] ?
             <button className="unfollow-button" onClick={handleUnfollowClick}>Following</button>
             :
             <button className="follow-button" onClick={handleFollowClick}>Follow</button>
@@ -83,17 +73,16 @@ export default function User() {
       </div>
       <div className="user-tabs">
         <ul>
-          <li><a href="">Overview</a></li>
-          <li><a href="">Related Artists</a></li>
-          <li><a href="">Top Tracks</a></li>
-          <li><a href="">Albums</a></li>
-          <li><a href="">Singles and EPs</a></li>
-          <li><a href="">Appears On</a></li>
-          <li><a href="">Compilations</a></li>
+          <button>Overview</button>
+          <button>Related Artists</button>
+          <button>Top Tracks</button>
+          <button>Albums</button>
+          <button>Singles and EPs</button>
+          <button>Appears On</button>
+          <button>Compilations</button>
         </ul>
       </div>
       <div className="user-content">
-        {/* Add content here */}
       </div>
     </>
   )

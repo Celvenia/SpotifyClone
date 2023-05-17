@@ -1,14 +1,18 @@
 .profile-dropdown {
   position: fixed;
-  right: 50px;
+  right: 40px;
   height: auto;
   width: 175px;
-  background: #333333;
+  /* background: #333333; */
   padding: 10px;
-  padding-top: 12px;
+  padding-top: 5px;
   padding-bottom: 12px;
   border: 0;
   border-radius: 2px;
+}
+
+.profile-dropdown {
+  list-style-type: none;
 }
 
 .hidden {
@@ -18,8 +22,15 @@
 .profile-button {
   position: fixed;
   top: 10px;
-  right: 30px;
+  right: 80px;
   z-index: 1;
+  height: 50px;
+
+}
+
+.profile-button > button {
+  height: 40px;
+  margin-right: 5px;
 }
 
 .fas.fa-user-circle {
@@ -31,13 +42,20 @@
   border-radius: 50%;
 }
 
-/* .invisible-button {
+.small-profile-pic {
+  object-fit: contain;
+  height: 40px;
+  width: 40px;
+  border-radius: 50%;
+}
+
+.invisible-button {
   background-color: #212121;
   border: none;
   padding: 0;
   margin: 0;
   cursor: pointer;
-} */
+}
 
 .gap {
   margin-right: 10px;
