@@ -35,6 +35,12 @@ const Sidebar = () => {
     }
   }, [dispatch, userId]);
 
+  const handleViewQueue = async (e) => {
+    e.preventDefault();
+    // dispatch(deleteAPlaylist(playlistId))
+    //   .then(history.push("/"))
+  };
+
   const handleCreatePlaylistClick = async (e) => {
     e.preventDefault();
     try {
@@ -77,7 +83,7 @@ const Sidebar = () => {
             className="sidebar-nav-item sidebar-nav-link"
             onClick={handleCreatePlaylistClick}
           >
-            <FontAwesomeIcon icon={faPlus} /> Playlists
+            <FontAwesomeIcon icon={faPlus} /> Create Playlist
           </div>
         </li>
       </ul>
@@ -95,6 +101,9 @@ const Sidebar = () => {
           ))
           : ''}
       </div>
+      <button className="view-queue-button" onClick={handleViewQueue}>
+                  View Current Queue
+                </button>
     </div>
   );
 };

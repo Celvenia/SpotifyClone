@@ -64,4 +64,11 @@
     justify-content: center;
   }
 
+  .view-queue-button {
+    background-color: #212121;
+    color: white;
+    border-radius: 20px;
+    box-shadow: 2px 2px 2px 1px #1db954;
+}
+
   /* #2a2a2a; */

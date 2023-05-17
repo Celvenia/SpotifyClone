@@ -10,8 +10,8 @@
     display: flex;
     justify-content: space-between;
     bottom: 20px;
-    right: 500px;
-    width: 400px;
+    left: 360px;
+    width: 160px;
     z-index: 1;
     pointer-events: none;
 }
@@ -35,7 +35,7 @@
 .audio-player-current-song {
     display: flex;
     justify-content: center;
-    animation: moveAndDisappear 10s linear infinite;
+    animation: moveAndDisappear 15s linear infinite;
     /* animation: moveAndDisappear 5s ease-in-out infinite; */
   }
 

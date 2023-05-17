@@ -5,18 +5,31 @@ import 'react-h5-audio-player/lib/styles.css';
 import './Player.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faForwardStep, faBackwardStep } from '@fortawesome/free-solid-svg-icons'
-import { useSelector } from 'react-redux';
-// import { useSelector } from 'react-redux';
+
 
 
 const Player = ({ songs }) => {
   const [currentSongIndex, setCurrentSongIndex] = useState(0);
   const sessionUser = useSelector(state => state.session.user)
-  // const usersObj = useSelector(state => state.users)
+  const [songName,setSongName] = useState('');
+  const [songArtist,setSongArtist] = useState('');
+  const userObj = useSelector(state => state.userReducer)
 
+  useEffect(()=>{
+    if(songs.length != undefined) {
+      setSongName(songs[currentSongIndex]?.title);
+      setSongArtist(userObj[songs[currentSongIndex]?.user_id]?.public_name);
+    }
+    else {
+      setSongName('');
+      setSongArtist('');
+    }
+  },[]);
   const handleNextSong = () => {
     if(songs.length !== undefined) {
       const nextSongIndex = (currentSongIndex + 1) % songs.length;
+      setSongName(songs[nextSongIndex]?.title);
+      setSongArtist(userObj[songs[nextSongIndex]?.user_id]?.public_name);
       setCurrentSongIndex(nextSongIndex);
     }
   };
@@ -25,6 +38,8 @@ const Player = ({ songs }) => {
   const handlePrevSong = () => {
     if(songs.length !== undefined) {
       const prevSongIndex = currentSongIndex === 0 ? songs.length - 1 : currentSongIndex - 1;
+      setSongName(songs[prevSongIndex]?.title);
+      setSongArtist(userObj[songs[prevSongIndex]?.user_id]?.public_name);
       setCurrentSongIndex(prevSongIndex);
     }
   };
@@ -40,9 +55,6 @@ const Player = ({ songs }) => {
       </div>
       { songs != null ?
       <>
-      <div className="audio-player-current-song">
-        {sessionUser ? songs?.[currentSongIndex]?.title : ""}
-      </div>
         <AudioPlayer
         // autoPlay
         src={songs[currentSongIndex]?.url}
@@ -56,7 +68,9 @@ const Player = ({ songs }) => {
         className="audio-player"
         />
       }
-
+    <div className="audio-player-current-song">
+     {songName} ~~ {songArtist} 
+    </div>
     </div>
     
   );
