@@ -16,10 +16,10 @@ const loadSong = (song) => ({
   song,
 });
 
-// const postSong = (song) => ({
-//   type: POST_SONG,
-//   song,
-// });
+const postSong = (song) => ({
+  type: POST_SONG,
+  song,
+});
 
 const deleteSong = (songId) => ({
   type: DELETE_SONG,
@@ -68,7 +68,7 @@ export const createASong = (data) => async (dispatch) => {
 
     if (res.ok) {
       const song = await res.json();
-      dispatch(loadSong(song));
+      dispatch(postSong(song));
       return song;
     } else return res.json()
   } catch (error) {
@@ -76,19 +76,6 @@ export const createASong = (data) => async (dispatch) => {
   }
 };
 
-// export const postASong = (song) => async (dispatch) => {
-
-//   const res = await fetch(`/api/songs/${song.id}`, {
-//     method: "POST",
-//     body: JSON.stringify(payload),
-//   });
-
-//   if (res.ok) {
-//     const song = await res.json();
-//     dispatch(postSong(song));
-//     return song;
-//   } else return res.json()
-// };
 
 export const deleteASong = (songId) => async (dispatch) => {
   const res = await fetch(`/api/songs/${songId}`, {

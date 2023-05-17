@@ -30,7 +30,7 @@ const Sidebar = () => {
 
 	useEffect(() => {
 		dispatch(getSongs());
-		dispatch(getAlbums());
+		// dispatch(getAlbums());
     dispatch(getUsers())
 		if (userId) {
 			dispatch(getPlaylists());

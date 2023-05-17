@@ -33,6 +33,35 @@ export const getFollowers = (id) => async (dispatch) => {
     }
 };
 
+export const followUser = (id) => async (dispatch) => {
+    const res = await fetch(`/api/users/${id}/followers`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+    if (res.ok) {
+      const user = await res.json();
+      dispatch(addFollower(user));
+      return user;
+    } else {
+      const data = await res.json();
+      return data;
+    }
+  };
+
+  export const unfollowUser = (id) => async (dispatch) => {
+    const res = await fetch(`/api/users/${id}/followers`, {
+      method: "DELETE",
+    });
+    if (res.ok) {
+      const user = await res.json();
+      dispatch(removeFollower(user));
+      return user;
+    } else {
+      return res.json();
+    }
+  };
 
 const initialState = {};
 
@@ -46,6 +75,16 @@ const followerReducer = (state = initialState, action) => {
                 newState[user.id] = user;
             });
             return newState;
+        }
+        case ADD_FOLLOWER: {
+            const newState = {...state }
+            
+            return { ...newState, [action.follower.id]: action.follower}
+        }
+        case REMOVE_FOLLOWER: {
+            const newState = {...state}
+            delete newState[action.follower.id]
+            return newState
         }
         default: {
             return state;

@@ -26,7 +26,7 @@ def song(id):
     song = Song.query.get(id)
     return song.to_dict()
 
-@song_routes.route('/', methods=['POST'])
+@song_routes.route('', methods=['POST'])
 @login_required
 def create_song():
     """
@@ -35,13 +35,13 @@ def create_song():
     if not current_user.is_artist:
         return jsonify(error="You don't have the permission to create a song"), 401
 
-    title = request.json.get('title')
     album_id = request.json.get('album_id')
-    user_id = current_user.id
+    title = request.json.get('title')
     duration_ms = request.json.get('duration_ms')
     url = request.json.get('url')
+    user_id = current_user.id   
     release_date = request.json.get('release_date')
-    genres = request.json.get('genres')
+    genre = request.json.get('genre')
 
     new_song = Song(
         title=title,
@@ -50,7 +50,7 @@ def create_song():
         duration_ms=duration_ms,
         url=url,
         release_date=release_date,
-        genres=genres
+        genre=genre
     )
 
     db.session.add(new_song)

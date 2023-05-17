@@ -36,9 +36,11 @@ export default function Playlist() {
   const userId = currentPlaylist?.['user_id']
   const user = users?.[userId]
 
-  const [title, setTitle] = useState(currentPlaylist?.title || '');
+  const [title, setTitle] = useState(currentPlaylist?.title);
   const [isEditing, setIsEditing] = useState(false);
   const [isPlaying, setIsPlaying] = useState(false)
+  const [currentSongUrl, setCurrentSongUrl] = useState(null);
+
 
   useEffect(() => {
     dispatch(getPlaylist(playlistId))
@@ -82,14 +84,14 @@ export default function Playlist() {
       <Search />
       <p>Playlist - Made By {user?.public_name}</p>
       {isEditing ?
-        <form onSubmit={handleTitleSubmit}>
+        <form className="playlist-title-edit-form" onSubmit={handleTitleSubmit}>
           <input className="playlist-edit-title-input" type="text" value={title} onChange={handleTitleChange} />
           <button type="submit">Save</button>
           <button type="button" onClick={() => setIsEditing(false)}>Cancel</button>
         </form> :
         <>
           <div className="playlist-header">
-            <h1>{currentPlaylist?.title} <FontAwesomeIcon size="sm" icon={faPenToSquare} onClick={handleEditClick}/> </h1>
+            <h1>{currentPlaylist?.title} <FontAwesomeIcon size="sm" icon={faPenToSquare} onClick={handleEditClick} /> </h1>
             {currentUserId == userId && (
               <div className="playlist-actions">
                 <button className="play-playlist-button" onClick={handlePlayClick}>

@@ -21,9 +21,9 @@
     padding-top: 10px;
     min-width: 80%;
     max-width: 80%;
-    height: 100vh;
+    height: 80vh;
     margin-left: 260px;
-    /* overflow-y: auto; */
+    overflow-y: auto;
 }
 
 .main-container {
@@ -37,11 +37,11 @@
 }
 
 .nav-link:hover {
-    color: green;
+    color:#1db954;
 }
 
 .nav-link:active {
-    color: red;
+    color: #1db954;
 }
 
 .small-pic {

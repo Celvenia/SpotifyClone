@@ -24,9 +24,9 @@ def seed_songs():
         Song(album_id=1, title='Righteous', duration_ms=224000, url='https://drive.google.com/uc?export=download&id=162MicgIxqavYjNPX2BJMVHnjRcJr31mg', release_date=datetime(2020, 4, 24), genre='Hip Hop', user_id=5),
         Song(album_id=1, title='Stay High', duration_ms=149400, url='https://drive.google.com/uc?export=download&id=1q0YRfhtjKHDd__A_XooLRgPiW_Fz0AcF', release_date=datetime(2020, 7, 25), genre='Hip Hop', user_id=5),
 # the_weekend, calvin_harris, rihanna
-        Song(album_id=5, title='Starboy', duration_ms=999999, url='urlexample.com', release_date=datetime(2016, 11, 25), genre='R&B', user_id=6),
-        Song(album_id=6, title='After Hours', duration_ms=999999, url='urlexample.com', release_date=datetime(2020, 3, 20), genre='R&B', user_id=6),
-        Song(album_id=7, title='Kiss Land', duration_ms=999999, url='urlexample.com', release_date=datetime(2013, 9, 10), genre='R&B', user_id=6),
+        Song(album_id=5, title='Feel The Fire', duration_ms=999999, url='https://drive.google.com/uc?id=1oSZPO6sLpLn4P51M3pycidb2Gj-c3lHI', release_date=datetime(2016, 11, 25), genre='R&B', user_id=6),
+        Song(album_id=6, title='Past Lives', duration_ms=999999, url='https://drive.google.com/uc?id=1NY5KRiIou9JWCGOn9p3YZ70ImBEcjH3j', release_date=datetime(2020, 3, 20), genre='R&B', user_id=6),
+        Song(album_id=7, title='The Hills x Creepin x The Color Violet', duration_ms=999999, url='https://drive.google.com/uc?id=15KABanxK1e98WMXOpZCr1CMhT3W9TszT', release_date=datetime(2013, 9, 10), genre='R&B', user_id=6),
         Song(album_id=8, title='Beauty Behind the Madness', duration_ms=999999, url='urlexample.com', release_date=datetime(2015, 8, 28), genre='R&B', user_id=6),
         Song(album_id=9, title='My Dear Melancholy', duration_ms=999999, url='urlexample.com', release_date=datetime(2018, 3, 30), genre='R&B', user_id=6),
         Song(album_id=10, title='Echoes of Silence', duration_ms=999999, url='urlexample.com', release_date=datetime(2011, 12, 21), genre='R&B', user_id=6),
